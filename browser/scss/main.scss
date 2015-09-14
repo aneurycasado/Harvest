@@ -25,6 +25,10 @@ body {
   margin-top: 20px;
 }
 
+.logo {
+  margin-right:10px;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
