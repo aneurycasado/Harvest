@@ -3,7 +3,7 @@ module.exports = {
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
     "consumerKey": "LEem8xvzEfI4d4MMsBj6oMG59",
-    "consumerSecret": "	jqMoUGAD7WB7mpPsSPcdytdfgliG7bWnTEUGsklKhIN6A1KEt5",
+    "consumerSecret": "jqMoUGAD7WB7mpPsSPcdytdfgliG7bWnTEUGsklKhIN6A1KEt5",
     "callbackUrl": "http://127.0.0.1:1337/auth/twitter/callback"
   },
   "FACEBOOK": {
