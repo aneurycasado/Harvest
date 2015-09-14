@@ -18,3 +18,9 @@ router.get('/', ensureAuthenticated, function (req, res) {
       res.json(products);
     });
 });
+
+router.get('/:category', ensureAuthenticated, function (req, res) {
+    Products.find({category: req.params.category}).then(function(products){
+      res.json(products);
+    });
+});

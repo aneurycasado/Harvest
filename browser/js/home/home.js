@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('HomeCtrl', function ($scope, products, $state) {
-
-    $scope.products = products;
+  console.log($scope);
+  $scope.products = products;
 
 });

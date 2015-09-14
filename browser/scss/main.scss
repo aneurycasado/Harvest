@@ -20,6 +20,11 @@ body {
   margin: 0 auto;
 }
 
+.oauth {
+  text-align: center;
+  margin-top: 20px;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

@@ -1,4 +1,11 @@
 <section id="home">
-    <fullstack-logo></fullstack-logo>
-    <rando-greeting></rando-greeting>
+<category></category>
+<h1>{{currentCategory}}</h1>
+<div ng-repeat='product in products'>
+<li>{{product.title}}</li>
+<li>{{product.descrption}}</li>
+<li>{{product.photo}}</li>
+<li>{{product.price}}</li>
+<li>{{product.inventoryQuantity}}</li>
+</div>
 </section>
