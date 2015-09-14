@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
 	user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	items: [{
-		title: {type: String, unique: true, required: true},
+		title: {type: String, required: true},
 		description: {type: String, required: true},
 		category: {type: String, required: true},
 		photo: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
@@ -20,10 +20,12 @@ var schema = new mongoose.Schema({
 
 schema.pre('save', function (next) {
 	var total = 0;
+	console.log('executing pre save hook...');
 	this.items.forEach(function (item) {
 		total += item.finalPrice * item.quantityOrdered;
 	});
 	this.orderTotal = total;
+	next();
 });
 
 mongoose.model('Order', schema);
