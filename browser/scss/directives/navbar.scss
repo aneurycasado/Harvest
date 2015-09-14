@@ -1,7 +1,11 @@
 navbar {
+  // $green = #71E498,
+  // $blue = #6FBFD9,
+  // $red = #FF927E,
+  // $orange = #FFC07E,
 
   display: block;
-  background: white;
+  background: #71E498;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
 
@@ -26,11 +30,11 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: darken(#FFC07E, 10%);
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: #FFC07E;
     }
     &:focus {
       background: none;
