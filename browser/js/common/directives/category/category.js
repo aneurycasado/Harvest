@@ -1,13 +1,16 @@
-app.directive('category', function () {
+app.directive('category', function (ProductService) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/category/category.html',
         link : function(scope, element, attr) {
           scope.currentCategory = undefined;
-          scope.categories = ['veggies', 'fish', 'pizza'];
+          scope.categories = ['Vegetables', 'Dairy', 'Fruits'];
           scope.currentCategory = '';
           scope.changeCategory = function (category) {
             scope.currentCategory = category;
+            ProductService.getProductsByCategory(category).then(function(products){
+              scope.products = products;
+            });
           };
         }
     };
