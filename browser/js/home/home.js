@@ -14,5 +14,4 @@ app.config(function ($stateProvider) {
 app.controller('HomeCtrl', function ($scope, products, $state) {
   console.log($scope);
   $scope.products = products;
-
 });
