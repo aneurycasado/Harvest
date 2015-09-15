@@ -2,7 +2,7 @@ app.config(function ($stateProvider) {
 
     $stateProvider.state('account', {
         url: '/account',
-        template: '/js/account/account.html',
+        templateUrl: '/js/account/account.html',
         controller: 'accountCtrl',
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
