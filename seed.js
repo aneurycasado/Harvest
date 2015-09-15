@@ -37,7 +37,7 @@ var emails = chance.unique(chance.email, numUsers);
 var reviewContent = chance.unique(chance.sentence, numReviews);
 var reviewTitle = chance.unique(chance.word, numReviews);
 var productTitle = chance.unique(chance.word, numProducts);
-var productDescription = chance.unique(chance.sentence, numProducts); 
+var productDescription = chance.unique(chance.sentence, numProducts);
 // Creating a dummy set of categories
 chance.set('lastNames', ['Dairy', 'Vegetables', 'Fruits']);
 
@@ -130,12 +130,7 @@ var seedCarts = function (data) {
 connectToDb.then(function () {
     var data = {};
     User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
-        } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
-            process.kill(0);
-        }
+        return seedUsers();
     }).then(function (users) {
         data.users = users;
         return seedProducts();
