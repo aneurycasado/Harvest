@@ -1,12 +1,35 @@
 <section id="home">
-<category></category>
-<h1>{{currentCategory}}</h1>
-<div ng-repeat='product in products'>
-<li>{{product.title}}</li>
-<li>{{product.category}}</li>
-<li>{{product.descrption}}</li>
-<li><img src = "{{product.photo}}"/></li>
-<li>{{product.price}}</li>
-<li>{{product.inventoryQuantity}}</li>
-</div>
+  <category></category>
+  <div class = "page-header">
+    <h1 ng-hide = "currentCategory">No Category Selected</h1>
+    <h1 ng-show = "currentCategory">{{currentCategory}}</h1>
+  </div>
+  <div class = "container">
+    <div class = "panel panel-success product" ng-repeat='product in products'>
+      <div class = "panel-heading">
+        <h2>{{product.title}}</h2>
+      </div>
+      <div class = "panel-body">
+        <p>{{product.descrption}}</p>
+        <h2><img src = "{{product.photo}}"/></h2>
+      </div>
+      <ul class ="list-group">
+        <li class='list-group-item'> <h3>Category: {{product.category}}</h3> </li>
+        <li class='list-group-item'> <h3>Price: ${{product.price}}</h3> </li>
+        <li class='list-group-item'> <h3>Inventory Quantity: {{product.inventoryQuantity}}</h3> </li>
+      </ul>
+        <div class ="btn-group btn-group-lg btn-group-justified" role="group">
+          <div class="btn-group" role ="group">
+            <button class = "btn btn-warning" ng-click='goToReview(product)'>
+              <i class ="fa fa-comments fa-2x">See Reviews</i>
+            </button>
+          </div>
+          <div class="btn-group" role ="group">
+            <button class = "btn btn-warning" ng-click='addToCart(product)'>
+              <i class ="fa fa-cart-plus fa-2x">Add to Cart</i>
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
 </section>

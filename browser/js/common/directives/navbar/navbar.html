@@ -3,15 +3,20 @@
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
         </div>
+        <!-- Need to make this hide for all other states except home -->
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default" ng-click = 'find()'>Submit</button>
+        </form>
         <ul class="nav navbar-nav navbar-right">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <li><button ng-show="!user" ui-sref="login" class="btn login-button">Login</button></li>
         </ul>
-
-
-        <div ng-show="user" class="welcome">
+        <div ng-show="user" class="welcome nav navbar-nav navbar-right">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
         </div>

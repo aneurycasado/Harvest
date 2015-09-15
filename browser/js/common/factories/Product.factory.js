@@ -4,13 +4,19 @@ app.factory('ProductService', function ($http) {
       return response.data;
     });
   }
+  function getOne(id){
+    return $http.get('/api/products/'+id).then(function(response){
+      return response.data;
+    });
+  }
   function getProductsByCategory (category) {
-    return $http.get('/api/products/'+category).then(function(response){
+    return $http.get('/api/products/category/'+category).then(function(response){
       return response.data;
     });
   }
   return{
     getAll: getAll,
+    getOne: getOne,
     getProductsByCategory: getProductsByCategory,
   };
 });
