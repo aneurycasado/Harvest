@@ -1,0 +1,30 @@
+<div>
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>
+
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="oneAtATime">
+      Open only one at a time
+    </label>
+  </div>
+  <accordion close-others="oneAtATime">
+
+    <accordion-group heading="{{order.orderTotal}} on {{order.dateOfOrder}}" ng-repeat="order in orders">
+      <div ng-repeat='item in order.items'><img src={{item.photo}}><h3>{{item.title}}</h3> : price {{item.finalPrice}}</div>
+    </accordion-group>
+
+  </accordion>
+</div>
