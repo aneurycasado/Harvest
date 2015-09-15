@@ -6,6 +6,15 @@ var Product = mongoose.model('Product');
 module.exports = router;
 
 	
+router.get("/:userID", function(req,res,next){
+	Cart.findOne({user:req.params.userID}).then(function(cart){
+		console.log("Got Cart ", cart);
+		res.json(cart);
+	}).then(null,function(error){
+		console.error(error);
+		next(error);
+	});
+});
 
 router.put("/:productID", function (req, res, next) {
     var userID = req.user.id;
