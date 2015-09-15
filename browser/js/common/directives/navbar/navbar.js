@@ -18,6 +18,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();
             };
+            scope.find = function(){
+              //Need to learn how to link the controller for the home page with the navbar controller
+              console.log("filter all the products by this name");
+            }
 
             scope.logout = function () {
                 AuthService.logout().then(function () {

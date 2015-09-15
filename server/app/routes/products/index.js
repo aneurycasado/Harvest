@@ -19,8 +19,16 @@ router.get('/', ensureAuthenticated, function (req, res) {
     });
 });
 
-router.get('/:category', ensureAuthenticated, function (req, res) {
+router.get('/:id', ensureAuthenticated, function (req, res) {
+    Products.find({_id: req.params.id}).then(function(product){
+      res.json(product[0]);
+    });
+});
+
+router.get('/category/:category', ensureAuthenticated, function (req, res) {
+    console.log(req.params.category);
     Products.find({category: req.params.category}).then(function(products){
+      console.log("We good");
       res.json(products);
     });
 });

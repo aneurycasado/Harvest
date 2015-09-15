@@ -1,3 +1,7 @@
-<span>
-<button ng-repeat='category in categories' ng-click='changeCategory(category)'>{{category}}</button>
-</span>
+<div class = "container">
+  <div class ="btn-group btn-group-lg btn-group-justified" role="group">
+    <div class="btn-group" role ="group" ng-repeat='category in categories'>
+      <button class = "btn btn-success" ng-click='changeCategory(category)'><h4>{{category}}</h4></button>
+    </div>
+  </div>
+</div>

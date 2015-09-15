@@ -14,4 +14,16 @@ app.config(function ($stateProvider) {
 app.controller('HomeCtrl', function ($scope, products, $state) {
   console.log($scope);
   $scope.products = products;
+  $scope.currentOrder = [];
+  $scope.goToReview = function(product){
+    console.log("Product");
+    console.log(product);
+    var productID = product._id
+    console.log(productID);
+    $state.go('review',{id: productID});
+  };
+  $scope.addToCart = function(product){
+    $scope.currentOrder.push(product);
+    console.log($scope.currentOrder);
+  };
 });
