@@ -6,7 +6,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
             scope.cart = CartService;
-            console.log("cart ", scope.cart);
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
@@ -21,7 +20,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             };
             scope.find = function(){
               //Need to learn how to link the controller for the home page with the navbar controller
-              console.log("filter all the products by this name");
             };
 
             scope.logout = function () {
@@ -29,7 +27,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                    $state.go('home');
                 });
             };
-
+            
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
@@ -46,7 +44,16 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
-        }
+        },
+        controller: 'NavbarCtrl'
     };
+});
+
+app.controller('NavbarCtrl', function ($scope, $state) {
+  $scope.goToCart = function (user) {
+    $state.go("cart", {
+        id: user._id
+    });
+};
 
 });
