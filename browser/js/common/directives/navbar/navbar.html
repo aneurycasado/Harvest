@@ -25,7 +25,12 @@
                     <button type="submit" class="btn btn-default" ng-click='find()'>Submit</button>
                 </form>
             </li>
-            <li><i class="fa fa-shopping-cart fa-3x"></i></li>
+            <li>
+                <span class ="fa-stack fa-lg">
+                    <i class="fa fa-shopping-cart fa-stack-2x fa-3x"></i>
+                    <i class="fa fa-stack-1x" style = 'color:white'>{{cart.currentCart.contents.length}}</i>
+                </span>
+            </li>
         </ul>
     </div>
 </nav>
