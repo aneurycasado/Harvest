@@ -1,20 +1,36 @@
 app.factory('CartService', function ($http) {
     var obj = {
-        addToCart: addToCart,
         getCart: getCart,
-        currentCart: null,
+        addToCart: addToCart,
+        removeFromCart: removeFromCart,
+        updateCart: updateCart,
+        currentCart: null
     };
-    function addToCart(product) {
-        return $http.put('/api/cart/' + product._id)
-            .then(function (response) {
-            	obj.currentCart = response.data;
-            	console.log('obj', obj.currentCart.contents.length);
-                return response.data;
-            });
-    }
     function getCart(userID) {
         return $http.get('/api/cart/' + userID)
             .then(function (response) {
+                obj.currentCart = response.data;
+                return response.data;
+            });
+    }
+    function addToCart(product) {
+        return $http.put('/api/cart/' + product._id)
+            .then(function (response) {
+                obj.currentCart = response.data;
+                return response.data;
+            });
+    }
+    function removeFromCart (product, cartID) {
+        return $http.put('/api/cart/' + cartID + '/' + product._id)
+            .then(function (response) {
+                obj.currentCart = response.data;
+                return response.data;
+            });
+    }
+    function updateCart (updatedCartContents, cart) {
+        return $http.put('/api/cart/update/' + cart._id, {updatedCartContents: updatedCartContents})
+            .then(function (response) {
+                obj.currentCart = response.data;
                 return response.data;
             });
     }
