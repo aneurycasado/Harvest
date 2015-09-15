@@ -23,7 +23,7 @@
   <accordion close-others="oneAtATime">
 
     <accordion-group heading="{{order.orderTotal}} on {{order.dateOfOrder}}" ng-repeat="order in orders">
-      <div ng-repeat='item in order.items'><img src={{item.photo}}><h3>{{item.title}}</h3> : price {{item.finalPrice}}</div>
+      <div ng-repeat='item in order.items'><img class='accordion-image' src={{item.photo}}><h3>{{item.title}}</h3> : price {{item.finalPrice}}</div>
     </accordion-group>
 
   </accordion>
