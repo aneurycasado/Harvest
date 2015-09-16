@@ -29,6 +29,10 @@ body {
   margin-right:10px;
 }
 
+[ng-click] {
+  cursor: pointer;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
