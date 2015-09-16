@@ -23,7 +23,11 @@ app.use(function (req, res, next) {
     }
 });
 app.get('/*', function (req, res) {
-    res.sendFile(app.get('indexHTMLPath'));
+    if(req.isAuthenticated()){
+      res.sendFile(app.get('indexHTMLPath'));
+    }else{
+      res.sendFile(app.get('landingPageHTMLPath'));
+    }
 });
 // Error catching endware.
 app.use(function (err, req, res, next) {
