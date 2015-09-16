@@ -3,10 +3,9 @@ app.config(function ($stateProvider) {
         url: '/:id/cart',
         templateUrl: 'js/cart/cart.html',
         resolve: {
-          cart: function(CartService,$stateParams){
-            console.log("cart ", $stateParams.id)
-            return CartService.getCart($stateParams.id);
-          }
+            cart: function (CartService, $stateParams) {
+                return CartService.getCart($stateParams.id);
+            }
         },
         controller: 'CartCtrl'
     });

@@ -33,6 +33,22 @@ router.get('/:id', ensureAuthenticated, function (req, res, next) {
     });
 });
 
+router.put('/:id', ensureAuthenticated, function (req, res, next) {
+    Product.findOne({
+        _id: req.params.id
+    }).then(function (product) {
+        console.log("Before ", product.inventoryQuantity);
+        console.log("Change ", req.body.inventoryQuantity);
+        product.inventoryQuantity = req.body.inventoryQuantity;
+        product.save().then(function(savedProduct){
+            console.log("Saved ", savedProduct.inventoryQuantity);
+            res.json(savedProduct);
+        });
+    }).then(null, function (error) {
+        next(error);
+    });
+});
+
 router.get('/category/:category', ensureAuthenticated, function (req, res, next) {
     Product.find({
         category: req.params.category

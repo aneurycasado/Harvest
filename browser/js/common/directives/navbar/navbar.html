@@ -26,11 +26,13 @@
                 </form>
             </li>
             <li ng-click = "goToCart(user)">
-                <span class ="fa-stack fa-lg">
-                    <i class="fa fa-shopping-cart fa-stack-2x fa-3x"></i>
-                    <i class="fa fa-stack-1x" style = 'color:white'>{{cart.currentCart.contents.length}}</i>
-                </span>
+                <div>
+                    <i class="fa fa-shopping-cart fa-3x">Cart</i>
+                <div>
             </li>
+            <li>
+                <i class="fa fa-3x" style = 'color:white'>{{cart.currentCart.contents.length}}</i>
+            </li>        
         </ul>
     </div>
 </nav>
