@@ -11,7 +11,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function ($scope, products, $state,  CartService) {
+app.controller('HomeCtrl', function ($scope, products, $state, CartService) {
     $scope.products = products;
 
     $scope.goToReview = function (product) {
