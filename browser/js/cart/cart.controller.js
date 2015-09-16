@@ -1,8 +1,10 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderService) {
+app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderService, ProductService) {
     $scope.cart = cart;
     $scope.uniqueProducts = [];
     $scope.editing = false;
     $scope.total = 0;
+    $scope.checkOutView = false;
+    $scope.userInfo = {};
     $scope.goHome = function () {
         $state.go('home');
     };
@@ -11,15 +13,29 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         $scope.updateCart();
         $scope.total = 0;
     };
-    $scope.checkOut = function(user){
-      var order = {
-        user: user,
-        items: $scope.uniqueProducts,
-        orderTotal: $scope.total
-      }
-      OrderService.createOrder(user,order).then(function(savedOrder){
-        $scope.emptyCart();
-      });
+    $scope.showCheckOut = function () {
+        $scope.checkOutView = !$scope.checkOutView;
+    };
+    $scope.checkOut = function (user) {
+        var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
+        var order = {
+            user: $scope.cart.user,
+            items: $scope.uniqueProducts,
+            orderTotal: $scope.total,
+            shippingAddress: shippingAddress
+        };
+        // I think we have to .then off of this since it is async
+        $scope.updateProducts();
+        OrderService.createOrder(user,order).then(function(savedOrder){
+            $scope.emptyCart();
+            $scope.checkOutView = false;
+        });
+    };
+    $scope.updateProducts = function(){
+        $scope.uniqueProducts.forEach(function(product){
+            product.inventoryQuantity -= product.cartQuantity;
+            ProductService.updateProduct(product);
+        });
     };
     $scope.countCart = function () {
         $scope.cart.contents.forEach(function (product) {
@@ -46,22 +62,23 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             });
     };
     $scope.increaseQuantity = function (product) {
-    	$scope.editing = true;
-    	product.cartQuantity++;
+        $scope.editing = true;
+        product.cartQuantity++;
+        
     };
     $scope.reduceQuantity = function (product) {
-    	$scope.editing = true;
-    	product.cartQuantity--;
+        $scope.editing = true;
+        product.cartQuantity--;
     };
     $scope.updateCart = function () {
-      //console.log($scope.cart);
-      CartService.updateCart($scope.uniqueProducts, $scope.cart)
+        CartService.updateCart($scope.uniqueProducts, $scope.cart)
             .then(function (updatedCart) {
                 $scope.cart = updatedCart;
+                $state.reload();
             });
     };
     $scope.finishedEditing = function () {
-    	$scope.editing = false;
+        $scope.editing = false;
     };
     $scope.countCart();
 });

@@ -33,6 +33,23 @@ router.get('/:id', ensureAuthenticated, function (req, res, next) {
     });
 });
 
+router.put('/:id', ensureAuthenticated, function (req, res, next) {
+    Product.findOne({
+        _id: req.params.id
+    }).then(function (product) {
+        for (var k in req.body) {
+            if (product[k]) {
+                product[k] = req.body[k];
+            }
+        }
+        product.save().then(function(savedProduct){
+            res.json(savedProduct);
+        });
+    }).then(null, function (error) {
+        next(error);
+    });
+});
+
 router.get('/category/:category', ensureAuthenticated, function (req, res, next) {
     Product.find({
         category: req.params.category

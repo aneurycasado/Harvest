@@ -6,8 +6,6 @@ app.factory('OrderService', function ($http) {
 	}
 
 	function createOrder(user,order){
-		console.log("User in factory ", user);
-		console.log("Order in factory ", order);
 		return $http.post('/api/orders/'+user,order).then(function(response){
 			return response.data;
 		});
@@ -20,10 +18,8 @@ app.factory('OrderService', function ($http) {
 				  "August", "September", "October",
 				  "November", "December"
 			];
-			console.log('allorders = ',allOrders);
 			allOrders.forEach(function(order){
 				order.dateOfOrder = new Date(order.dateOfOrder);
-				console.log('order.dateOfOrder = ',order.dateOfOrder, typeof order.dateOfOrder);
 				var day = order.dateOfOrder.getDate();
 				var monthIndex = order.dateOfOrder.getMonth();
 				var month = monthNames[monthIndex];
