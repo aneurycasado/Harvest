@@ -22,8 +22,13 @@ app.use(function (req, res, next) {
         next(null);
     }
 });
+app.get("/guestUser", function(req,res){
+  req.session.guestUser = true;
+  res.redirect("/");
+});
+
 app.get('/*', function (req, res) {
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated() || req.session.guestUser){
       res.sendFile(app.get('indexHTMLPath'));
     }else{
       res.sendFile(app.get('landingPageHTMLPath'));
