@@ -29,8 +29,10 @@ app.get("/guestUser", function(req,res){
 
 app.get('/*', function (req, res) {
     if(req.isAuthenticated() || req.session.guestUser){
+      console.log("1");
       res.sendFile(app.get('indexHTMLPath'));
     }else{
+      console.log("2");
       res.sendFile(app.get('landingPageHTMLPath'));
     }
 });
