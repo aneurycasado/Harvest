@@ -8,8 +8,9 @@ var _ = require('lodash');
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
-    } else {
-        res.status(401).end();
+    }
+    else {
+        next();
     }
 };
 
