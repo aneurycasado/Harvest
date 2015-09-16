@@ -17,17 +17,16 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         $scope.checkOutView = !$scope.checkOutView;
     };
     $scope.checkOut = function (user) {
-        console.log($scope.cart);
-        var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip
+        var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
         var order = {
             user: $scope.cart.user,
             items: $scope.uniqueProducts,
             orderTotal: $scope.total,
             shippingAddress: shippingAddress
         };
+        // I think we have to .then off of this since it is async
         $scope.updateProducts();
         OrderService.createOrder(user,order).then(function(savedOrder){
-            console.log(savedOrder);
             $scope.emptyCart();
             $scope.checkOutView = false;
         });
@@ -65,16 +64,17 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
     $scope.increaseQuantity = function (product) {
         $scope.editing = true;
         product.cartQuantity++;
+        
     };
     $scope.reduceQuantity = function (product) {
         $scope.editing = true;
         product.cartQuantity--;
     };
     $scope.updateCart = function () {
-        //console.log($scope.cart);
         CartService.updateCart($scope.uniqueProducts, $scope.cart)
             .then(function (updatedCart) {
                 $scope.cart = updatedCart;
+                $state.reload();
             });
     };
     $scope.finishedEditing = function () {
