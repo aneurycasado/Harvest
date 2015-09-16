@@ -4,6 +4,7 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/cart/cart.html',
         resolve: {
           cart: function(CartService,$stateParams){
+            console.log("cart ", $stateParams.id)
             return CartService.getCart($stateParams.id);
           }
         },

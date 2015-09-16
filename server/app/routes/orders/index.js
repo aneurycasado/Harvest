@@ -11,3 +11,11 @@ router.get("/user", function(req,res,next){
 	})
 	.then(null,next);
 });
+
+router.post("/:userID", function(req,res,next){
+	Order.create(req.body)
+	.then(function(newOrder){
+		res.json(newOrder);
+	})
+	.then(null,next);
+});

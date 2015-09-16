@@ -10,9 +10,7 @@
             </div>
             <div class="panel-body">
                 <p>{{product.descrption}}</p>
-                <h2>
-          <img src = "{{product.photo}}"/>
-        </h2>
+                <h2><img src = "{{product.photo}}"/></h2>
             </div>
             <ul class="list-group">
                 <li class='list-group-item'>
@@ -23,7 +21,7 @@
                 </li>
                 <li class='list-group-item'>
                     <span>
-                      <h3 style="display:inline-block">Quantity: {{product.cartQuantity}}</h3> 
+                      <h3 style="display:inline-block">Quantity: {{product.cartQuantity}}</h3>
                       <button class="btn btn-success" ng-click="increaseQuantity(product)"><i class="fa fa-plus fa-lg"></i></button>
                       <button class="btn btn-danger" ng-click="reduceQuantity(product)"><i class="fa fa-minus fa-lg"></i></button>
                     </span>
@@ -47,6 +45,7 @@
         </div>
     </div>
     <div class="page-header">
-      <h3>Total: {{total | currency}}</h3>
+      <h3 ng-show = "total" style = "display:inline-block">Total: {{total | currency}}</h3>
+      <button class ="btn-success" ng-click = "checkOut(cart.user)"><i class = "fa fa-money fa-2x">Check Out...</i></button>
     </div>
 </div>
