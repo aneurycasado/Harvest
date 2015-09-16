@@ -5,7 +5,6 @@ var Cart = mongoose.model('Cart');
 var Product = mongoose.model('Product');
 module.exports = router;
 
-
 router.get("/:userID", function (req, res, next) {
     Cart.findOne({
         user: req.params.userID
@@ -98,5 +97,7 @@ router.put('/update/:cartID', function (req, res, next) {
                 .then(function (savedCart) {
                     res.json(savedCart);
                 });
+        }).then(null, function (error) {
+            next(error);
         });
 });

@@ -1,8 +1,7 @@
 <div class='container'>
-    <div class="page-header">
-        <h1 style="display:inline-block">Shopping Cart</h1>
-        <button class="btn btn-danger" ng-click="emptyCart()"><i class="fa fa-trash-o fa-2x"></i></button>
-    </div>
+    <div class="page-header"><h1 style="display:inline-block">Shopping Cart</h1>
+<button class="btn btn-danger" ng-click="emptyCart()"><i class="fa fa-trash-o fa-2x"></i></button>
+</div>
     <div ng-repeat="product in uniqueProducts" class="cart-product">
         <div class="panel panel-body">
             <div class="container">
@@ -68,7 +67,7 @@
         </div>
     </div>
     <div class="page-header">
-        <h3>Total: {{total | currency}}</h3>
-        <button class="btn btn-danger">Checkout Now...</button>
+      <h3 ng-show = "total" style = "display:inline-block">Total: {{total | currency}}</h3>
+      <button class ="btn-success" ng-click = "checkOut(cart.user)"><i class = "fa fa-money fa-2x">Check Out...</i></button>
     </div>
 </div>

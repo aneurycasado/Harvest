@@ -1,0 +1,46 @@
+<div class = 'container'>
+  <div class="page-header">
+    <h1>Product</h1>
+  </div>
+  <div class = "container">
+    <div class = "panel panel-success product">
+      <div class = "panel-heading">
+        <h2>{{product.title}}</h2>
+      </div>
+      <div class = "panel-body">
+        <p>{{product.descrption}}</p>
+        <h2>
+          <img src = "{{product.photo}}"/>
+        </h2>
+      </div>
+      <ul class ="list-group">
+        <li class='list-group-item'> <h3>Category: {{product.category}}</h3> </li>
+        <li class='list-group-item'> <h3>Price: ${{product.price}}</h3> </li>
+        <li class='list-group-item'> <h3>Inventory Quantity: {{product.inventoryQuantity}}</h3> </li>
+      </ul>
+      <div class ="btn-group btn-group-lg btn-group-justified" role="group">
+        <div class="btn-group" role ="group">
+          <button class = "btn btn-warning" ng-click='addToCart(product)'>
+            <i class ="fa fa-cart-plus fa-2x">Add to Cart</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="page-header">
+    <h1>Reviews</h1>
+  </div>
+  <div class = "container">
+    <div class = "panel panel-warning product" ng-repeat = "review in reviews">
+      <div class = "panel-heading">
+        <h2>{{review.title}}</h2>
+      </div>
+      <div class = "panel-body">
+        <h3> By: {{review.author.name}}</h3>
+        <h4>{{review.content}}</h4>
+        <i class="fa fa-thumbs-up fa-2x" ng-show = "review.thumbsUp">Thumbs Up</i>
+        <i class="fa fa-thumbs-down fa-2x" ng-hide = "review.thumbsUp">Thumbs Down</i>
+      </div>
+    </div>
+  </div>
+</div>
