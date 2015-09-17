@@ -1,4 +1,4 @@
-app.factory('ProductService', function ($http) {
+app.factory('ProductFactory', function ($http) {
     function getAll() {
         return $http.get('/api/products').then(function (response) {
             return response.data;
@@ -19,7 +19,6 @@ app.factory('ProductService', function ($http) {
     }
 
     function updateProduct(product) {
-        console.log(product);
         return $http.put('/api/products/' + product._id, product)
             .then(function (response) {
                 return response.data;

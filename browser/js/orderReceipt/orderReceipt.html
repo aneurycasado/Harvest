@@ -1,28 +1,31 @@
 <div class ="container">
+  <h1>Order Receipt</h1>
   <div class = "panel panel-success">
     <div class = "panel-heading">
       <h2>Ordered On: {{order.dateOfOrder | date}} </h2>
     </div>
     <div class = "panel-body">
       <h2>Total: {{order.orderTotal | currency}} </h2>
-    </div>
-  </div>
-  <div class = "container">
-    <div class = "panel panel-success product" ng-repeat = "product in order.items">
-      <div class = "panel-heading">
-        <h2>{{product.title}}</h2>
+
+      <div class = "container" style = "width: 100%">
+        <h3>Products Ordered</h3>
+        <div class = "panel panel-warning product" ng-repeat = "product in order.items">
+          <div class = "panel-heading">
+            <h2>{{product.title}}</h2>
+          </div>
+          <div class = "panel-body">
+            <p>{{product.descrption}}</p>
+            <h2>
+              <img src = "{{product.photo}}"/>
+            </h2>
+          </div>
+          <ul class ="list-group">
+            <li class='list-group-item'> <h3>Category: {{product.category}}</h3> </li>
+            <li class='list-group-item'> <h3>Price: ${{product.price}}</h3> </li>
+            <li class='list-group-item'> <h3>Quantity Ordered: {{product.cartQuantity}}</h3> </li>
+          </ul>
+        </div>
       </div>
-      <div class = "panel-body">
-        <p>{{product.descrption}}</p>
-        <h2>
-          <img src = "{{product.photo}}"/>
-        </h2>
-      </div>
-      <ul class ="list-group">
-        <li class='list-group-item'> <h3>Category: {{product.category}}</h3> </li>
-        <li class='list-group-item'> <h3>Price: ${{product.price}}</h3> </li>
-        <li class='list-group-item'> <h3>Quantity Ordered: {{product.cartQuantity}}</h3> </li>
-      </ul>
     </div>
   </div>
 </div>

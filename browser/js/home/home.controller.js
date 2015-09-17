@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function ($scope, products, $state,  CartService) {
+app.controller('HomeCtrl', function ($scope, products, $state,  CartFactory) {
     $scope.products = products;
     $scope.goToProduct = function (product) {
         var productID = product._id;
@@ -13,6 +13,6 @@ app.controller('HomeCtrl', function ($scope, products, $state,  CartService) {
         });
     };
     $scope.addToCart = function (product) {
-      CartService.addToCart(product);
+      CartFactory.addToCart(product);
     };
 });

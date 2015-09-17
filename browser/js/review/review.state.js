@@ -3,11 +3,11 @@ app.config(function ($stateProvider) {
         url: '/product/:id/reviews',
         templateUrl: 'js/review/review.html',
         resolve: {
-          reviews: function(ReviewService,$stateParams){
-            return ReviewService.getOne($stateParams.id);
+          reviews: function(ReviewFactory,$stateParams){
+            return ReviewFactory.getOne($stateParams.id);
           },
-          product: function(ProductService,$stateParams){
-            return ProductService.getOne($stateParams.id);
+          product: function(ProductFactory,$stateParams){
+            return ProductFactory.getOne($stateParams.id);
           }
         },
         controller: 'ReviewCtrl'
