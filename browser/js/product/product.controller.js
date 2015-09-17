@@ -1,4 +1,4 @@
-app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartService, ReviewService, AuthService) {
+app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartFactory, ReviewFactory, AuthService) {
   $scope.product = product;
   $scope.reviews = reviews;
   $scope.loggedIn = true;
@@ -10,7 +10,7 @@ app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartSe
 
   $scope.createReview = function() {
     $scope.newReview.product = $scope.product;
-    ReviewService.createReview($scope.product,$scope.newReview).then(function(review){
+    ReviewFactory.createReview($scope.product,$scope.newReview).then(function(review){
       return review;
     }).then(function(review){
       console.log("Created review ",review);
@@ -22,7 +22,7 @@ app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartSe
 
   $scope.addToCart = function(){
     console.log(product);
-    CartService.addToCart($scope.product);
+    CartFactory.addToCart($scope.product);
   };
 
   $scope.setThumb = function(isLiked){

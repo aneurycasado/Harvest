@@ -3,8 +3,8 @@ app.config(function ($stateProvider) {
         url: '/',
         templateUrl: 'js/home/home.html',
         resolve: {
-            products: function (ProductService) {
-                return ProductService.getAll();
+            products: function (ProductFactory) {
+                return ProductFactory.getAll();
             }
         },
         controller: 'HomeCtrl'

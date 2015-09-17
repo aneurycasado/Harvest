@@ -1,4 +1,4 @@
-app.controller('ProductAccordionCtrl', function ($scope, ProductService) {
+app.controller('ProductAccordionCtrl', function ($scope, ProductFactory) {
   $scope.oneAtATime = true;
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
@@ -9,7 +9,7 @@ app.controller('ProductAccordionCtrl', function ($scope, ProductService) {
   };
 
   $scope.updateProduct = function (product) {
-    ProductService.updateProduct(product); 
+    ProductFactory.updateProduct(product); 
   };
 
   $scope.status = {

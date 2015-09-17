@@ -7,8 +7,8 @@ app.config(function ($stateProvider) {
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
         resolve: {
-            allOrders: function($http, $state, OrderService){
-                return OrderService.getAllForUser()
+            allOrders: function($http, $state, OrderFactory){
+                return OrderFactory.getAllForUser()
                 .then(function(orders){
                     return orders;
                 });

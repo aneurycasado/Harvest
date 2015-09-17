@@ -1,4 +1,4 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderService, ProductService) {
+app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory) {
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
     }else{
@@ -20,7 +20,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         if(localStorage.getItem('cart')){
           $scope.cart.contents = [];
           localStorage.setItem('cart',JSON.stringify($scope.cart));
-          CartService.getLocalCart();
+          CartFactory.getLocalCart();
           $scope.updateCart();
         }else{
           $scope.updateCart();
@@ -38,7 +38,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             shippingAddress: shippingAddress
         };
         $scope.updateProducts();
-        OrderService.createOrder(user,order).then(function(savedOrder){
+        OrderFactory.createOrder(user,order).then(function(savedOrder){
             console.log("Saved order");
             console.log(savedOrder);
             $scope.ordered = true;
@@ -50,7 +50,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
     $scope.updateProducts = function(){
         $scope.uniqueProducts.forEach(function(product){
             product.inventoryQuantity -= product.cartQuantity;
-            ProductService.updateProduct(product);
+            ProductFactory.updateProduct(product);
         });
     };
     $scope.countCart = function () {
@@ -81,10 +81,10 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
           );
           cart.contents = newContents;
           localStorage.setItem("cart", JSON.stringify(cart));
-          CartService.getLocalCart();
+          CartFactory.getLocalCart();
           $state.reload();
         }else{
-          CartService.removeFromCart(product, $scope.cart._id)
+          CartFactory.removeFromCart(product, $scope.cart._id)
           .then(
             function (updatedCart) {
               $scope.cart = updatedCart;
@@ -111,7 +111,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
           });
           $scope.cart.contents = newContents;
           localStorage.setItem('cart', JSON.stringify($scope.cart));
-          CartService.getLocalCart();
+          CartFactory.getLocalCart();
           if($scope.ordered){
             console.log("Scope set ordered");
             console.log($scope.orderID);
@@ -120,7 +120,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             $state.reload();
           }
         }else{
-          CartService.updateCart($scope.uniqueProducts, $scope.cart)
+          CartFactory.updateCart($scope.uniqueProducts, $scope.cart)
           .then(function (updatedCart) {
               $scope.cart = updatedCart;
               if($scope.ordered){
