@@ -14,7 +14,7 @@
 </script>
 
 
-<h1>Order History</h1>
+<h1>All Users</h1>
   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="oneAtATime">
@@ -22,16 +22,8 @@
     </label>
   </div>
   <accordion close-others="oneAtATime">
-    <accordion-group heading=" Paid ${{order.orderTotal}} on {{order.dateOfOrder.month}} {{order.dateOfOrder.day}}, {{order.dateOfOrder.year}}" ng-repeat="order in orders">
-      <div class='row' ng-repeat='item in order.items'>
-        <div class='col-sm-2'><img class='accordion-image' src={{item.photo}}></div>
-        <div class='col-sm-8'><h3>{{item.title}}</h3></div>
-        <div class='col-sm-2'><h3>${{item.price}}</h3></div>
-      </div>
-      <div>
-        <div class='col-sm-2'><h4>Date Placed: {{order.dateOfOrder.month}} {{order.dateOfOrder.day}}, {{order.dateOfOrder.year}}</h4></div>
-        <div class='col-sm-8'>{{order.shippingAddress}}</div>
-        <div class='col-sm-2'><h3>Total Cost: ${{order.orderTotal}}</h3></div>
+    <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users">
+      <div class='row'>
       </div>
     </accordion-group>
   </accordion>

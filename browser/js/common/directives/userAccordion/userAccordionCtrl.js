@@ -1,4 +1,4 @@
-app.controller('OrderAccordionCtrl', function ($scope) {
+app.controller('UserAccordionCtrl', function ($scope) {
   $scope.oneAtATime = true;
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];

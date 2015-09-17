@@ -6,16 +6,16 @@ app.config(function ($stateProvider) {
         controller: 'adminCtrl',
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
-        // resolve: {
-        //     reviews: function (ReviewService) {
-        //         return ReviewService.getOn.id);
-        //     },
-        //     product: function (ProductService) {
-        //         return ProductService.getOn.id);
-        //     }
-        // },
-        data: {
-            authenticate: true
+        resolve: {
+            reviews: function (ReviewService) {
+                return ReviewService.getAll();
+            },
+            products: function (ProductService) {
+                return ProductService.getAll();
+            },
+            users: function (UserService) {
+                return UserService.getAll();
+            }
         }
     });
 
