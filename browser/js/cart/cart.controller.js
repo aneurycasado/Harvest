@@ -39,8 +39,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
         };
         $scope.updateProducts();
         OrderFactory.createOrder(user,order).then(function(savedOrder){
-            console.log("Saved order");
-            console.log(savedOrder);
             $scope.ordered = true;
             $scope.orderID = savedOrder._id;
             $scope.checkOutView = false;
@@ -113,8 +111,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
           localStorage.setItem('cart', JSON.stringify($scope.cart));
           CartFactory.getLocalCart();
           if($scope.ordered){
-            console.log("Scope set ordered");
-            console.log($scope.orderID);
             $state.go("orderReceipt", {id:$scope.orderID});
           }else{
             $state.reload();
@@ -124,8 +120,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
           .then(function (updatedCart) {
               $scope.cart = updatedCart;
               if($scope.ordered){
-                console.log("Scope set ordered");
-                console.log($scope.orderID);
                 $state.go("orderReceipt", {id:$scope.orderID});
               }else{
                 $state.reload();

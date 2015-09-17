@@ -1,12 +1,4 @@
 app.factory('CartFactory', function ($http) {
-    var obj = {
-        getCart: getCart,
-        addToCart: addToCart,
-        removeFromCart: removeFromCart,
-        updateCart: updateCart,
-        getLocalCart: getLocalCart,
-        currentCart: null
-    };
     function getCart(userID) {
         if(localStorage.getItem("cart")){
           return localStorage.getItem('cart');
@@ -58,5 +50,15 @@ app.factory('CartFactory', function ($http) {
          obj.currentCart = JSON.parse(localStorage.getItem('cart'));
       }
     }
+
+    var obj = {
+        getCart,
+        addToCart,
+        removeFromCart,
+        updateCart,
+        getLocalCart,
+        currentCart: null
+    };
+
     return obj;
 });

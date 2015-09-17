@@ -12,8 +12,7 @@ app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartFa
     $scope.newReview.product = $scope.product;
     ReviewFactory.createReview($scope.product,$scope.newReview).then(function(review){
       return review;
-    }).then(function(review){
-      console.log("Created review ",review);
+    }).then(function(){
       $state.reload();
     }).then(null, function(error){
       console.error(error);
@@ -21,12 +20,10 @@ app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartFa
   };
 
   $scope.addToCart = function(){
-    console.log(product);
     CartFactory.addToCart($scope.product);
   };
 
   $scope.setThumb = function(isLiked){
-    console.log(isLiked, typeof isLiked);
     $scope.review.thumb = isLiked;
   };
 

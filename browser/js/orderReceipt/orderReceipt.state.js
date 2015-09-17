@@ -3,11 +3,7 @@ app.config(function ($stateProvider) {
         url: ':id/receipt',
         templateUrl: 'js/orderReceipt/orderReceipt.html',
         resolve: {
-            order: function ($stateParams,OrderFactory) {
-                console.log("orderReceipt State");
-                console.log($stateParams);
-                return OrderFactory.getOne($stateParams.id);
-            }
+            order: ($stateParams,OrderFactory) => OrderFactory.getOne($stateParams.id)
         },
         controller: 'OrderReceiptController'
     });

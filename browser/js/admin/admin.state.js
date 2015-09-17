@@ -7,18 +7,10 @@ app.config(function ($stateProvider) {
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
         resolve: {
-            reviews: function (ReviewFactory) {
-                return ReviewFactory.getAll();
-            },
-            products: function (ProductFactory) {
-                return ProductFactory.getAll();
-            },
-            users: function (UserFactory) {
-                return UserFactory.getAll();
-            },
-            orders: function (OrderFactory) {
-                return OrderFactory.getAll();
-            }
+            reviews: ReviewFactory => ReviewFactory.getAll(),
+            products: ProductFactory => ProductFactory.getAll(),
+            users: UserFactory => UserFactory.getAll(),
+            orders: OrderFactory => OrderFactory.getAll(),
         }
     });
 
