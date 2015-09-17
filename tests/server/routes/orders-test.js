@@ -80,7 +80,7 @@ describe('Orders Route', function () {
 
   describe('Requesting all orders for a user', function () {
     it('should return an array of only the users orders', function(done){
-      loggedInAgent.get('/api/orders/user').expect(200).end(function (err, response) {
+      loggedInAgent.get('/api/orders/all/user').expect(200).end(function (err, response) {
         if (err) return done(err);
         expect(response.body).to.be.an('array');
         expect(response.body).to.have.length(1);
