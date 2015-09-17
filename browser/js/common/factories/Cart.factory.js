@@ -3,7 +3,7 @@ app.factory('CartFactory', function ($http) {
         if(localStorage.getItem("cart")){
           return localStorage.getItem('cart');
         }else{
-          return $http.get('/api/cart/' + userID)
+          return $http.get('/api/cart/users/' + userID)
               .then(function (response) {
                   obj.currentCart = response.data;
                   return response.data;
@@ -17,21 +17,20 @@ app.factory('CartFactory', function ($http) {
           obj.currentCart = cart;
           localStorage.setItem("cart",JSON.stringify(cart));
         }else{
-          return $http.put('/api/cart/' + product._id)
+          return $http.put('/api/cart/products/' + product._id)
               .then(function (response) {
                   obj.currentCart = response.data;
                   return response.data;
               });
         }
     }
+
     function removeFromCart (product, cartID) {
-      return $http.put('/api/cart/' + cartID + '/' + product._id)
-      .then(
-        function (response) {
-          obj.currentCart = response.data;
-          return response.data;
-        }
-      );
+      return $http.delete('/api/cart/' + cartID + '/products/' + product._id)
+      .then(function (response) {
+        obj.currentCart = response.data;
+        return response.data;
+      });
     }
 
     function updateCart (updatedCartContents, cart) {

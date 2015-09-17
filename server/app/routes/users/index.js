@@ -7,10 +7,10 @@ var _ = require('lodash');
 
 router.get('/', function (req, res, next) {
     User.find().exec()
-        .then(function (users) {
-            res.json(users);
-        })
-        .then(null, next);
+    .then(function (users) {
+        res.json(users);
+    })
+    .then(null, next);
 });
 
 router.put('/', function (req, res, next) {

@@ -15,67 +15,55 @@ var ensureAuthenticated = function (req, res, next) {
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
     Product.find()
-        .then(function (products) {
-            res.json(products);
-        })
-        .then(null, next);
+    .then(function (products) {
+      res.json(products);
+    })
+    .then(null, next);
 });
 
 router.get('/:id', ensureAuthenticated, function (req, res, next) {
-    Product.find({_id: req.params.id})
+    Product.find(
+      {_id: req.params.id}
+    )
     .then(function (product) {
         res.json(product[0]);
-    }).then(null, next);
+    })
+    .then(null, next);
 });
 
 router.put('/:id', ensureAuthenticated, function (req, res, next) {
-    Product.findOne({
-        _id: req.params.id
-    }).then(function (product) {
-        for (var k in req.body) {
-            if (product[k]) {
-                product[k] = req.body[k];
-            }
-        }
-        product.save().then(function (savedProduct) {
-            res.json(savedProduct);
-        });
-    }).then(null, next);
+    Product.findOne({_id: req.params.id})
+    .then(function(product){
+      _.merge(product, req.body);
+      return product.save();
+    })
+    .then(function (savedProduct) {
+        res.json(savedProduct);
+    })
+    .then(null, next);
 });
 
 router.get('/category/:category', ensureAuthenticated, function (req, res, next) {
     Product.find({
         category: req.params.category
-    }).then(function (products) {
+    })
+    .then(function (products) {
         res.json(products);
-    }).then(null, next);
+    })
+    .then(null, next);
 });
 
-function subString(haystack, needle) {
-    var found = false;
-    for (var i = 0; i <= haystack.length - needle.length; i++) {
-        for (var j = 0; j < needle.length; j++) {
-            if (haystack[i + j] !== needle[j]) {
-                break;
-            }
-            if (j === needle.length - 1) {
-                found = true;
-            }
-        }
-    }
-    return found;
-}
 
 router.get('/search/:searchStr', function (req, res, next) {
     Product.find()
-        .then(function (products) {
-            var filteredProducts = [];
-            products.forEach(function (product) {
-                if (subString(product.title, req.params.searchStr)) {
-                    filteredProducts.push(product);
-                }
-            });
-            res.json(filteredProducts);
-        })
-        .then(null, next);
+    .then(function (products) {
+        var filteredProducts = [];
+        products.forEach(function (product) {
+            if (product.title.indexOf(req.params.searchStr)!==-1) {
+                filteredProducts.push(product);
+            }
+        });
+        res.json(filteredProducts);
+    })
+    .then(null, next);
 });

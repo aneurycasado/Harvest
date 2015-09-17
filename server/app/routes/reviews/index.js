@@ -32,20 +32,18 @@ router.put('/', function (req, res, next) {
 
 router.get('/:productID', function (req, res, next) {
     Review.find({product: req.params.productID}).populate('author')
-    .then(
-      function(reviews){
-        res.json(reviews);
+    .then(function(reviews){
+      res.json(reviews);
     })
     .then(null, next);
 });
 router.post('/:productID', function (req, res, next) {
     req.body.author = req.user;
     Review.create(req.body)
-        .then(function (createdReview) {
-            res.json(createdReview);
-        })
-        .then(null, function (error) {
-            next(error);
-        });
+    .then(function (createdReview) {
+        res.json(createdReview);
+    })
+    .then(null, function (error) {
+        next(error);
+    });
 });
-
