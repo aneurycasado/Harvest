@@ -61,14 +61,14 @@
             </div>
         </div>
     </div>
-    <div class="btn-group" role="group" ng-show="editing">
-        <button class="btn btn-warning btn-sm" ng-click='updateCart()'>
-            <i class="fa fa-home fa-lg"> Update</i>
-        </button>
-    </div>
     <div class="page-header">
         <h3 ng-show="total" style="display:inline-block">Total: {{total | currency}}</h3>
         <button ng-show="cart.contents.length && !checkOutView" class="btn btn-success btn-md" ng-click="showCheckOut()"><i class="fa fa-money fa-xl">Check Out...</i></button>
+    <div class="btn-group" role="group" ng-show="editing">
+        <button class="btn btn-warning btn-md" ng-click='updateCart()'>
+            <i class="fa fa-home fa-xl"> Update</i>
+        </button>
+    </div>
     </div>
     <checkout ng-show="checkOutView"></checkout>
 </div>

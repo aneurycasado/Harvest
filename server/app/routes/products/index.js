@@ -8,20 +8,19 @@ var _ = require('lodash');
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
-    }
-    else {
+    } else {
         next();
     }
 };
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
     Product.find()
-    .then(function (products) {
-        res.json(products);
-    })
-    .then(null, function (error) {
-        next(error);
-    });
+        .then(function (products) {
+            res.json(products);
+        })
+        .then(null, function (error) {
+            next(error);
+        });
 });
 
 router.get('/:id', ensureAuthenticated, function (req, res, next) {
@@ -43,7 +42,7 @@ router.put('/:id', ensureAuthenticated, function (req, res, next) {
                 product[k] = req.body[k];
             }
         }
-        product.save().then(function(savedProduct){
+        product.save().then(function (savedProduct) {
             res.json(savedProduct);
         });
     }).then(null, function (error) {
@@ -61,36 +60,32 @@ router.get('/category/:category', ensureAuthenticated, function (req, res, next)
     });
 });
 
-function subString(haystack,needle) {
-  var found = false;
-  for (var i = 0; i <= haystack.length - needle.length; i++) {
-    for(var j = 0; j < needle.length; j++) {
-      if(haystack[i+j] !== needle[j]) {
-        break;
-      }
-      if(j === needle.length - 1) {
-        found = true;
-      }
+function subString(haystack, needle) {
+    var found = false;
+    for (var i = 0; i <= haystack.length - needle.length; i++) {
+        for (var j = 0; j < needle.length; j++) {
+            if (haystack[i + j] !== needle[j]) {
+                break;
+            }
+            if (j === needle.length - 1) {
+                found = true;
+            }
+        }
     }
-  }
-  return found;
+    return found;
 }
 
-router.get('/search/:searchStr', function(req,res){
-    console.log("Params ",req.params.searchStr);
+router.get('/search/:searchStr', function (req, res, next) {
+
     Product.find()
-    .then(function(products){
-      var filteredProducts = [];
-      products.forEach(function(product){
-        if(subString(product.title,req.params.searchStr)){
-          console.log("Search Str ", req.params.searchStr);
-          console.log("Product " , product.title);
-          filteredProducts.push(product);
-        }
-      });
-      res.json(filteredProducts);
-    })
-    .then(null, function(error){
-      console.error(error);
-    });
+        .then(function (products) {
+            var filteredProducts = [];
+            products.forEach(function (product) {
+                if (subString(product.title, req.params.searchStr)) {
+                    filteredProducts.push(product);
+                }
+            });
+            res.json(filteredProducts);
+        })
+        .then(null, next);
 });
