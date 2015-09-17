@@ -29,6 +29,9 @@ var schema = new mongoose.Schema({
     },
     name: {
       type: String
+    },
+    isAdmin: {
+        type: Boolean, default: false, select: false
     }
 });
 

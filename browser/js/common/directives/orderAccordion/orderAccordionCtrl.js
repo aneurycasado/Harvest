@@ -1,11 +1,13 @@
-app.controller('OrderAccordionCtrl', function ($scope) {
+app.controller('OrderAccordionCtrl', function ($scope, OrderFactory) {
   $scope.oneAtATime = true;
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 
   $scope.addItem = function() {
     var newItemNo = $scope.items.length + 1;
     $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.updateOrder = function (order) {
+    OrderFactory.updateOrder(order);
   };
 
   $scope.status = {
