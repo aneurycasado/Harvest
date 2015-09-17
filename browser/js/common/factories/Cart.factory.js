@@ -53,7 +53,7 @@ app.factory('CartService', function ($http) {
     }
     function getLocalCart(){
       if(!localStorage.getItem('cart')){
-        var cart = {contents: []};
+        var cart = {user: 'guest',contents: []};
         localStorage.setItem('cart',JSON.stringify(cart));
         obj.currentCart = cart;
       }else{

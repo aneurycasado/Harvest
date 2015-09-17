@@ -6,6 +6,7 @@ app.factory('OrderService', function ($http) {
 	}
 
 	function createOrder(user,order){
+		if(user === undefined) user = "guest";
 		return $http.post('/api/orders/'+user,order).then(function(response){
 			return response.data;
 		});

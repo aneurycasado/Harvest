@@ -2,7 +2,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
     console.log("Cart in cart controller ", cart);
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
-      console.log($scope.cart);
     }else{
       $scope.cart = cart;
     }
@@ -38,18 +37,13 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             orderTotal: $scope.total,
             shippingAddress: shippingAddress
         };
-        // I think we have to .then off of this since it is async
         $scope.updateProducts();
-        if($scope.cart.localStorage){
-          console.log("Checkout on localStorage");
-        }else{
-          console.log("Checkout on user");
-          OrderService.createOrder(user,order).then(function(savedOrder){
-              $scope.emptyCart();
-              $scope.checkOutView = false;
-          });
-        }
-    };
+        console.log("Checkout on user");
+        OrderService.createOrder(user,order).then(function(savedOrder){
+            $scope.emptyCart();
+            $scope.checkOutView = false;
+        });
+    }
     $scope.updateProducts = function(){
         $scope.uniqueProducts.forEach(function(product){
             product.inventoryQuantity -= product.cartQuantity;
@@ -105,11 +99,24 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         product.cartQuantity--;
     };
     $scope.updateCart = function () {
-        CartService.updateCart($scope.uniqueProducts, $scope.cart)
-            .then(function (updatedCart) {
-                $scope.cart = updatedCart;
-                $state.reload();
-            });
+        if(localStorage.getItem('cart')){
+          var newContents = [];
+          $scope.uniqueProducts.forEach(function(uniqueProduct){
+            for(var i = 0; i < uniqueProduct.cartQuantity; i++){
+              newContents.push(uniqueProduct);
+            }
+          });
+          $scope.cart.contents = newContents;
+          localStorage.setItem('cart', JSON.stringify($scope.cart));
+          CartService.getLocalCart();
+          $state.reload();
+        }else{
+          CartService.updateCart($scope.uniqueProducts, $scope.cart)
+          .then(function (updatedCart) {
+              $scope.cart = updatedCart;
+              $state.reload();
+          });
+        }
     };
     $scope.finishedEditing = function () {
         $scope.editing = false;
