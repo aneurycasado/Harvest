@@ -9,8 +9,16 @@ app.factory('ReviewService', function ($http) {
       return response.data;
     });
   }
+
+  function createReview (product,newReview) {
+    return $http.post('/api/reviews/'+product._id,newReview).then(function(response){
+      return response.data;
+    });
+  }
+
   return {
     getAll: getAll,
-    getOne: getOne
+    getOne: getOne,
+    createReview: createReview
   };
 });

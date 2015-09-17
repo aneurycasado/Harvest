@@ -1,0 +1,9 @@
+<form>
+  <label for='title'>Title</label>
+  <input name='title' ng-model='newReview.title'></input>
+  <label for="content">Content</label>
+  <textarea name='content' id='content' ng-model='newReview.content'></textarea>
+  <div class='fa fa-thumbs-up fa-2x' ng-click='newReview.thumbsUp = true'>Thumbs Up</div>
+  <div class='fa fa-thumbs-down fa-2x' ng-click='newReview.thumbsUp = false'>Thumbs Down</div>
+  <button class = "btn-success" ng-click = "createReview()">Create Review</button>
+</form>
