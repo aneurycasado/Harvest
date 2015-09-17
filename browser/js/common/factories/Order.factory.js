@@ -17,7 +17,8 @@ app.factory('OrderFactory', function ($http) {
 	}
 
 	function updateOrder (order) {
-		return $http.put('/api/orders').then(response => response.data);
+		console.log('got to the factory', order);
+		return $http.put('/api/orders', order).then(response => response.data);
 	}
 
 	return {

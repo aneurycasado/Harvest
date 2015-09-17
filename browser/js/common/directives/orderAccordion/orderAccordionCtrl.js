@@ -7,6 +7,7 @@ app.controller('OrderAccordionCtrl', function ($scope, OrderFactory) {
   };
 
   $scope.updateOrder = function (order) {
+    console.log('got to the controller', order);
     OrderFactory.updateOrder(order);
   };
 

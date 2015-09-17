@@ -9,6 +9,7 @@ app.controller('UserAccordionCtrl', function ($scope, UserFactory) {
     };
 
     $scope.updateUser = function (user) {
+        console.log(user);
         UserFactory.updateUser(user);
     };
 

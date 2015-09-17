@@ -31,7 +31,7 @@ var schema = new mongoose.Schema({
       type: String
     },
     isAdmin: {
-        type: Boolean, default: false, select: false
+        type: Boolean, default: false
     }
 });
 
