@@ -30,8 +30,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
                     if(!user){
+                      console.log("Guess user");
                       CartService.getLocalCart();
                     }else{
+                      console.log("Not guess user")
                       CartService.getCart(user._id);
                     }
                 });
