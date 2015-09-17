@@ -10,21 +10,14 @@ router.get("/:userID", function (req, res, next) {
         user: req.params.userID
     }).populate('contents').then(function (cart) {
         res.json(cart);
-    }).then(null, function (error) {
-        console.error(error);
-        next(error);
-    });
+    }).then(null, next);
 });
 
 router.put("/:productID", function (req, res, next) {
     var userID = req.user.id;
-    Product.findOne({
-            _id: req.params.productID
-        })
+    Product.findOne({_id: req.params.productID})
         .then(function (product) {
-            Cart.findOne({
-                    user: userID
-                })
+            Cart.findOne({user: userID})
                 .then(function (cart) {
                     if (cart) {
                         cart.contents.push(product._id);
@@ -33,9 +26,7 @@ router.put("/:productID", function (req, res, next) {
                                 res.json(savedCart);
                             });
                     } else {
-                        Cart.create({
-                                user: userID
-                            })
+                        Cart.create({user: userID})
                             .then(function (newCart) {
                                 newCart.contents.push(product._id);
                                 newCart.save()
@@ -45,10 +36,7 @@ router.put("/:productID", function (req, res, next) {
                             });
                     }
                 });
-        }).then(null, function (error) {
-            console.log(error);
-            next(error);
-        });
+        }).then(null, next);
 });
 
 router.put('/:cartID/:productID', function (req, res, next) {
@@ -56,12 +44,10 @@ router.put('/:cartID/:productID', function (req, res, next) {
     var productID = req.params.productID;
     if (cartID === 'update') next();
     else {
-        Cart.findOne({
-                _id: cartID
-            })
+        Cart.findOne({_id: cartID})
             .then(function (cart) {
-                // Extract out to a function...when Aneury is ready
                 var newCartContents = [];
+                // Extract out
                 for (var i = 0; i < cart.contents.length; i++) {
                     var product = cart.contents[i].toString();
                     if (product !== productID) {
@@ -73,18 +59,14 @@ router.put('/:cartID/:productID', function (req, res, next) {
                     .then(function (savedCart) {
                         res.json(savedCart);
                     });
-            }).then(null, function (error) {
-                next(error);
-            });
+            }).then(null, next);
     }
 });
 
 router.put('/update/:cartID', function (req, res, next) {
     var cartID = req.params.cartID;
     res.json(req.body);
-    Cart.findOne({
-            _id: cartID
-        })
+    Cart.findOne({_id: cartID})
         .then(function (cart) {
             var newContents = [];
             req.body.updatedCartContents.forEach(function (uniqueProduct) {
@@ -97,7 +79,5 @@ router.put('/update/:cartID', function (req, res, next) {
                 .then(function (savedCart) {
                     res.json(savedCart);
                 });
-        }).then(null, function (error) {
-            next(error);
-        });
+        }).then(null, next);
 });

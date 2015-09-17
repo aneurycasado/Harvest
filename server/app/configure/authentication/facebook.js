@@ -32,7 +32,7 @@ module.exports = function (app) {
             }, function (err) {
                 console.error('Error creating user from Facebook authentication', err);
                 done(err);
-            })
+            });
     };
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));

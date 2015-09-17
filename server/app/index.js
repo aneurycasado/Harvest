@@ -22,22 +22,22 @@ app.use(function (req, res, next) {
         next(null);
     }
 });
-app.get("/guestUser", function(req,res){
-  req.session.guestUser = true;
-  res.redirect("/");
+app.get("/guestUser", function (req, res) {
+    req.session.guestUser = true;
+    res.redirect("/");
 });
 
 app.get('/*', function (req, res) {
-    if(req.isAuthenticated() || req.session.guestUser){
-      console.log("1");
-      res.sendFile(app.get('indexHTMLPath'));
-    }else{
-      console.log("2");
-      res.sendFile(app.get('landingPageHTMLPath'));
+    if (req.isAuthenticated() || req.session.guestUser) {
+
+        res.sendFile(app.get('indexHTMLPath'));
+    } else {
+
+        res.sendFile(app.get('landingPageHTMLPath'));
     }
 });
 // Error catching endware.
 app.use(function (err, req, res, next) {
-    console.error(err, typeof next);
+
     res.status(err.status || 500).send(err.message || 'Internal server error.');
 });

@@ -38,7 +38,6 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (token, tokenSecret, profile, done) {
-        console.log(profile);
         UserModel.findOne({'twitter.id': profile.id}).exec()
             .then(function (user) {
                 if (user) { // If a user with this twitter id already exists.

@@ -18,19 +18,14 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         .then(function (products) {
             res.json(products);
         })
-        .then(null, function (error) {
-            next(error);
-        });
+        .then(null, next);
 });
 
 router.get('/:id', ensureAuthenticated, function (req, res, next) {
-    Product.find({
-        _id: req.params.id
-    }).then(function (product) {
+    Product.find({_id: req.params.id})
+    .then(function (product) {
         res.json(product[0]);
-    }).then(null, function (error) {
-        next(error);
-    });
+    }).then(null, next);
 });
 
 router.put('/:id', ensureAuthenticated, function (req, res, next) {
@@ -45,9 +40,7 @@ router.put('/:id', ensureAuthenticated, function (req, res, next) {
         product.save().then(function (savedProduct) {
             res.json(savedProduct);
         });
-    }).then(null, function (error) {
-        next(error);
-    });
+    }).then(null, next);
 });
 
 router.get('/category/:category', ensureAuthenticated, function (req, res, next) {
@@ -55,9 +48,7 @@ router.get('/category/:category', ensureAuthenticated, function (req, res, next)
         category: req.params.category
     }).then(function (products) {
         res.json(products);
-    }).then(null, function (error) {
-        next(error);
-    });
+    }).then(null, next);
 });
 
 function subString(haystack, needle) {
@@ -76,7 +67,6 @@ function subString(haystack, needle) {
 }
 
 router.get('/search/:searchStr', function (req, res, next) {
-
     Product.find()
         .then(function (products) {
             var filteredProducts = [];

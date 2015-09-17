@@ -57,7 +57,6 @@ module.exports = function (app) {
     app.get('/logout', function (req, res) {
         req.logout();
         req.session.guestUser = false;
-        console.log("here");
         res.redirect('/');
         // res.status(200).end();
     });

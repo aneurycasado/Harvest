@@ -6,7 +6,6 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports = function (app) {
-
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {
@@ -30,15 +29,12 @@ module.exports = function (app) {
     app.post('/login', function (req, res, next) {
 
         var authCb = function (err, user) {
-
             if (err) return next(err);
-
             if (!user) {
                 var error = new Error('Invalid login credentials.');
                 error.status = 401;
                 return next(error);
             }
-
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
                 if (loginErr) return next(loginErr);
@@ -49,9 +45,7 @@ module.exports = function (app) {
             });
 
         };
-
         passport.authenticate('local', authCb)(req, res, next);
-
     });
 
 };
