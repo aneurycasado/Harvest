@@ -33,13 +33,9 @@ router.get('/:id', ensureAuthenticated, function (req, res, next) {
 
 router.put('/:id', ensureAuthenticated, function (req, res, next) {
     Product.findOne({_id: req.params.id})
-    .then(function (product) {
-        for (var k in req.body) {
-            if (product[k]) {
-                product[k] = req.body[k];
-            }
-        }
-        return product.save()
+    .then(function(product){
+      _.merge(product, req.body);
+      return product.save();
     })
     .then(function (savedProduct) {
         res.json(savedProduct);
