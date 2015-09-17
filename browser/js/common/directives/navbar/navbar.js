@@ -30,7 +30,12 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
                     console.log("Set user ", user);
-                    CartService.getCart(user._id);
+                    if(!user){
+                      console.log("user is null");
+                      CartService.getLocalCart();
+                    }else{
+                      CartService.getCart(user._id);
+                    }
                 });
             };
 
