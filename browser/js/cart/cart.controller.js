@@ -82,6 +82,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
           CartFactory.getLocalCart();
           $state.reload();
         }else{
+          console.log("We are in here")
           CartFactory.removeFromCart(product, $scope.cart._id)
           .then(
             function (updatedCart) {
