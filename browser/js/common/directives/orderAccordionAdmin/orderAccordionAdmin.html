@@ -1,0 +1,43 @@
+<div>
+    <script type="text/ng-template" id="group-template.html" />
+    <div class="panel {{panelClass || 'panel-default'}}">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+        </div>
+        <div class="panel-collapse collapse" collapse="!isOpen">
+            <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
+    </div>
+    </script>
+    <h1>Order History</h1>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
+        </label>
+    </div>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders">
+            <div class='row' ng-repeat='item in order.items'>
+                <div class='col-sm-1'><img class='accordion-image' src={{item.photo}}></div>
+                <div class='col-sm-8'>
+                    <h4>Product: </h4><span contenteditable ng-model="item.title">{{item.title}}</span></div>
+                <div class='col-sm-2'>
+                    <h4><span contenteditable ng-model="item.price">{{item.price | currency}}</span></h4></div>
+            </div>
+            <div>
+                <div class='col-sm-2'>
+                    <h4>Date Placed: <span contenteditable ng-model="order.dateOfOrder">{{order.dateOfOrder | date: longDate}}</span></h4></div>
+                <div class='col-sm-8'>
+                    <h4>Shipped To: </h4><span contenteditable ng-model="order.shippingAddress">{{order.shippingAddress}}</span></div>
+                <div class='col-sm-2'>
+                    <h4>Total Cost: </h4><span contenteditable ng-model="order.orderTotal">{{order.orderTotal | currency}}</span></div>
+                <div class='col-sm-2'>
+                    <h5>Status: <span contenteditable ng-model="order.status">{{order.status}}</span></h5></div>
+            </div>
+            <button class="btn btn-success btn-sm updateButton" ng-click="updateOrder(order)">Update</button>
+        </accordion-group>
+    </accordion>
+</div>

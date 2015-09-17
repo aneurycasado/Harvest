@@ -8,7 +8,7 @@ app.factory('OrderFactory', function ($http) {
 	}
 
 	function getOne(id){
-		return $http.get('/api/orders/' + id).then(response => response.data)
+		return $http.get('/api/orders/' + id).then(response => response.data);
 	}
 
 	function createOrder(user,order){
@@ -16,11 +16,16 @@ app.factory('OrderFactory', function ($http) {
 		return $http.post('/api/orders/'+user,order).then(response => response.data);
 	}
 
+	function updateOrder (order) {
+		return $http.put('/api/orders').then(response => response.data);
+	}
+
 	return {
 		getAllForUser,
 		getAll,
 		getOne,
-		createOrder
+		createOrder,
+		updateOrder
 	};
 
 });
