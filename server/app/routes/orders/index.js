@@ -23,7 +23,6 @@ router.get("/all/user", function(req,res,next){
 
 
 router.get("/:id", function(req,res,next){
-	console.log("Correct router");
 	Order.findOne({_id : req.params.id}).exec()
 	.then(function(order){
 		res.json(order);
@@ -40,21 +39,18 @@ router.post("/:userID", function(req,res,next){
 			return createdUser;
 		})
 		.then(function(user){
-			console.log("About to create the order with ", req.body);
-			return Order.create(req.body)
+			return Order.create(req.body);
 		})
 		.then(function(newOrder){
 				res.json(newOrder);
 		})
 		.then(null,next);
-	}else{
+	} else {
 		if(req.params.userID === 'guest'){
-			console.log("User id ", req.user._id);
 			req.body.user = req.user._id;
 		}
 		Order.create(req.body)
 		.then(function(createdOrder){
-			console.log(createdOrder);
 			res.json(createdOrder);
 		});
 	}
