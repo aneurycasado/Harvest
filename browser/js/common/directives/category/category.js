@@ -4,7 +4,7 @@ app.directive('category', function (ProductService) {
         templateUrl: 'js/common/directives/category/category.html',
         link : function(scope, element, attr) {
           scope.currentCategory = undefined;
-          scope.categories = ['Vegetables', 'Dairy', 'Fruits'];
+          scope.categories = ['Vegetables', 'Dairy', 'Fruits', 'All'];
           scope.currentCategory = '';
           scope.changeCategory = function (category) {
             scope.currentCategory = category;
