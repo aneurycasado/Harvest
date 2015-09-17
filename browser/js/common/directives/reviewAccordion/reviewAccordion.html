@@ -23,12 +23,13 @@
             <div class='row'>
                 <div class='col-sm-2'><img class='accordion-image' src={{review.product.photo}}></div>
                 <div class='col-sm-6'>
-                    <h3>{{review.content}}</h3></div>
+                    <h3>Review Content: </h3><span ng-model="review.content" contenteditable>{{review.content}}</span></div>
                 <i class="fa col-sm-2 fa-thumbs-up fa-lg" ng-show="review.thumbsUp">Thumbs Up</i>
                 <i class="fa col-sm-2 fa-thumbs-down fa-lg" ng-hide="review.thumbsUp">Thumbs Down</i>
                 <div class='col-sm-2'>
-                    <h3>User: {{review.author.email}}</h3></div>
+                    <h3>User: </h3> <span ng-model="review.author.email">{{review.author.email}}</span></div>
                 </div>
+                <button class="btn btn-success btn-sm updateButton" ng-click="updateReview(review)">Update</button>
         </accordion-group>
     </accordion>
 </div>

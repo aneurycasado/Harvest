@@ -15,6 +15,9 @@ app.config(function ($stateProvider) {
             },
             users: function (UserService) {
                 return UserService.getAll();
+            },
+            orders: function (OrderService) {
+                return OrderService.getAll();
             }
         }
     });

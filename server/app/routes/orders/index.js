@@ -5,6 +5,14 @@ var Order = mongoose.model('Order');
 var User = mongoose.model('User');
 module.exports = router;
 
+router.get("/", function(req,res,next){
+	Order.find().populate('user').exec()
+	.then(function(orders){
+		res.send(orders);
+	})
+	.then(null,next);
+});
+
 router.get("/all/user", function(req,res,next){
 	Order.find({user : req.user._id}).exec()
 	.then(function(userOrders){
@@ -12,6 +20,7 @@ router.get("/all/user", function(req,res,next){
 	})
 	.then(null,next);
 });
+
 
 router.get("/:id", function(req,res,next){
 	console.log("Correct router");

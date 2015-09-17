@@ -24,11 +24,14 @@
   <accordion close-others="oneAtATime">
     <accordion-group heading=" Product: {{product.title}}" ng-repeat="product in products">
       <div class='row'>
-        <div class='col-sm-2'><img class='accordion-image' src={{product.photo}}></div>
-        <div class='col-sm-4'><h3>{{product.description}}</h3></div>
-        <div class='col-sm-2'><h3>In inventory: {{product.inventoryQuantity}}</h3></div>
-        <div class='col-sm-2'><h3>Category: {{product.category}}</h3></div>
-        <div class='col-sm-2'><h3>Price: {{product.price | currency}}</h3></div>
+        <div class='col-sm-1'><img class='accordion-image' src={{product.photo}}></div>
+        <div class='col-sm-1'>Product: <span ng-model="product.title" contenteditable>{{product.title}}</span></div>
+        <div class='col-sm-3'><h4>Description: </h4><span ng-model="product.description" contenteditable>{{product.description}}</span></div>
+        <div class='col-sm-2'><h4>In inventory: </h4><span ng-model="product.inventoryQuantity" contenteditable>{{product.inventoryQuantity}}</span></div>
+        <div class='col-sm-2'><h4>Category: </h4><span ng-model="product.category" contenteditable>{{product.category}}</span></div>
+        <div class='col-sm-2'><h4>Price: </h4><span ng-model="product.price" contenteditable>{{product.price | currency}}</span></div>
+        <div class="col-sm-1"><h4>Available: </h4><input ng-model="product.available" type="checkbox"></div>
+        <button class="btn btn-success btn-sm updateButton" ng-click="updateProduct(product)">Update</button>
       </div>
     </accordion-group>
   </accordion>

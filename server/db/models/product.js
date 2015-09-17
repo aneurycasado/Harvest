@@ -8,6 +8,7 @@ var schema = new mongoose.Schema({
 	price: {type: Number, required: true},
 	inventoryQuantity: {type: Number, required: true },
 	category: {type: String, required: true},
+	available: {type: Boolean, default: true},
 	photo: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
 });
 
