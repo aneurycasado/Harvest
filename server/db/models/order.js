@@ -16,16 +16,9 @@ var schema = new mongoose.Schema({
 	shippingAddress: {type: String},
 	dateOfOrder: {type: Date, default: new Date()},
 	discounts: [{type: String}],
+	status: {type: String, default: "Created", enum: statuses}
 });
 
-// schema.pre('save', function (next) {
-// 	var total = 0;
-// 	console.log('executing pre save hook...');
-// 	this.items.forEach(function (item) {
-// 		total += item.finalPrice * item.quantityOrdered;
-// 	});
-// 	this.orderTotal = total;
-// 	next();
-// });
+var statuses = ["Created", "Processing", "Completed", "Cancelled"];
 
 mongoose.model('Order', schema);

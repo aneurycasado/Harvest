@@ -19,6 +19,7 @@ app.factory('ProductService', function ($http) {
     }
 
     function updateProduct(product) {
+        console.log(product);
         return $http.put('/api/products/' + product._id, product)
             .then(function (response) {
                 return response.data;
