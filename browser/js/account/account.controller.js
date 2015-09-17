@@ -1,7 +1,5 @@
-app.controller('accountCtrl',function ($scope, SecretStash, allOrders, OrderService) {
-
+app.controller('accountCtrl',function ($scope, SecretStash, allOrders) {
 	$scope.orders = allOrders;
-	OrderService.formatDates($scope.orders);
     SecretStash.getStash().then(function (stash) {
         $scope.stash = stash;
     });

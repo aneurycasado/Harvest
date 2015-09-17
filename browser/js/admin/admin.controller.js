@@ -1,9 +1,9 @@
-app.controller('adminCtrl', function ($scope, reviews, products, users, ProductService, ReviewService, UserService) {
+app.controller('adminCtrl', function ($scope, reviews, products, users, orders, ProductService, ReviewService, UserService) {
     $scope.users = users;
     $scope.products = products;
     $scope.reviews = reviews;
+    $scope.orders = orders;
     $scope.active = null;
-    console.log(reviews[15]);
 
     $scope.showProducts = function () {
         $scope.active = 'products';
@@ -13,5 +13,8 @@ app.controller('adminCtrl', function ($scope, reviews, products, users, ProductS
     };
     $scope.showReviews = function () {
         $scope.active = 'reviews';
+    };
+    $scope.showOrders = function () {
+        $scope.active = 'orders';
     };
 });

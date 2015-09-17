@@ -1,6 +1,12 @@
 app.factory('OrderService', function ($http) {
-	function getAll(){
+	function getAllForUser(){
 		return $http.get('/api/orders/all/user').then(function(response){
+			return response.data;
+		});
+	}
+
+	function getAll(){
+		return $http.get('/api/orders/').then(function(response){
 			return response.data;
 		});
 	}
@@ -39,6 +45,7 @@ app.factory('OrderService', function ($http) {
 	}
 
 	return {
+		getAllForUser,
 		getAll: getAll,
 		getOne: getOne,
 		formatDates: formatDates,

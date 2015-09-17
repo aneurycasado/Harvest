@@ -19,7 +19,22 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/:productID', function (req, res) {
+router.put('/', function (req, res, next) {
+  console.log(req.body);
+  Review.findOne({_id: req.body._id})
+    .then(function (review) {
+      for (var k in req.body) {
+        review[k] = req.body[k];
+      }
+      return review.save();
+    })
+    .then(function (savedReview) {
+      res.json(savedReview);
+    })
+    .then(null, next);
+});
+
+router.get('/:productID', function (req, res, next) {
     Review.find({product: req.params.productID}).populate('author')
     .then(
       function(reviews){

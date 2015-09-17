@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
         // that controls access to this state. Refer to app.js.
         resolve: {
             allOrders: function($http, $state, OrderService){
-                return OrderService.getAll()
+                return OrderService.getAllForUser()
                 .then(function(orders){
                     return orders;
                 });
