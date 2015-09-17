@@ -1,17 +1,30 @@
 app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderService, ProductService) {
-    $scope.cart = cart;
+    if(localStorage.getItem('cart')){
+      $scope.cart = JSON.parse(localStorage.getItem('cart'));
+    }else{
+      $scope.cart = cart;
+    }
     $scope.uniqueProducts = [];
     $scope.editing = false;
     $scope.total = 0;
     $scope.checkOutView = false;
     $scope.userInfo = {};
+    $scope.ordered = false;
+    $scope.orderID = null;
     $scope.goHome = function () {
         $state.go('home');
     };
     $scope.emptyCart = function () {
         $scope.uniqueProducts = [];
-        $scope.updateCart();
         $scope.total = 0;
+        if(localStorage.getItem('cart')){
+          $scope.cart.contents = [];
+          localStorage.setItem('cart',JSON.stringify($scope.cart));
+          CartService.getLocalCart();
+          $scope.updateCart();
+        }else{
+          $scope.updateCart();
+        }
     };
     $scope.showCheckOut = function () {
         $scope.checkOutView = !$scope.checkOutView;
@@ -24,11 +37,14 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             orderTotal: $scope.total,
             shippingAddress: shippingAddress
         };
-        // I think we have to .then off of this since it is async
         $scope.updateProducts();
         OrderService.createOrder(user,order).then(function(savedOrder){
-            $scope.emptyCart();
+            console.log("Saved order");
+            console.log(savedOrder);
+            $scope.ordered = true;
+            $scope.orderID = savedOrder._id;
             $scope.checkOutView = false;
+            $scope.emptyCart();
         });
     };
     $scope.updateProducts = function(){
@@ -55,27 +71,67 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         });
     };
     $scope.removeFromCart = function (product) {
-        CartService.removeFromCart(product, $scope.cart._id)
-            .then(function (updatedCart) {
-                $scope.cart = updatedCart;
-                $state.reload();
-            });
+        if(localStorage.getItem('cart')){
+          var newContents = [];
+          var cart = JSON.parse(localStorage.getItem('cart'));
+          cart.contents.forEach(
+            function(currentProduct){
+              if(currentProduct._id !== product._id) newContents.push(currentProduct);
+            }
+          );
+          cart.contents = newContents;
+          localStorage.setItem("cart", JSON.stringify(cart));
+          CartService.getLocalCart();
+          $state.reload();
+        }else{
+          CartService.removeFromCart(product, $scope.cart._id)
+          .then(
+            function (updatedCart) {
+              $scope.cart = updatedCart;
+              $state.reload();
+            }
+          );
+        }
     };
     $scope.increaseQuantity = function (product) {
         $scope.editing = true;
         product.cartQuantity++;
-        
     };
     $scope.reduceQuantity = function (product) {
         $scope.editing = true;
         product.cartQuantity--;
     };
     $scope.updateCart = function () {
-        CartService.updateCart($scope.uniqueProducts, $scope.cart)
-            .then(function (updatedCart) {
-                $scope.cart = updatedCart;
+        if(localStorage.getItem('cart')){
+          var newContents = [];
+          $scope.uniqueProducts.forEach(function(uniqueProduct){
+            for(var i = 0; i < uniqueProduct.cartQuantity; i++){
+              newContents.push(uniqueProduct);
+            }
+          });
+          $scope.cart.contents = newContents;
+          localStorage.setItem('cart', JSON.stringify($scope.cart));
+          CartService.getLocalCart();
+          if($scope.ordered){
+            console.log("Scope set ordered");
+            console.log($scope.orderID);
+            $state.go("orderReceipt", {id:$scope.orderID});
+          }else{
+            $state.reload();
+          }
+        }else{
+          CartService.updateCart($scope.uniqueProducts, $scope.cart)
+          .then(function (updatedCart) {
+              $scope.cart = updatedCart;
+              if($scope.ordered){
+                console.log("Scope set ordered");
+                console.log($scope.orderID);
+                $state.go("orderReceipt", {id:$scope.orderID});
+              }else{
                 $state.reload();
-            });
+              }
+          });
+        }
     };
     $scope.finishedEditing = function () {
         $scope.editing = false;

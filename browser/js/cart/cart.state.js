@@ -4,9 +4,9 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/cart/cart.html',
         resolve: {
             cart: function (CartService, $stateParams) {
-                return CartService.getCart($stateParams.id);
+              return CartService.getCart($stateParams.id);
             }
-        },
+          },
         controller: 'CartCtrl'
     });
 });
