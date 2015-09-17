@@ -1,5 +1,4 @@
 app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderService, ProductService) {
-    console.log("Cart in cart controller ", cart);
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
     }else{
@@ -10,6 +9,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
     $scope.total = 0;
     $scope.checkOutView = false;
     $scope.userInfo = {};
+    $scope.ordered = false;
+    $scope.orderID = null;
     $scope.goHome = function () {
         $state.go('home');
     };
@@ -17,11 +18,10 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
         $scope.uniqueProducts = [];
         $scope.total = 0;
         if(localStorage.getItem('cart')){
-          console.log("empty local Storage cart");
-          console.dir("localStorage Cart ", JSON.parse(localStorage.getItem('cart')))
           $scope.cart.contents = [];
           localStorage.setItem('cart',JSON.stringify($scope.cart));
           CartService.getLocalCart();
+          $scope.updateCart();
         }else{
           $scope.updateCart();
         }
@@ -38,12 +38,15 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
             shippingAddress: shippingAddress
         };
         $scope.updateProducts();
-        console.log("Checkout on user");
         OrderService.createOrder(user,order).then(function(savedOrder){
-            $scope.emptyCart();
+            console.log("Saved order");
+            console.log(savedOrder);
+            $scope.ordered = true;
+            $scope.orderID = savedOrder._id;
             $scope.checkOutView = false;
+            $scope.emptyCart();
         });
-    }
+    };
     $scope.updateProducts = function(){
         $scope.uniqueProducts.forEach(function(product){
             product.inventoryQuantity -= product.cartQuantity;
@@ -109,12 +112,24 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartService, OrderSer
           $scope.cart.contents = newContents;
           localStorage.setItem('cart', JSON.stringify($scope.cart));
           CartService.getLocalCart();
-          $state.reload();
+          if($scope.ordered){
+            console.log("Scope set ordered");
+            console.log($scope.orderID);
+            $state.go("orderReceipt", {id:$scope.orderID});
+          }else{
+            $state.reload();
+          }
         }else{
           CartService.updateCart($scope.uniqueProducts, $scope.cart)
           .then(function (updatedCart) {
               $scope.cart = updatedCart;
-              $state.reload();
+              if($scope.ordered){
+                console.log("Scope set ordered");
+                console.log($scope.orderID);
+                $state.go("orderReceipt", {id:$scope.orderID});
+              }else{
+                $state.reload();
+              }
           });
         }
     };

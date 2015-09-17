@@ -28,11 +28,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
-                    console.log(user);
                     scope.user = user;
-                    console.log("Set user ", user);
                     if(!user){
-                      console.log("user is null");
                       CartService.getLocalCart();
                     }else{
                       CartService.getCart(user._id);
@@ -58,7 +55,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 app.controller('NavbarCtrl', function ($scope, $state) {
   $scope.goToCart = function (user) {
     if(user === null){
-      console.log("localStorage");
       $state.go('cart');
     }else{
       $state.go("cart", {

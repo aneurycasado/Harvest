@@ -1,8 +1,14 @@
 app.factory('OrderService', function ($http) {
 	function getAll(){
-		return $http.get('/api/orders/user').then(function(response){
+		return $http.get('/api/orders/all/user').then(function(response){
 			return response.data;
 		});
+	}
+
+	function getOne(id){
+		return $http.get('/api/orders/' + id).then(function(response){
+			return response.data;
+		})
 	}
 
 	function createOrder(user,order){
@@ -34,6 +40,7 @@ app.factory('OrderService', function ($http) {
 
 	return {
 		getAll: getAll,
+		getOne: getOne,
 		formatDates: formatDates,
 		createOrder: createOrder
 	};

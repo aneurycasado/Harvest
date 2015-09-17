@@ -5,13 +5,23 @@ var Order = mongoose.model('Order');
 var User = mongoose.model('User');
 module.exports = router;
 
-router.get("/user", function(req,res,next){
+router.get("/all/user", function(req,res,next){
 	Order.find({user : req.user._id}).exec()
 	.then(function(userOrders){
 		res.send(userOrders);
 	})
 	.then(null,next);
 });
+
+router.get("/:id", function(req,res,next){
+	console.log("Correct router");
+	Order.findOne({_id : req.params.id}).exec()
+	.then(function(order){
+		res.json(order);
+	})
+	.then(null,next);
+});
+
 
 router.post("/:userID", function(req,res,next){
 	if(req.params.userID === 'guest' && !req.user){

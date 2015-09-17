@@ -12,7 +12,6 @@ app.factory('CartService', function ($http) {
           console.dir("cart in localStorage ", localStorage.getItem("cart"));
           return localStorage.getItem('cart');
         }else{
-          console.log("non local storage");
           return $http.get('/api/cart/' + userID)
               .then(function (response) {
                   obj.currentCart = response.data;
@@ -58,10 +57,7 @@ app.factory('CartService', function ($http) {
         obj.currentCart = cart;
       }else{
          obj.currentCart = JSON.parse(localStorage.getItem('cart'));
-         console.dir(obj.currentCart);
       }
-    }
-    function removeFromLocalCart(product){
     }
     return obj;
 });
