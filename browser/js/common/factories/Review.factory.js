@@ -10,7 +10,7 @@ app.factory('ReviewService', function ($http) {
     });
   }
 
-  function createReview (newReview) {
+  function createReview (product,newReview) {
     return $http.post('/api/reviews/'+product._id,newReview).then(function(response){
       return response.data;
     });
@@ -18,6 +18,7 @@ app.factory('ReviewService', function ($http) {
 
   return {
     getAll: getAll,
-    getOne: getOne
+    getOne: getOne,
+    createReview: createReview
   };
 });
