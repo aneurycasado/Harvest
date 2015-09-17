@@ -1,4 +1,4 @@
-app.factory('CartService', function ($http) {
+app.factory('CartFactory', function ($http) {
     var obj = {
         getCart: getCart,
         addToCart: addToCart,
@@ -9,7 +9,6 @@ app.factory('CartService', function ($http) {
     };
     function getCart(userID) {
         if(localStorage.getItem("cart")){
-          console.dir("cart in localStorage ", localStorage.getItem("cart"));
           return localStorage.getItem('cart');
         }else{
           return $http.get('/api/cart/' + userID)
@@ -51,14 +50,7 @@ app.factory('CartService', function ($http) {
             });
     }
     function getLocalCart(){
-      // console.log("get local cart ", localStorage.getItem('cart'));
-      // return $http.get("/guest").then(function(guest){
-      //   if(guest){
-      //
-      //   }
-      // })
       if(!localStorage.getItem('cart')){
-        console.log("We hit this");
         var cart = {user: 'guest',contents: []};
         localStorage.setItem('cart',JSON.stringify(cart));
         obj.currentCart = cart;

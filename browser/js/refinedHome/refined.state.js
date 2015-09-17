@@ -3,8 +3,8 @@ app.config(function ($stateProvider) {
         url: '/:searchInput',
         templateUrl: 'js/refinedHome/refinedHome.html',
         resolve: {
-            products: function ($stateParams,ProductService) {
-                return ProductService.refineProducts($stateParams.searchInput);
+            products: function ($stateParams,ProductFactory) {
+                return ProductFactory.refineProducts($stateParams.searchInput);
             }
         },
         controller: 'RefinedHomeCtrl'

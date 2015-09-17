@@ -19,7 +19,7 @@ module.exports = function (app) {
             .then(function (user) {
                 if (user) {
                     return user;
-                } else {
+                }else {
                     return UserModel.create({
                         name: profile.displayName,
                         facebook: {
@@ -33,7 +33,6 @@ module.exports = function (app) {
                 console.error('Error creating user from Facebook authentication', err);
                 done(err);
             })
-
     };
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));

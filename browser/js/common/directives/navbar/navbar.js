@@ -1,11 +1,11 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, CartService, ProductService) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, CartFactory, ProductFactory) {
 
     return {
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
-            scope.cart = CartService;
+            scope.cart = CartFactory;
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'Account', state: 'account', auth: true }
@@ -31,10 +31,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                     scope.user = user;
                     if(!user){
                       console.log("Guess user");
-                      CartService.getLocalCart();
+                      CartFactory.getLocalCart();
                     }else{
                       console.log("Not guess user")
-                      CartService.getCart(user._id);
+                      CartFactory.getCart(user._id);
                     }
                 });
             };
@@ -54,9 +54,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
     };
 });
 
-app.controller('NavbarCtrl', function ($scope, $state, ProductService) {
+app.controller('NavbarCtrl', function ($scope, $state, ProductFactory) {
   $scope.products = null;
-  ProductService.getAll().then(function(products){
+  ProductFactory.getAll().then(function(products){
     $scope.products = products;
   });
   $scope.goToCart = function (user) {

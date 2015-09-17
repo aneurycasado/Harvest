@@ -1,4 +1,4 @@
-app.controller('ReviewAccordionCtrl', function ($scope, ReviewService) {
+app.controller('ReviewAccordionCtrl', function ($scope, ReviewFactory) {
   $scope.oneAtATime = true;
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
@@ -10,7 +10,7 @@ app.controller('ReviewAccordionCtrl', function ($scope, ReviewService) {
 
   $scope.updateReview = function (review) {
     console.log(review);
-    ReviewService.updateOne(review);
+    ReviewFactory.updateOne(review);
   };
 
   $scope.status = {

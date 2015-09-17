@@ -1,4 +1,4 @@
-app.directive('category', function (ProductService) {
+app.directive('category', function (ProductFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/category/category.html',
@@ -8,7 +8,7 @@ app.directive('category', function (ProductService) {
           scope.currentCategory = '';
           scope.changeCategory = function (category) {
             scope.currentCategory = category;
-            ProductService.getProductsByCategory(category).then(function(products){
+            ProductFactory.getProductsByCategory(category).then(function(products){
               scope.products = products;
             });
           };

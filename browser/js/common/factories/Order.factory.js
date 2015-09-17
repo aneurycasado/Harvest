@@ -1,4 +1,4 @@
-app.factory('OrderService', function ($http) {
+app.factory('OrderFactory', function ($http) {
 	function getAllForUser(){
 		return $http.get('/api/orders/all/user').then(function(response){
 			return response.data;
