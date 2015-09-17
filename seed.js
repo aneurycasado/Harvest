@@ -46,7 +46,8 @@ var seedUsers = function () {
     emails.forEach(function (email) {
         users.push({
             email: email,
-            password: chance.word()
+            password: chance.word(),
+            name: chance.name()
         });
     });
     return User.createAsync(users);
