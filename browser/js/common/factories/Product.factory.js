@@ -12,6 +12,7 @@ app.factory('ProductService', function ($http) {
     }
 
     function getProductsByCategory(category) {
+        if(category === 'All') return getAll();
         return $http.get('/api/products/category/' + category).then(function (response) {
             return response.data;
         });

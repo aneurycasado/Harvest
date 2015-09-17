@@ -1,16 +1,51 @@
 #home {
-  fullstack-logo {
-    padding-top: 30px;
-    width: 150px;
-    margin: 0 auto;
-  }
-  h1 {
-    margin-top: 40px;
-    text-align: center;
-  }
+    fullstack-logo {
+        padding-top: 30px;
+        width: 150px;
+        margin: 0 auto;
+    }
+    h1 {
+        margin-top: 40px;
+        text-align: center;
+    }
 }
 
 .productImg {
-	height: 50%;
-	width: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+span.buttonOverlay {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 85px;
+    left: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 92.5%;
+    opacity: 0;
+    z-index: 5000;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
+}
+
+span.buttonOverlay span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.productContainer:hover span.buttonOverlay {
+    opacity: 1;
+    // height: 100px
+}
+
+.priceBox {
+    height: 50px;
+    font-size: 1.5em;
+    margin-bottom: 25px;
 }
