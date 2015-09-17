@@ -51,7 +51,14 @@ app.factory('CartService', function ($http) {
             });
     }
     function getLocalCart(){
+      // console.log("get local cart ", localStorage.getItem('cart'));
+      // return $http.get("/guest").then(function(guest){
+      //   if(guest){
+      //
+      //   }
+      // })
       if(!localStorage.getItem('cart')){
+        console.log("We hit this");
         var cart = {user: 'guest',contents: []};
         localStorage.setItem('cart',JSON.stringify(cart));
         obj.currentCart = cart;

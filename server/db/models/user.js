@@ -26,6 +26,9 @@ var schema = new mongoose.Schema({
     },
     type: {
       id: String
+    },
+    name: {
+      type: String
     }
 });
 

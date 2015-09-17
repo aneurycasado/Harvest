@@ -2,6 +2,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Review = mongoose.model('Review');
+var User = mongoose.model('User');
 module.exports = router;
 var _ = require('lodash');
 
@@ -44,3 +45,19 @@ router.get('/:productID', function (req, res, next) {
         next(error);
     });
 });
+
+router.post('/:productID', function (req, res) {
+    console.log("The user");
+    console.log(req.user);
+    req.body.author = req.user;
+    console.log("The review before");
+    console.log(req.body);
+    Review.create(req.body)
+    .then(function(createdReview){
+      console.log("The created review ", createdReview);
+      res.json(createdReview);
+    })
+    .then(null, function (error) {
+      next(error);
+    });
+  });
