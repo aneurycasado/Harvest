@@ -31,3 +31,19 @@ router.get('/:productID', function (req, res) {
         next(error);
     });
 });
+
+router.post('/:productID', function (req, res) {
+    console.log("New Review")
+    console.log(req.body);
+    console.log("The user");
+    console.log(req.user);
+    req.body.user = req.user;
+    Review.create(req.body)
+    .then(function(createdReview){
+      console.log(createdReview);
+      res.json(review);
+    })
+    .then(null, function (error) {
+      next(error);
+    });
+  });

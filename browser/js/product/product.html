@@ -28,8 +28,10 @@
     </div>
   </div>
   <div class ="page-header">
-    <h1>Reviews</h1>
+    <h1 style='display: inline-block'>Reviews</h1>
+    <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()'></i>
   </div>
+  <create-review ng-show='showCreateReviewForm && loggedIn'></create-review>
   <div class = "container">
     <div class = "panel panel-warning product" ng-repeat = "review in reviews">
       <div class = "panel-heading">
