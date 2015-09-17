@@ -30,10 +30,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
                     if(!user){
-                      console.log("Guess user");
                       CartFactory.getLocalCart();
                     }else{
-                      console.log("Not guess user")
                       CartFactory.getCart(user._id);
                     }
                 });
@@ -69,8 +67,6 @@ app.controller('NavbarCtrl', function ($scope, $state, ProductFactory) {
     }
   };
   $scope.search = function(){
-    console.log("We are in search");
-    console.log("Search string ", $scope.searchInput);
     $state.go("refinedHome", {searchInput: $scope.searchInput});
   }
 });

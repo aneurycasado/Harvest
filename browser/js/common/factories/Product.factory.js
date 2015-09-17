@@ -1,21 +1,15 @@
 app.factory('ProductFactory', function ($http) {
     function getAll() {
-        return $http.get('/api/products').then(function (response) {
-            return response.data;
-        });
+        return $http.get('/api/products').then(response => response.data);
     }
 
     function getOne(id) {
-        return $http.get('/api/products/' + id).then(function (response) {
-            return response.data;
-        });
+        return $http.get('/api/products/' + id).then(response => response.data);
     }
 
     function getProductsByCategory(category) {
         if(category === 'All') return getAll();
-        return $http.get('/api/products/category/' + category).then(function (response) {
-            return response.data;
-        });
+        return $http.get('/api/products/category/' + category).then(response => response.data);
     }
 
     function updateProduct(product) {
@@ -26,16 +20,14 @@ app.factory('ProductFactory', function ($http) {
     }
 
     function refineProducts(searchInput){
-      return $http.get("/api/products/search/" + searchInput).then(function(response){
-        return response.data;
-      });
+      return $http.get("/api/products/search/" + searchInput).then(response => response.data);
     }
 
     return {
-        getAll: getAll,
-        getOne: getOne,
-        getProductsByCategory: getProductsByCategory,
-        updateProduct: updateProduct,
-        refineProducts: refineProducts
+        getAll,
+        getOne,
+        getProductsByCategory,
+        updateProduct,
+        refineProducts
     };
 });
