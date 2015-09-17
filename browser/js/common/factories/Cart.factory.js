@@ -8,11 +8,17 @@ app.factory('CartService', function ($http) {
         currentCart: null
     };
     function getCart(userID) {
-        return $http.get('/api/cart/' + userID)
-            .then(function (response) {
-                obj.currentCart = response.data;
-                return response.data;
-            });
+        if(localStorage.getItem("cart")){
+          console.dir("cart in localStorage ", localStorage.getItem("cart"));
+          return localStorage.getItem('cart');
+        }else{
+          console.log("non local storage");
+          return $http.get('/api/cart/' + userID)
+              .then(function (response) {
+                  obj.currentCart = response.data;
+                  return response.data;
+              });
+        }
     }
     function addToCart(product) {
         if(localStorage.getItem('cart')){
@@ -29,23 +35,15 @@ app.factory('CartService', function ($http) {
         }
     }
     function removeFromCart (product, cartID) {
-        if(localStorage.getItem('cart')){
-          var newContents = [];
-          var cart = JSON.parse(localStorage.get('cart'));
-          cart.contents.forEach(function(currentProduct){
-            if(currentProduct._id !== product._id) newContents.push(currentProduct);
-          });
-          cart.contents = newContents;
-          localStorage.setItem("cart", JSON.stringify(cart));
-          obj.currentCart = cart;
-        }else{
-          return $http.put('/api/cart/' + cartID + '/' + product._id)
-            .then(function (response) {
-                obj.currentCart = response.data;
-                return response.data;
-            });
+      return $http.put('/api/cart/' + cartID + '/' + product._id)
+      .then(
+        function (response) {
+          obj.currentCart = response.data;
+          return response.data;
         }
+      );
     }
+
     function updateCart (updatedCartContents, cart) {
         return $http.put('/api/cart/update/' + cart._id, {updatedCartContents: updatedCartContents})
             .then(function (response) {
@@ -54,7 +52,7 @@ app.factory('CartService', function ($http) {
             });
     }
     function getLocalCart(){
-      if(localStorage.getItem('cart')){
+      if(!localStorage.getItem('cart')){
         var cart = {contents: []};
         localStorage.setItem('cart',JSON.stringify(cart));
         obj.currentCart = cart;

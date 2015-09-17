@@ -56,9 +56,13 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
 app.controller('NavbarCtrl', function ($scope, $state) {
   $scope.goToCart = function (user) {
-    $state.go("cart", {
-        id: user._id
-    });
-};
-
+    if(user === null){
+      console.log("localStorage");
+      $state.go('cart');
+    }else{
+      $state.go("cart", {
+          id: user._id
+      });
+    }
+  };
 });
