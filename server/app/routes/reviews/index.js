@@ -5,19 +5,12 @@ var Review = mongoose.model('Review');
 module.exports = router;
 var _ = require('lodash');
 
-var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.status(401).end();
-    }
-};
 
-router.get('/', ensureAuthenticated, function (req, res, next) {
-    Review.find().populate('author').exec()
+router.get('/', function (req, res, next) {
+    Review.find().populate('product author').exec()
     .then(
       function(reviews){
-        console.log(reviews);
+        console.log('This is the check', reviews[0]);
         res.json(reviews);
       }
     )
@@ -26,7 +19,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     });
 });
 
-router.get('/:productID', ensureAuthenticated, function (req, res) {
+router.get('/:productID', function (req, res) {
     Review.find({product: req.params.productID}).populate('author')
     .then(
       function(reviews){
