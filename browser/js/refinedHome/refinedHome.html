@@ -1,0 +1,35 @@
+<section id="home">
+    <category></category>
+    <div class="page-header">
+        <h1 ng-hide="currentCategory">No Category Selected</h1>
+        <h1 ng-show="currentCategory">{{currentCategory}}</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="product col-lg-4 productContainer muted" ng-repeat='product in products'>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <img src="{{product.photo}}" class="productImg" ng-click="goToProduct(product)"/>
+                        <span class="buttonOverlay">
+                        <span>
+                            <div class="col-lg-12 text-center">
+                                <div class="btn-group addToCartBtn" role="group">
+                                    <button class="btn" ng-click='addToCart(product)'>
+                                        <i class="fa fa-cart-plus"> Add to Cart</i>
+                                    </button>
+                                    <!-- <button class="btn" ng-click='addToCart(product)'> -->
+                                        <!-- Quick Look -->
+                                    <!-- </button> -->
+                                </div>
+                            </div>
+                        </span>
+                        </span>
+                    </div>
+                    <div class="col-lg-12 text-center priceBox" ng-click="goToProduct(product)">
+                        <h4><a ng-clic="goToProduct(product)">{{product.title}} - {{product.price | currency}}</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
