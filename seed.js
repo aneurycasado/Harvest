@@ -70,7 +70,8 @@ var seedReviews = function (data) {
     var reviews = [];
     for (var i = 0; i < reviewContent.length; i++) {
         reviews.push({
-            author: data.users[chance.integer({min: 0, max: numUsers-1})]._id,
+            // author: data.users[chance.integer({min: 0, max: numUsers-1})]._id,
+            author: data.users[0],
             product: data.products[chance.integer({min: 0, max: numProducts-1})]._id,
             title: reviewTitle[i],
             content: reviewContent[i],
@@ -94,8 +95,8 @@ var seedOrders = function (data) {
                 description: currItem.description,
                 category: currItem.category,
                 photo: currItem.photo,
-                finalPrice: currItem.price,
-                quantityOrdered: chance.integer({min: 1, max: 5})
+                price: currItem.price,
+                cartQuantity: chance.integer({min: 1, max: 5})
             });
         }
         orders.push({
