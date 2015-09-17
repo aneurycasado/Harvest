@@ -20,9 +20,9 @@
             <li>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" ng-model ="searchInput" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default" ng-click='find()'>Submit</button>
+                    <button type="submit" class="btn btn-default" ng-click='search()'>Submit</button>
                 </form>
             </li>
             <li ng-click = "goToCart(user)">

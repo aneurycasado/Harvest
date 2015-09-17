@@ -24,10 +24,18 @@ app.factory('ProductService', function ($http) {
                 return response.data;
             });
     }
+
+    function refineProducts(searchInput){
+      return $http.get("/api/products/search/" + searchInput).then(function(response){
+        return response.data;
+      });
+    }
+
     return {
         getAll: getAll,
         getOne: getOne,
         getProductsByCategory: getProductsByCategory,
-        updateProduct: updateProduct
+        updateProduct: updateProduct,
+        refineProducts: refineProducts
     };
 });

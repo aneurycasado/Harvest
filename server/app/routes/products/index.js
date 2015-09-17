@@ -60,3 +60,37 @@ router.get('/category/:category', ensureAuthenticated, function (req, res, next)
         next(error);
     });
 });
+
+function subString(haystack,needle) {
+  var found = false;
+  for (var i = 0; i <= haystack.length - needle.length; i++) {
+    for(var j = 0; j < needle.length; j++) {
+      if(haystack[i+j] !== needle[j]) {
+        break;
+      }
+      if(j === needle.length - 1) {
+        found = true;
+      }
+    }
+  }
+  return found;
+}
+
+router.get('/search/:searchStr', function(req,res){
+    console.log("Params ",req.params.searchStr);
+    Product.find()
+    .then(function(products){
+      var filteredProducts = [];
+      products.forEach(function(product){
+        if(subString(product.title,req.params.searchStr)){
+          console.log("Search Str ", req.params.searchStr);
+          console.log("Product " , product.title);
+          filteredProducts.push(product);
+        }
+      });
+      res.json(filteredProducts);
+    })
+    .then(null, function(error){
+      console.error(error);
+    });
+});

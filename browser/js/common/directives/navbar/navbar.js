@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, CartService) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, CartService, ProductService) {
 
     return {
         restrict: 'E',
@@ -54,7 +54,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
     };
 });
 
-app.controller('NavbarCtrl', function ($scope, $state) {
+app.controller('NavbarCtrl', function ($scope, $state, ProductService) {
+  $scope.products = null;
+  ProductService.getAll().then(function(products){
+    $scope.products = products;
+  });
   $scope.goToCart = function (user) {
     if(user === null){
       $state.go('cart');
@@ -64,4 +68,9 @@ app.controller('NavbarCtrl', function ($scope, $state) {
       });
     }
   };
+  $scope.search = function(){
+    console.log("We are in search");
+    console.log("Search string ", $scope.searchInput);
+    $state.go("refinedHome", {searchInput: $scope.searchInput});
+  }
 });
