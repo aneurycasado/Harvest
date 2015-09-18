@@ -20,11 +20,19 @@ app.factory('UserFactory', function ($http) {
     function createUser (user) {
         return $http.post('/api/users', user).then(response => response.data);
     }
+    
+    function updateEmailForUser(user,email) {
+      var userEmail = {
+        email
+      };
+      return $http.put('/api/users/' + user, userEmail).then(response => response.data);
+    }
 
     return {
     	getAll,
     	updateUser,
         deleteUser,
-        createUser
+        createUser,
+        updateEmailForUser
     };
 });

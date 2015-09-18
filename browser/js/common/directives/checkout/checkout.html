@@ -1,71 +1,19 @@
-<div class="page-header">
-    <h3>Shipping Information</h3>
-</div>
-<form class="form-horizontal" name="checkOutForm" role="form" ng-submit="checkOutForm.$valid && checkOut(user)">
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="address">Address:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.address" name="address" type="text" class="form-control" id="address" placeholder="Enter address">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="address2">Address Line 2:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.address2" name="address2" type="text" class="form-control" id="address2" placeholder="Apt, suite, floor...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="city">City:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.city" name="city" type="text" class="form-control" id="city" placeholder="City...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="state">State:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.state" name="state" type="text" class="form-control" id="state" placeholder="State...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="zip">Zip:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.zip" name="zip" type="text" class="form-control" id="zip" placeholder="Zip...">
-        </div>
-    </div>
-    <div class="page-header">
-        <h3>Payment Information</h3></div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="card">Card Type: </label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.cardType" name="cardType" type="text" class="form-control" id="card" placeholder="Card Type...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="nameOnCard">Name on Card: </label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.nameOnCard" name="nameOnCard" type="text" class="form-control" id="nameOnCard" placeholder="Name on card...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="cardNum">Card Number: </label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.cardNumber" name="cardNumber" type="text" class="form-control" id="cardNum" placeholder="Card Number...">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="secCode">Security Code:</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.securityCode" name="securityCode" type="text" class="form-control" id="secCode" placeholder="Security Code">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="expM">Expiration</label>
-        <div class="col-sm-10">
-            <input ng-model="userInfo.expM" name="expM" type="month" class="form-control" id="expM" placeholder="mm...">
-        </div>
-    </div>
-    <div class="btn-group inline">
-        <button type="submit" class="btn btn-success">Confirm</button>
-        <button class="btn btn-danger" ng-click="checkOutView = false">Cancel</button>
-    </div>
+<form ng-hide='!checkOutView' class="form-horizontal" name="checkOutForm" role="form" ng-submit="updateEmailForUser()">
+  <div class="page-header">
+      <h3>Enter Email</h3>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+          <input ng-model="email" name="email" type="text" class="form-control" id="email" placeholder="Enter email">
+      </div>
+  </div>
+      <button type="submit" class="btn btn-success">Confirm</button>
+      <button type='button' class="btn btn-danger" ng-click='checkOutView=false'>Cancel</button>
+</form>
+<form ng-show='emailSubmitted' class="form-horizontal" name="checkOutForm" role="form" ng-submit="checkOutForm.$valid && checkOut(user)">
+  <shipping-info></shipping-info>
+  <payment-info></payment-info>
+  <button type="submit" class="btn btn-success">Confirm</button>
+  <button type='button' class="btn btn-danger" ng-click='checkOutView=false'>Cancel</button>
 </form>
