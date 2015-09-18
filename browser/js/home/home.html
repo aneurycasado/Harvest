@@ -7,9 +7,16 @@
     <div class="form-group">
         <input type="text" ng-model="productName" class="form-control" placeholder="Search">
     </div>
+    <select class="form-control" ng-model="sortBy">
+        <option>-- Select --</option>
+        <option value="price">Price: Low-High</option>
+        <option value="-price">Price: High-Low</option>
+        <option value="title">Title: A-Z</option>
+        <option value="-title">Title: Z-A</option>
+    </select>
     <div class="container">
         <div class="row">
-            <div class="product col-lg-4 productContainer muted" ng-repeat='product in products | filter: productName'>
+            <div class="product col-lg-4 productContainer muted" ng-repeat='product in products | filter: productName | orderBy : sortBy'>
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <img src="{{product.photo}}" class="productImg" ng-click="goToProduct(product)" />
@@ -26,7 +33,7 @@
                         </span>
                     </div>
                     <div class="col-lg-12 text-center priceBox" ng-click="goToProduct(product)">
-                        <h4><a ng-clic="goToProduct(product)">{{product.title}} - {{product.price | currency}}</a></h4>
+                        <h4><a ng-clic="goToProduct(product)">{{product.category}} - {{product.title}} - {{product.price | currency}}</a></h4>
                     </div>
                 </div>
             </div>
