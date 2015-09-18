@@ -26,3 +26,19 @@ router.put('/', function (req, res, next) {
 		})
 		.then(null, next);
 });
+
+router.delete('/', function (req, res, next) {
+	User.remove({_id: req.body._id})
+		.then(function (deletedUser) {
+			res.json(deletedUser);
+		})
+		.then(null, next);
+});
+
+router.post('/', function (req, res, next) {
+	User.create(req.body) 
+		.then(function (createdUser){
+			res.json(createdUser);
+		})
+		.then(null, next);
+});

@@ -1,0 +1,28 @@
+<accordion close-others="oneAtATime" ng-show="showAddUser">
+    <form name='addUser' role="form" ng-submit="addUser.$valid && createUser(addUser)">
+        <accordion-group heading=" Add a new User">
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <label>Email: </label>
+                    <input ng-model="addUser.email" type='email' placeholder="Enter email here..." </span>
+                </div>
+                <div class='col-sm-2'>
+                    <label>Password: </label>
+                    <input type="password" ng-model="addUser.password" placeholder="Enter password...">
+                    </span>
+                </div>
+                <div class='col-sm-2'>
+                    <label>Name: </label>
+                    <input type="text" ng-model="addUser.name" placeholder="Enter name...">
+                    </span>
+                </div>
+                <div class="col-sm-1">
+                    <label>Admin: </label>
+                    <input ng-model="addUser.isAdmin" type="checkbox">
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Create</button>
+                <button class="btn btn-warning btn-sm">Cancel</button>
+            </div>
+        </accordion-group>
+    </form>
+</accordion>

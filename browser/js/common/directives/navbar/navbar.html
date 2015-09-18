@@ -3,8 +3,14 @@
         <div class="navbar-header">
             <harvest-logo></harvest-logo>
         </div>
+        <form class="navbar-form navbar-right" role="search" id="searchBox">
+            <div class="form-group">
+                <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default" ng-click='search()'>Submit</button>
+        </form>
         <!-- Need to make this hide for all other states except home -->
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
@@ -20,22 +26,12 @@
                     <a ng-click="logout()">Logout</a>
                 </div>
             </li>
-            <li>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default" ng-click='search()'>Submit</button>
-                </form>
-            </li>
-            <li ng-click="goToCart(user)">
-                <div>
-                    <i class="fa fa-shopping-cart fa-3x">Cart</i>
-                    <div>
-            </li>
-            <li>
-                <i class="fa fa-3x" style='color:white'>{{cart.currentCart.contents.length}}</i>
-            </li>
         </ul>
+    </div>
+        <div id="shoppingCart" class="navbar-rigth">
+            <div ng-click="goToCart(user)">
+                <i class="fa fa-shopping-cart fa-2x"> </i>
+                <i class="fa fa-xl" style='color:white'>{{cart.currentCart.contents.length}}</i>
+            </div>
         </div>
 </nav>
