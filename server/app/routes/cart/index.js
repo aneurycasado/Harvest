@@ -13,6 +13,18 @@ router.get("/users/:userID", function (req, res, next) {
     }).then(null, next);
 });
 
+router.post("/createCart/me", function(req,res,next){
+  Cart.create({user: req.user.id})
+  .then(function(cart){
+    cart.contents = req.body.contents;
+    return cart.save()
+  })
+  .then(function(savedCart){
+    res.json(savedCart);
+  })
+  .then(null,next);
+});
+
 router.put("/products/:productID", function (req, res, next) {
     var userID = req.user.id;
     var savedInfo = {};

@@ -50,12 +50,17 @@ app.factory('CartFactory', function ($http) {
       }
     }
 
+    function createCartFromLocaStorage(cart){
+      return $http.post('/api/cart/createCart/me',cart).then(response => response.data);
+    }
+
     var obj = {
         getCart,
         addToCart,
         removeFromCart,
         updateCart,
         getLocalCart,
+        createCartFromLocaStorage,
         currentCart: null
     };
 
