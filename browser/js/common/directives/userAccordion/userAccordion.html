@@ -13,7 +13,12 @@
     </div>
     </script>
     <h1>All Users <button class="btn btn-success" ng-click="showAddUserForm()"><i class="fa fa-plus">  Add a user</i></button></h1>
-    <input type="text" ng-model="userName" class="form-control" placeholder="Search">
+    <input type="text" ng-model="userName" class="form-control" placeholder="Search by Name">
+        <select class="form-control" ng-model="filterAdmin">
+        <option value="">-- Select Admin --</option>
+        <option value="true">Admin</option>
+        <option value="false">Non-Admin</option>
+    </select>
     <div class="checkbox">
         <label>
             <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
@@ -21,7 +26,7 @@
     </div>
     <add-user></add-user>
     <accordion close-others="oneAtATime">
-        <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users | filter : userName">
+        <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users | filter : userName | filter : filterAdmin">
             <div class='row'>
                 <div class="col-lg-3">
                     <h4>User Email: </h4><span contenteditable ng-model="user.email"></span></div>

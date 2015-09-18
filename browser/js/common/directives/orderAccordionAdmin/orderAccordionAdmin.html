@@ -12,14 +12,22 @@
         </div>
     </div>
     </script>
-    <h1>Order History</h1><input type="text" ng-model="orderName" class="form-control" placeholder="Search">
+    <h1>Order History</h1>
+    <input type="text" ng-model="orderName" class="form-control" placeholder="Search">
+    <select class="form-control" ng-model="sortBy">
+        <option>-- Select --</option>
+        <option value="price">Order Total: Low-High</option>
+        <option value="-price">Order Total: High-Low</option>
+        <option value="user.name">User: A-Z</option>
+        <option value="-user.name">User: Z-A</option>
+    </select>
     <div class="checkbox">
         <label>
             <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
         </label>
     </div>
     <accordion close-others="oneAtATime">
-        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders | filter: orderName">
+        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}} by {{order.user.name}}" ng-repeat="order in orders | filter: orderName | orderBy: sortBy">
             <div class='row' ng-repeat='item in order.items'>
                 <div class='col-sm-1'><img class='accordion-image' src={{item.photo}}></div>
                 <div class='col-sm-8'>
