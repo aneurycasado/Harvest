@@ -7,8 +7,16 @@ app.factory('UserFactory', function ($http) {
     	return $http.put('/api/users', user).then(response => response.data);
     }
 
+    function updateEmailForUser(user,email) {
+      var userEmail = {
+        email
+      }
+      return $http.put('/api/users/' + user, userEmail).then(response => response.data);
+    }
+
     return {
     	getAll,
-    	updateUser
+    	updateUser,
+      updateEmailForUser
     };
 });
