@@ -12,14 +12,14 @@
         </div>
     </div>
     </script>
-    <h1>Order History</h1>
+    <h1>Order History</h1><input type="text" ng-model="orderName" class="form-control" placeholder="Search">
     <div class="checkbox">
         <label>
             <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
         </label>
     </div>
     <accordion close-others="oneAtATime">
-        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders">
+        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders | filter: orderName">
             <div class='row' ng-repeat='item in order.items'>
                 <div class='col-sm-1'><img class='accordion-image' src={{item.photo}}></div>
                 <div class='col-sm-8'>
