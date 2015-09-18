@@ -1,0 +1,37 @@
+<accordion close-others="oneAtATime" ng-show="showAddProduct">
+    <form name='addProduct' role="form" ng-submit="addProduct.$valid && createProduct(addProduct)">
+        <accordion-group heading=" Add a new Product">
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <label>Product: </label><input ng-model="addProduct.title" type='text' placeholder="Enter name here..."</span></div>
+                <div class='col-sm-2'>
+                    <label>Description: </label>
+                    <input type="text" ng-model="addProduct.description" placeholder="Enter description here...">
+                    </span>
+                </div>
+                <div class='col-sm-2'>
+                    <label>Inventory On Hand: </label>
+                    <input type="number" min="0" ng-model="addProduct.inventoryQuantity"></input>
+                </div>
+                <div class='col-sm-2'>
+                    <label>Category: </label><div></div>
+                    <select ng-model="addProduct.category">
+                        <option>Dairy</option>
+                        <option>Fruit</option>
+                        <option>Vegetables</option>
+                    </select>
+                </div>
+                <div class='col-sm-2'>
+                    <label>Price: </label>
+                    <input type="number" min="0" ng-model="addProduct.price"></input>
+                </div>
+                <div class="col-sm-1">
+                    <label>Available: </label>
+                    <input ng-model="addProduct.available" type="checkbox">
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Create</button>
+                <button class="btn btn-warning btn-sm">Cancel</button>
+            </div>
+        </accordion-group>
+    </form>
+</accordion>

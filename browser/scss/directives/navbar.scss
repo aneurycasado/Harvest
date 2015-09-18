@@ -17,7 +17,7 @@
         width: 40px;
     }
     a {
-        color: black;
+        color: white;
         font-size: 16px;
     }
     .nav > li > a {
@@ -45,11 +45,23 @@
         float: right;
         margin-top: 12px;
         span {
-            color: blue;
+            color: white;
         }
         a {
             color: #f30046;
             cursor: pointer;
         }
     }
+}
+
+// #shoppingCart {
+//     position: absolute;
+//     top: 25px;
+//     right: 15%;
+// }
+
+#searchBox {
+    position: absolute;
+    top: 40px;
+    right; 20%;
 }
