@@ -56,15 +56,19 @@ router.put('/', function (req, res, next) {
         .then(null, next);
 });
 
-var sendEmail = function () {
+var sendEmail = function (email,html) {
 	console.log('sending email....');
     transporter.sendMail({
         from: 'harvestFSA@gmail.com',
         to: 'harvestFSA@gmail.com',
-        subject: 'Test',
-        text: 'hello world!'
+        subject: 'Order Confirmed',
+        html: html
     });
 };
+
+var createHTML = function(order){
+  return "<div class ='container'><h1>Order Receipt</h1><div class = 'panel panel-success'><div class = 'panel-heading'><h2>Ordered On:" + order.dateOfOrder + "</h2></div><div class = 'panel-body'><h2>Total:" + order.orderTotal + "</h2></div></div></div>";
+}
 
 router.post("/:userID", function (req, res, next) {
     if (req.params.userID === 'guest' && !req.user) {
@@ -79,7 +83,8 @@ router.post("/:userID", function (req, res, next) {
                 return Order.create(req.body);
             })
             .then(function (newOrder) {
-            	sendEmail();
+                var html = createHTML(newOrder);
+                sendEmail(req.user.email,html);
                 res.json(newOrder);
             })
             .then(null, next);
@@ -89,8 +94,9 @@ router.post("/:userID", function (req, res, next) {
         }
         Order.create(req.body)
             .then(function (createdOrder) {
-            	sendEmail();
-                res.json(createdOrder);
+              var html = createHTML(createdOrder);
+              sendEmail(req.user.email,html);
+              res.json(createdOrder);
             });
     }
 });
