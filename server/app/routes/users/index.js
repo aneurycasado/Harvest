@@ -26,3 +26,17 @@ router.put('/', function (req, res, next) {
 		})
 		.then(null, next);
 });
+
+router.put('/:id', function (req, res, next) {
+	User.findById(req.params.id)
+		.then(function (user) {
+      console.log("Previous User ", user);
+      user.email = req.body.email
+			return user.save();
+		})
+		.then(function (savedUser) {
+      console.log("New User ", savedUser);
+			res.json(savedUser);
+		})
+		.then(null, next);
+});
