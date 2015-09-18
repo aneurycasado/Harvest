@@ -1,34 +1,38 @@
 <div>
-  <script type="text/ng-template" id="group-template.html"/>
+    <script type="text/ng-template" id="group-template.html" />
     <div class="panel {{panelClass || 'panel-default'}}">
-      <div class="panel-heading">
-        <h4 class="panel-title" style="color:#fa39c3">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="color:#fa39c3">
           <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
             ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
         </h4>
-      </div>
-      <div class="panel-collapse collapse" collapse="!isOpen">
-        <div class="panel-body" style="text-align: right" ng-transclude></div>
-      </div>
+        </div>
+        <div class="panel-collapse collapse" collapse="!isOpen">
+            <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
     </div>
-</script>
-
-
-<h1>All Users</h1>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="oneAtATime">
-      Open only one at a time
-    </label>
-  </div>
-  <accordion close-others="oneAtATime">
-    <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users">
-      <div class='row'>
-      <div class="col-lg-3"><h4>User Email: </h4><span contenteditable ng-model="user.email"></span></div>
-      <div class="col-lg-3"><h4>User Name: </h4><span contenteditable ng-model="user.name"></span></div>
-      <div class="col-lg-3"><h4>Admin: </h4><span contenteditable ></span><input ng-model="user.isAdmin" type="checkbox"></div>
-      <button class="btn btn-success btn-sm updateButton" ng-click="updateUser(user)">Update</button>
-      </div>
-    </accordion-group>
-  </accordion>
+    </script>
+    <h1>All Users <button class="btn btn-success" ng-click="showAddUserForm()"><i class="fa fa-plus">  Add a user</i></button></h1>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
+        </label>
+    </div>
+    <add-user></add-user>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users">
+            <div class='row'>
+                <div class="col-lg-3">
+                    <h4>User Email: </h4><span contenteditable ng-model="user.email"></span></div>
+                <div class="col-lg-3">
+                    <h4>User Name: </h4><span contenteditable ng-model="user.name"></span></div>
+                <div class="col-lg-3">
+                    <h4>Admin: </h4><span contenteditable></span>
+                    <input ng-model="user.isAdmin" type="checkbox">
+                </div>
+                <button class="btn btn-success btn-sm updateButton" ng-click="updateUser(user)"><i class="fa fa-refresh"></i> Update User</button>
+                <button class="btn btn-danger btn-sm" ng-click="deleteUser(user)"><i class="fa fa-remove"></i> Delete User</button>
+            </div>
+        </accordion-group>
+    </accordion>
 </div>

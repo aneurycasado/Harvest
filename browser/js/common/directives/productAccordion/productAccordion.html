@@ -14,13 +14,14 @@
 </script>
 
 
-<h1>All Products</h1>
+<h1>All Products <button class="btn btn-success" ng-click="showAddProductForm()"><i class="fa fa-plus">  Add a product</i></button></h1>
   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="oneAtATime">
       Open only one at a time
     </label>
   </div>
+  <add-product></add-product>
   <accordion close-others="oneAtATime">
     <accordion-group heading=" Product: {{product.title}}" ng-repeat="product in products">
       <div class='row'>
@@ -31,7 +32,8 @@
         <div class='col-sm-2'><h4>Category: </h4><span ng-model="product.category" contenteditable>{{product.category}}</span></div>
         <div class='col-sm-2'><h4>Price: </h4><span ng-model="product.price" contenteditable>{{product.price}}</span></div>
         <div class="col-sm-1"><h4>Available: </h4><input ng-model="product.available" type="checkbox"></div>
-        <button class="btn btn-success btn-sm updateButton" ng-click="updateProduct(product)">Update</button>
+        <button class="btn btn-success btn-sm updateButton" ng-click="updateProduct(product)"><i class="fa fa-refresh"></i> Update Item</button>
+        <button class="btn btn-danger btn-sm" ng-click="deleteProduct(product)"><i class="fa fa-remove"></i> Delete Item</button>
       </div>
     </accordion-group>
   </accordion>

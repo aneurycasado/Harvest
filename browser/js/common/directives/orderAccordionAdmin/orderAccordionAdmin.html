@@ -23,9 +23,11 @@
             <div class='row' ng-repeat='item in order.items'>
                 <div class='col-sm-1'><img class='accordion-image' src={{item.photo}}></div>
                 <div class='col-sm-8'>
-                    <h4>Product: </h4><span contenteditable ng-model="item.title">{{item.title}}</span></div>
+                    <h4>Product: </h4><span contenteditable ng-model="item.title">{{item.title}}</span>
+                </div>
                 <div class='col-sm-2'>
-                    <h4><span contenteditable ng-model="item.price">{{item.price | currency}}</span></h4></div>
+                    <h4><span contenteditable ng-model="item.price">{{item.price | currency}}</span></h4>
+                </div>
             </div>
             <div>
                 <div class='col-sm-2'>
