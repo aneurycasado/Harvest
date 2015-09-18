@@ -19,10 +19,8 @@ router.get('/', function (req, res, next) {
 router.put('/', function (req, res, next) {
   Review.findOne({_id: req.body._id})
     .then(function (review) {
-      for (var k in req.body) {
-        review[k] = req.body[k];
-      }
-      return review.save();
+      _.merge(review, req.body);
+      return review.save()
     })
     .then(function (savedReview) {
       res.json(savedReview);
