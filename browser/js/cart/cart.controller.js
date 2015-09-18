@@ -14,7 +14,10 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
     $scope.goHome = function () {
         $state.go('home');
     };
-
+    $scope.resetForm = function(){
+      $scope.checkOutView=false;
+      $scope.emailSubmitted=false;
+    }
     $scope.updateEmailForUser = function() {
         UserFactory.updateEmailForUser($scope.cart.user, $scope.email).then(function(){
           $scope.emailSubmitted = true;
