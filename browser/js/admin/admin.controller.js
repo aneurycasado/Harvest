@@ -1,4 +1,4 @@
-app.controller('adminCtrl', function ($scope, reviews, products, users, orders, ProductFactory, ReviewFactory, UserFactory) {
+app.controller('adminCtrl', function ($scope, reviews, products, users, orders) {
     $scope.users = users;
     $scope.products = products;
     $scope.reviews = reviews;

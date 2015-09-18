@@ -14,7 +14,7 @@
 </script>
 
 
-<h1>All Products <button class="btn btn-success" ng-click="showAddProductForm()"><i class="fa fa-plus">  Add a product</i></button></h1>
+<h1>All Products <button class="btn btn-success" ng-click="showAddProductForm()"><i class="fa fa-plus">  Add a product</i></button></h1> <input type="text" ng-model="productName" class="form-control" placeholder="Search">
   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="oneAtATime">
@@ -23,7 +23,7 @@
   </div>
   <add-product></add-product>
   <accordion close-others="oneAtATime">
-    <accordion-group heading=" Product: {{product.title}}" ng-repeat="product in products">
+    <accordion-group heading=" Product: {{product.title}}" ng-repeat="product in products | filter : productName">
       <div class='row'>
         <div class='col-sm-1'><img class='accordion-image' src={{product.photo}}></div>
         <div class='col-sm-1'>Product: <span ng-model="product.title" contenteditable>{{product.title}}</span></div>

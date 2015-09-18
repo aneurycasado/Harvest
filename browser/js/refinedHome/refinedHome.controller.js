@@ -1,4 +1,4 @@
-app.controller('RefinedHomeCtrl', function ($scope, products, $state,  CartFactory) {
+app.controller('RefinedHomeCtrl', function ($scope, products, $state, CartFactory) {
     $scope.products = products;
     $scope.goToProduct = function (product) {
         var productID = product._id;
