@@ -3,8 +3,10 @@
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url('http://issacharinitiative.org/wp-content/uploads/2014/01/harvest.jpg') no-repeat center center;
-    background-size: cover;
+    background-image: no-repeat center center;
+    // background-size: cover;
+    background-size: 100% 100%;
+    // background-repeat: no-repeat;
 }
 
 .intro-message {
@@ -28,3 +30,6 @@
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
+
+
+    
