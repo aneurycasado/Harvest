@@ -9,6 +9,8 @@ var schema = new mongoose.Schema({
 	inventoryQuantity: {type: Number, required: true },
 	category: {type: String, required: true},
 	available: {type: Boolean, default: true},
+	numReviews: {type: Number, default: 0},
+	percentageLiked: {type: Number, default: 1},
 	photo: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
 	altPic1: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
 	altPic2: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
