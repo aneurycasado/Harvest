@@ -18,12 +18,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
       $scope.checkOutView=false;
       $scope.emailSubmitted=false;
     }
-    $scope.updateEmailForUser = function() {
-        UserFactory.updateEmailForUser($scope.cart.user, $scope.email).then(function(){
-          $scope.emailSubmitted = true;
-        });
-    }
-
     $scope.emptyCart = function () {
         $scope.uniqueProducts = [];
         $scope.total = 0;
@@ -45,7 +39,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
             user: $scope.cart.user,
             items: $scope.uniqueProducts,
             orderTotal: $scope.total,
-            shippingAddress: shippingAddress
+            shippingAddress: shippingAddress,
+            email: $scope.email
         };
         $scope.updateProducts();
         OrderFactory.createOrder(user,order).then(function(savedOrder){
