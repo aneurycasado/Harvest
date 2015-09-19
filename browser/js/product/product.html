@@ -1,48 +1,101 @@
-<div class = 'container'>
-  <div class="page-header">
-    <h1>Product</h1>
-  </div>
-  <div class = "container">
-    <div class = "panel panel-success product">
-      <div class = "panel-heading">
-        <h2>{{product.title}}</h2>
-      </div>
-      <div class = "panel-body">
-        <p>{{product.descrption}}</p>
-        <h2>
-          <img src = "{{product.photo}}"/>
-        </h2>
-      </div>
-      <ul class ="list-group">
-        <li class='list-group-item'> <h3>Category: {{product.category}}</h3> </li>
-        <li class='list-group-item'> <h3>Price: ${{product.price}}</h3> </li>
-        <li class='list-group-item'> <h3>Inventory Quantity: {{product.inventoryQuantity}}</h3> </li>
-      </ul>
-      <div class ="btn-group btn-group-lg btn-group-justified" role="group">
-        <div class="btn-group" role ="group">
-          <button class = "btn btn-warning" ng-click='addToCart(product)'>
-            <i class ="fa fa-cart-plus fa-2x">Add to Cart</i>
-          </button>
+<div class='container'>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 mainPhoto">
+                <img src="{{product.photo}}" />
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-12 altPhoto">
+                        <img src="{{product.altPic1}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 altPhoto">
+                        <img src="{{product.altPic2}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 altPhoto">
+                        <img src="{{product.altPic3}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 altPhoto">
+                        <img src="{{product.altPic4}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row productDesc">
+                    <div class="col-sm-12 text-center">
+                        <h2>{{product.title}}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h4>{{product.price | currency}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <input type="number" min="0" value='1'>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-success" ng-click='addToCart(product)'>
+                            <i class="fa fa-cart-plus"> Add to Cart</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class ="page-header">
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-sm-4">
+                Product Description
+            </div>
+            <div class="col-sm-4">
+                Product Description
+            </div>
+            <div class="col-sm-4">
+                Product Description
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                {{product.description}}
+            </div>
+            <div class="col-sm-4">
+                {{product.description}}
+            </div>
+            <div class="col-sm-4">
+                {{product.description}}
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+<div class="page-header">
     <h1 style='display: inline-block'>Reviews</h1>
-    <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()' ng-show = 'isAuthenticated'></i>
-  </div>
-  <create-review ng-show='showCreateReviewForm'></create-review>
-  <div class = "container">
-    <div class = "panel panel-warning product" ng-repeat = "review in reviews">
-      <div class = "panel-heading">
-        <h2>{{review.title}}</h2>
-      </div>
-      <div class = "panel-body">
-        <h3>{{review.content}}</h3>
-        <h4> By: {{review.author.name}}</h4>
-        <i class="fa fa-thumbs-up fa-2x" ng-show = "review.thumbsUp">Thumbs Up</i>
-        <i class="fa fa-thumbs-down fa-2x" ng-hide = "review.thumbsUp">Thumbs Down</i>
-      </div>
+    <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()' ng-show='isAuthenticated'></i>
+</div>
+<create-review ng-show='showCreateReviewForm'></create-review>
+    <div class="panel panel-warning product" ng-repeat="review in reviews">
+        <div class="panel-heading">
+            <h2>{{review.title}}</h2>
+        </div>
+        <div class="panel-body">
+            <h3>{{review.content}}</h3>
+            <h4> By: {{review.author.name}}</h4>
+            <i class="fa fa-thumbs-up fa-2x" ng-show="review.thumbsUp">Thumbs Up</i>
+            <i class="fa fa-thumbs-down fa-2x" ng-hide="review.thumbsUp">Thumbs Down</i>
+        </div>
     </div>
-  </div>
+</div>
 </div>
