@@ -81,8 +81,20 @@
 </div>
 <hr>
 <div class="container">
-    <h1 style='display: inline-block'>Reviews</h1>
-    <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()' ng-show='isAuthenticated'></i>
+    <div class="row">
+        <h1 style='display: inline-block'>Reviews</h1>
+        <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()' ng-show='isAuthenticated'></i>
+    </div>
+    <div class="row">
+        <h4>{{product.numReviews}} Reviews 
+    </div>
+    <div class="row" ng-show="product.numReviews > 0">
+        <h4>{{product.percentageLiked * 100 | number:0}}%
+        <i class="fa fa-smile-o fa-lg" ng-show="product.percentageLiked >= .666"></i>
+        <i class="fa fa-meh-o fa-lg" ng-show="product.percentageLiked > .333  && product.percentageLiked < .666"></i>
+        <i class="fa fa-frown-o fa-lg" ng-show="product.percentageLiked <= .333"></i>
+        </h4> 
+    </div>
     <hr>
     <create-review ng-show='showCreateReviewForm'></create-review>
     <review ng-repeat="review in reviews"> </review>

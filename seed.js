@@ -29,7 +29,7 @@ var Order = Promise.promisifyAll(mongoose.model('Order'));
 var Cart = Promise.promisifyAll(mongoose.model('Cart'));
 
 var numUsers = 100;
-var numReviews = 1500;
+var numReviews = 100;
 var numProducts = 100;
 var numOrders = 100;
 
