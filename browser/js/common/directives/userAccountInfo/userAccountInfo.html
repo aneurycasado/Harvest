@@ -1,0 +1,40 @@
+<script type="text/ng-template" id="group-template.html" />
+<div class="panel {{panelClass || 'panel-default'}}">
+    <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+    </div>
+    <div class="panel-collapse collapse" collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+    </div>
+</div>
+</script>
+<h1 class="page-header">Account info</h1>
+<accordion close-others="oneAtATime">
+    <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateUser(userAccountInfo)">
+        <accordion-group heading="Click here to edit account info">
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <label>Email: </label>
+                    <input ng-model="userAccountInfo.email" type='email' placeholder={{currentUser.email}}>
+                </div>
+                <div class='col-sm-4'>
+                    <label>Password: </label>
+                    <input type="password" ng-model="userAccountInfo.password" placeholder="Enter password...">
+                </div>
+                <div class='col-sm-4'>
+                    <label>Name: </label>
+                    <input type="text" ng-model="userAccountInfo.name" placeholder={{currentUser.name}}>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Update</button>
+                </div>
+            </div>
+        </accordion-group>
+    </form>
+</accordion>
