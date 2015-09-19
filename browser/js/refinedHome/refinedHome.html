@@ -1,9 +1,4 @@
 <section id="home">
-    <category></category>
-    <div class="page-header">
-        <h1 ng-hide="currentCategory">No Category Selected</h1>
-        <h1 ng-show="currentCategory">{{currentCategory}}</h1>
-    </div>
     <div class="container">
         <div class="row">
             <div class="product col-lg-4 productContainer muted" ng-repeat='product in products'>
@@ -17,9 +12,6 @@
                                     <button class="btn" ng-click='addToCart(product)'>
                                         <i class="fa fa-cart-plus"> Add to Cart</i>
                                     </button>
-                                    <!-- <button class="btn" ng-click='addToCart(product)'> -->
-                                        <!-- Quick Look -->
-                                    <!-- </button> -->
                                 </div>
                             </div>
                         </span>
