@@ -19,10 +19,6 @@ app.factory('ProductFactory', function ($http) {
             });
     }
 
-    function refineProducts(searchInput){
-      return $http.get("/api/products/search/" + searchInput).then(response => response.data);
-    }
-
     function addProduct(product) {
         return $http.post('/api/products', product).then(response => response.data);
     };
@@ -41,7 +37,6 @@ app.factory('ProductFactory', function ($http) {
         getOne,
         getProductsByCategory,
         updateProduct,
-        refineProducts,
         addProduct,
         deleteProduct
     };
