@@ -14,6 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.put('/', function (req, res, next) {
+	
 	User.findById(req.body._id)
 		.then(function (user) {
 			for (var k in req.body) {
