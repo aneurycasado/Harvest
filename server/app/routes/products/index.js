@@ -68,19 +68,3 @@ router.get('/category/:category', ensureAuthenticated, function (req, res, next)
     })
     .then(null, next);
 });
-
-
-router.get('/search/:searchStr', function (req, res, next) {
-    Product.find()
-    .then(function (products) {
-        var filteredProducts = [];
-        products.forEach(function (product) {
-            if (product.title.indexOf(req.params.searchStr)!==-1) {
-                filteredProducts.push(product);
-            }
-        });
-        res.json(filteredProducts);
-    })
-    .then(null, next);
-});
-
