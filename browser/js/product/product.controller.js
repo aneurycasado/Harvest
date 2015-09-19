@@ -4,6 +4,14 @@ app.controller('ProductCtrl', function ($scope, $state, reviews, product, CartFa
   $scope.loggedIn = true;
   $scope.showCreateReviewForm = false;
   $scope.isAuthenticated = AuthService.isAuthenticated();
+  $scope.photos = [
+    $scope.product.photo,$scope.product.photo2,
+    $scope.product.photo3, $scope.product.photo4
+  ];
+  $scope.selectedPhoto = $scope.photos[0];
+  $scope.changePhoto = function(num) {
+    $scope.selectedPhoto = $scope.photos[num];
+  }
   $scope.revealForm = function () {
     $scope.showCreateReviewForm = !$scope.showCreateReviewForm;
   };
