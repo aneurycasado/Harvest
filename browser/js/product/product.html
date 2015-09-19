@@ -2,27 +2,27 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-5 mainPhoto">
-                <img src="{{product.photo}}" />
+                <img src="{{selectedPhoto}}" />
             </div>
             <div class="col-sm-2">
                 <div class="row">
-                    <div class="col-sm-12 altPhoto">
-                        <img src="{{product.altPic1}}" />
+                    <div class="col-sm-12 altPhoto" ng-click="changePhoto(0)">
+                        <img src="{{product.photo}}" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 altPhoto">
-                        <img src="{{product.altPic2}}" />
+                    <div class="col-sm-12 altPhoto" ng-click="changePhoto(1)">
+                        <img src="{{product.photo2}}" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 altPhoto">
-                        <img src="{{product.altPic3}}" />
+                    <div class="col-sm-12 altPhoto" ng-click="changePhoto(2)">
+                        <img src="{{product.photo3}}" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 altPhoto">
-                        <img src="{{product.altPic4}}" />
+                    <div class="col-sm-12 altPhoto" ng-click="changePhoto(3)">
+                        <img src="{{product.photo4}}" />
                     </div>
                 </div>
             </div>
