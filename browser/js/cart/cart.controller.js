@@ -34,6 +34,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
         $scope.checkOutView = !$scope.checkOutView;
     };
     $scope.checkOut = function (user) {
+        console.log("We checked out");
         var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
         var order = {
             user: $scope.cart.user,
@@ -42,8 +43,10 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
             shippingAddress: shippingAddress,
             email: $scope.email
         };
+        console.log("The current order ", order);
         $scope.updateProducts();
         OrderFactory.createOrder(user,order).then(function(savedOrder){
+            console.log("Saved order ", savedOrder);
             $scope.ordered = true;
             $scope.orderID = savedOrder._id;
             $scope.checkOutView = false;

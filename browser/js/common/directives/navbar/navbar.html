@@ -8,11 +8,13 @@
             <li>
                 <div ng-show="user" class="welcome nav navbar-nav navbar-right">
                     <span>{{ user.name }}</span>
-                    <a ng-click="logout()">Logout</a>
                 </div>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button class = "btn navbarButton" ng-show = "user" ng-click ="logout()">Logout</button>
+            </li>
             <li>
                 <button class="btn navbarButton" ng-show="user.isAdmin" ui-sref="admin">Admin</button>
             </li>

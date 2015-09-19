@@ -91,14 +91,17 @@ var createHTML = function(order){
 }
 
 router.post("/:userID", function (req, res, next) {
+    var email = req.body.email;
+    delete req.body.email
     if (req.params.userID === 'guest' && !req.user) {
+        console.log("Guest");
         User.create({
                 'type': 'guest',
-                'email': req.body.email
+                'email': email
             })
             .then(function (createdUser) {
+                console.log("CreatedUser ", createdUser);
                 req.body.user = createdUser._id;
-                delete req.body.email
                 return createdUser;
             })
             .then(function (user) {
@@ -106,7 +109,7 @@ router.post("/:userID", function (req, res, next) {
             })
             .then(function (newOrder) {
                 var html = createHTML(newOrder);
-                sendEmail(req.user.email,html);
+                sendEmail(email,html);
                 res.json(newOrder);
             })
             .then(null, next);
@@ -117,7 +120,7 @@ router.post("/:userID", function (req, res, next) {
         Order.create(req.body)
             .then(function (createdOrder) {
               var html = createHTML(createdOrder);
-              sendEmail(req.user.email,html);
+              sendEmail(email,html);
               res.json(createdOrder);
             });
     }
