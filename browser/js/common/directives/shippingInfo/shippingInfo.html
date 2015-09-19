@@ -2,32 +2,53 @@
     <h3>Shipping Information</h3>
 </div>
 <div class="form-group">
+  <label class="control-label col-sm-2" for="email">Email:</label>
+  <div class="col-sm-10">
+      <input ng-model="email" name="email" type="text" class="form-control" id="email" placeholder="Enter email" required>
+      <span class="error" ng-show="checkOutForm.email.$error.required">
+            Required!
+      </span>
+  </div>
+</div>
+<div class="form-group">
     <label class="control-label col-sm-2" for="address">Address:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.address" name="address" type="text" class="form-control" id="address" placeholder="Enter address">
+        <input ng-model="userInfo.address" name="address" type="text" class="form-control" id="address" placeholder="Enter address" required>
+        <span class="error" ng-show="checkOutForm.address.$error.required">
+            Required!
+        </span>
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-sm-2" for="address2">Address Line 2:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.address2" name="address2" type="text" class="form-control" id="address2" placeholder="Apt, suite, floor...">
+        <input ng-model="userInfo.address2"  name="address2" type="text" class="form-control" id="address2" placeholder="Apt, suite, floor...">
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-sm-2" for="city">City:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.city" name="city" type="text" class="form-control" id="city" placeholder="City...">
+        <input ng-model="userInfo.city" name="city" type="text" class="form-control" id="city" placeholder="City..." required>
+         <span class="error" ng-show="checkOutForm.city.$error.required">
+            Required!
+        </span>
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-sm-2" for="state">State:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.state" name="state" type="text" class="form-control" id="state" placeholder="State...">
+        <input ng-model="userInfo.state" name="state" type="text" class="form-control" id="state" placeholder="State..." required>
+         <span class="error" ng-show="checkOutForm.state.$error.required">
+            Required!
+        </span>
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-sm-2" for="zip">Zip:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.zip" name="zip" type="text" class="form-control" id="zip" placeholder="Zip...">
+        <input ng-model="userInfo.zip" name="zip" type="text" class="form-control" id="zip" placeholder="Zip..." required>
+         <span class="error" ng-show="checkOutForm.zip.$error.required">
+            Required!
+        </span>
     </div>
 </div>

@@ -93,10 +93,12 @@ var createHTML = function(order){
 router.post("/:userID", function (req, res, next) {
     if (req.params.userID === 'guest' && !req.user) {
         User.create({
-                'type': 'guest'
+                'type': 'guest',
+                'email': req.body.email
             })
             .then(function (createdUser) {
                 req.body.user = createdUser._id;
+                delete req.body.email
                 return createdUser;
             })
             .then(function (user) {
