@@ -5,31 +5,33 @@
         </div>
         <!-- Need to make this hide for all other states except home -->
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li>
-                <a ng-show="user.isAdmin" ui-sref="admin">Admin</a>
-            </li>
             <li>
                 <div ng-show="user" class="welcome nav navbar-nav navbar-right">
-                    <span>Welcome, {{ user.name }}!</span>
+                    <span>{{ user.name }}</span>
                     <a ng-click="logout()">Logout</a>
                 </div>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+                <button class="btn navbarButton" ng-show="user.isAdmin" ui-sref="admin">Admin</button>
+            </li>
+            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                <button class="btn navbarButton" ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</button>
             </li>
             <li>
-                <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
+                <button ng-show="!user" ui-sref="login" class="btn navbarButton">Login</button>
+            </li>
+            <li>
+                <button ng-show="!user" ui-sref="signup" class="btn navbarButton">Sign Up</button>
             </li>
             <li>
                 <div id="shoppingCart" class="navbar-right">
                     <div ng-click="goToCart(user)">
-                        <i class="fa fa-shopping-cart fa-2x"> </i>
-                        <i class="fa fa-xl" style='color:white'>{{cart.currentCart.contents.length}}</i>
+                    <button class="btn navbarButton">
+                        <i class="fa fa-shopping-cart fa-lg"> </i>
+                        <i class="fa fa-lg" style='color:white'>{{cart.currentCart.contents.length}}</i>
+                        </button>
                     </div>
                 </div>
             </li>
