@@ -9,9 +9,6 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <li>
-                <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-            </li>
-            <li>
                 <a ng-show="user.isAdmin" ui-sref="admin">Admin</a>
             </li>
             <li>
@@ -21,11 +18,21 @@
                 </div>
             </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+            </li>
+            <li>
+                <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
+            </li>
+            <li>
+                <div id="shoppingCart" class="navbar-right">
+                    <div ng-click="goToCart(user)">
+                        <i class="fa fa-shopping-cart fa-2x"> </i>
+                        <i class="fa fa-xl" style='color:white'>{{cart.currentCart.contents.length}}</i>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
-        <div id="shoppingCart" class="navbar-rigth">
-            <div ng-click="goToCart(user)">
-                <i class="fa fa-shopping-cart fa-2x"> </i>
-                <i class="fa fa-xl" style='color:white'>{{cart.currentCart.contents.length}}</i>
-            </div>
-        </div>
 </nav>
