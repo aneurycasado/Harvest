@@ -34,14 +34,14 @@
             background: none;
         }
     }
-    .login-button {
+    .navbarButton {
         float: right;
         border: 1px solid black;
         margin-right: 5px;
         background: none;
         outline: none !important;
     }
-    .login-button:hover {
+    .navbarButton:hover {
         color: #fff;
         transform: scale(1.05);
         transition: all .2s ease-in-out;
