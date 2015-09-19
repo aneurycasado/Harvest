@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-2">
+            <h3>{{review.title}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            By: {{review.author.name}}
+        </div>
+        <div class="col-sm-6 content">
+            {{review.content}}
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2">
+            <i class="fa fa-thumbs-up fa-lg" ng-show="review.thumbsUp">Thumbs Up</i>
+            <i class="fa fa-thumbs-down fa-lg" ng-hide="review.thumbsUp">Thumbs Down</i>
+        </div>
+    </div>
+</div>
+<hr>

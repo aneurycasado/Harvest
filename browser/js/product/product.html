@@ -57,23 +57,23 @@
         <hr>
         <div class="row">
             <div class="col-sm-4">
-                Product Description
+                <h4>Product Description</h4>
             </div>
             <div class="col-sm-4">
-                Product Description
+                <h4>Product Description</h4>
             </div>
             <div class="col-sm-4">
-                Product Description
+                <h4>Product Description</h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4 content">
                 {{product.description}}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 content">
                 {{product.description}}
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 content">
                 {{product.description}}
             </div>
         </div>
@@ -81,21 +81,9 @@
 </div>
 <hr>
 <div class="container">
-<div class="page-header">
     <h1 style='display: inline-block'>Reviews</h1>
     <i style='color: green' class='fa fa-2x fa-plus-circle fa-fw' ng-click='revealForm()' ng-show='isAuthenticated'></i>
-</div>
-<create-review ng-show='showCreateReviewForm'></create-review>
-    <div class="panel panel-warning product" ng-repeat="review in reviews">
-        <div class="panel-heading">
-            <h2>{{review.title}}</h2>
-        </div>
-        <div class="panel-body">
-            <h3>{{review.content}}</h3>
-            <h4> By: {{review.author.name}}</h4>
-            <i class="fa fa-thumbs-up fa-2x" ng-show="review.thumbsUp">Thumbs Up</i>
-            <i class="fa fa-thumbs-down fa-2x" ng-hide="review.thumbsUp">Thumbs Down</i>
-        </div>
-    </div>
-</div>
+    <hr>
+    <create-review ng-show='showCreateReviewForm'></create-review>
+    <review ng-repeat="review in reviews"> </review>
 </div>
