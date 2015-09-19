@@ -1,4 +1,4 @@
-app.controller('OrderAccordionCtrl', function ($scope, OrderFactory) {
+app.controller('OrderAccordionCtrl', function ($scope, $state, OrderFactory) {
   $scope.oneAtATime = true;
 
   $scope.addItem = function() {
@@ -11,6 +11,10 @@ app.controller('OrderAccordionCtrl', function ($scope, OrderFactory) {
     OrderFactory.updateOrder(order);
   };
 
+  $scope.goToProductDetail = function (product) {
+    $state.go('product', {id: product._id});
+  };
+  
   $scope.status = {
     isFirstOpen: true,
     isFirstDisabled: false

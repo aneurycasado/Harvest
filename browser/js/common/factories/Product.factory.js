@@ -23,11 +23,26 @@ app.factory('ProductFactory', function ($http) {
       return $http.get("/api/products/search/" + searchInput).then(response => response.data);
     }
 
+    function addProduct(product) {
+        return $http.post('/api/products', product).then(response => response.data);
+    };
+
+    function deleteProduct(product) {
+        return $http({
+            method: 'DELETE',
+            url: 'api/products',
+            data: product,
+            headers: {"Content-Type": "application/json;charset=utf-8"}
+        }).then(response => response.data);
+    };
+
     return {
         getAll,
         getOne,
         getProductsByCategory,
         updateProduct,
-        refineProducts
+        refineProducts,
+        addProduct,
+        deleteProduct
     };
 });

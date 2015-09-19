@@ -32,6 +32,13 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                     if(!user){
                       CartFactory.getLocalCart();
                     }else{
+                      if(localStorage.getItem("cart")){
+                        var cart = JSON.parse(localStorage.getItem("cart"));
+                        CartFactory.createCartFromLocaStorage(cart).then(function(savedCart){
+                          localStorage.removeItem('cart');
+                          CartFactory.getCart(user._id);
+                        });
+                      }
                       CartFactory.getCart(user._id);
                     }
                 });

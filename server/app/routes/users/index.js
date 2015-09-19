@@ -14,6 +14,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.put('/', function (req, res, next) {
+	
 	User.findById(req.body._id)
 		.then(function (user) {
 			for (var k in req.body) {
@@ -26,3 +27,35 @@ router.put('/', function (req, res, next) {
 		})
 		.then(null, next);
 });
+
+router.delete('/', function (req, res, next) {
+	User.remove({_id: req.body._id})
+		.then(function (deletedUser) {
+			res.json(deletedUser);
+		})
+		.then(null, next);
+});
+
+router.post('/', function (req, res, next) {
+	User.create(req.body) 
+		.then(function (createdUser){
+			res.json(createdUser);
+		})
+		.then(null, next);
+});
+
+router.put('/:id', function (req, res, next) {
+	console.log("We here");
+	User.findById(req.params.id)
+		.then(function (user) {
+			console.log("Previous User ", user);
+			user.email = req.body.email;
+			return user.save();
+		})
+		.then(function (savedUser) {
+			console.log("New User ", savedUser);
+			res.json(savedUser);
+		})
+		.then(null, next);
+});
+

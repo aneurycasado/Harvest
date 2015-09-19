@@ -4,12 +4,9 @@
             <harvest-logo></harvest-logo>
         </div>
         <!-- Need to make this hide for all other states except home -->
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <li>
-                <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
             </li>
             <li>
                 <a ng-show="user.isAdmin" ui-sref="admin">Admin</a>
@@ -20,22 +17,22 @@
                     <a ng-click="logout()">Logout</a>
                 </div>
             </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
             <li>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
+                <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+            </li>
+            <li>
+                <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
+            </li>
+            <li>
+                <div id="shoppingCart" class="navbar-right">
+                    <div ng-click="goToCart(user)">
+                        <i class="fa fa-shopping-cart fa-2x"> </i>
+                        <i class="fa fa-xl" style='color:white'>{{cart.currentCart.contents.length}}</i>
                     </div>
-                    <button type="submit" class="btn btn-default" ng-click='search()'>Submit</button>
-                </form>
-            </li>
-            <li ng-click="goToCart(user)">
-                <div>
-                    <i class="fa fa-shopping-cart fa-3x">Cart</i>
-                    <div>
-            </li>
-            <li>
-                <i class="fa fa-3x" style='color:white'>{{cart.currentCart.contents.length}}</i>
+                </div>
             </li>
         </ul>
-        </div>
+    </div>
 </nav>

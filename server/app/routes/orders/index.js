@@ -56,27 +56,49 @@ router.put('/', function (req, res, next) {
         .then(null, next);
 });
 
+function formatDates (date) {
+			var monthNames = [
+				  "January", "February", "March",
+				  "April", "May", "June", "July",
+				  "August", "September", "October",
+				  "November", "December"
+			];
+      var dateOfOrder = {};
+			dateOfOrder = new Date(date);
+			var day = dateOfOrder.getDate();
+			var monthIndex = dateOfOrder.getMonth();
+			var month = monthNames[monthIndex];
+			var year = dateOfOrder.getFullYear();
+			dateOfOrder.day = day;
+			dateOfOrder.month = month;
+			dateOfOrder.year = year;
+      return dateOfOrder;
+	}
+
 var sendEmail = function (email,html) {
-	console.log('sending email....');
+	console.log('sending email....',email);
     transporter.sendMail({
         from: 'harvestFSA@gmail.com',
-        to: 'harvestFSA@gmail.com',
+        to: email.toString(),
         subject: 'Order Confirmed',
         html: html
     });
 };
 
 var createHTML = function(order){
-  return "<div class ='container'><h1>Order Receipt</h1><div class = 'panel panel-success'><div class = 'panel-heading'><h2>Ordered On:" + order.dateOfOrder + "</h2></div><div class = 'panel-body'><h2>Total:" + order.orderTotal + "</h2></div></div></div>";
+  order.dateOfOrder = formatDates(order.dateOfOrder);
+  return "<div class ='container'><h1>Order Receipt</h1><div class = 'panel panel-success'><div class = 'panel-heading'><h2>Ordered On: " + order.dateOfOrder.month + " " + order.dateOfOrder.day + ', ' + order.dateOfOrder.year + "</h2></div><div class = 'panel-body'><h2>Total: $" + order.orderTotal + "</h2></div></div></div>";
 }
 
 router.post("/:userID", function (req, res, next) {
     if (req.params.userID === 'guest' && !req.user) {
         User.create({
-                'type': 'guest'
+                'type': 'guest',
+                'email': req.body.email
             })
             .then(function (createdUser) {
                 req.body.user = createdUser._id;
+                delete req.body.email
                 return createdUser;
             })
             .then(function (user) {

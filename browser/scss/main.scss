@@ -1,44 +1,57 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+html,
 body {
-  background: #fdfdfd;
-  margin-top: 60px;
+    background: #fdfdfd;
+    // margin-top: 60px;
+    height: 100%;
 }
 
 @mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+#push {
+    height: 100px;
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
 }
 
 #main {
-  padding-top: 60px;
-  width: 1200px;
-  margin: 0 auto;
+    // padding-top: 60px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 160px; 
 }
 
 .oauth {
-  text-align: center;
-  margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .logo {
-  margin-right:10px;
+    margin-right: 10px;
 }
 
 [ng-click] {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 [ui-sref] {
-  cursor:pointer;
+    cursor: pointer;
 }
 
 @import 'directives/main';
+@import 'directives/footer';
 @import 'home/main';
 @import 'about/main';
 @import 'tutorial/main';
@@ -46,3 +59,4 @@ body {
 @import 'cart/main';
 @import 'account/main';
 @import 'landingPage/main';
+@import 'product/main';

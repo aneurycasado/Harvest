@@ -7,8 +7,32 @@ app.factory('UserFactory', function ($http) {
     	return $http.put('/api/users', user).then(response => response.data);
     }
 
+    function deleteUser (user) {
+        return $http({
+            method: 'DELETE',
+            url: '/api/users',
+            data: user,
+            headers: {"Content-Type": "application/json;charset=utf-8"}
+        })
+        .then(response => response.data);
+    }
+
+    function createUser (user) {
+        return $http.post('/api/users', user).then(response => response.data);
+    }
+    
+    function updateEmailForUser(user,email) {
+      var userEmail = {
+        email
+      };
+      return $http.put('/api/users/' + user, userEmail).then(response => response.data);
+    }
+
     return {
     	getAll,
-    	updateUser
+    	updateUser,
+        deleteUser,
+        createUser,
+        updateEmailForUser
     };
 });

@@ -4,8 +4,8 @@
     // $orange = #FFC07E,
     display: block;
     background: #659C57;
-    border-bottom: 1px solid black;
-    box-shadow: 1px 1px 14px -3px black;
+    // border-bottom: 1px solid black;
+    // box-shadow: 1px 1px 14px -3px black;
     .container {
         width: 91%;
         max-width: 1340px;
@@ -17,7 +17,7 @@
         width: 40px;
     }
     a {
-        color: black;
+        color: white;
         font-size: 16px;
     }
     .nav > li > a {
@@ -37,19 +37,55 @@
     .login-button {
         float: right;
         border: 1px solid black;
-        margin-top: 10px;
+        margin-right: 5px;
         background: none;
         outline: none !important;
+    }
+    .login-button:hover {
+        color: #fff;
+        transform: scale(1.05);
+        transition: all .2s ease-in-out;
     }
     .welcome {
         float: right;
         margin-top: 12px;
         span {
-            color: blue;
+            color: white;
         }
         a {
             color: #f30046;
             cursor: pointer;
         }
     }
+}
+
+.harvestLogo:hover {
+    color: #fff;
+    transform: scale(1.02);
+    transition: all .1s ease-in-out;
+}
+
+.harvestLogo {
+    color: #fff;
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    40% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+
+    // 80% {
+    //     -webkit-transform: translateY(-5px);
+    //     transform: translateY(-5px);
+    // }
+}
+
+#shoppingCart:hover {
+    animation: bounce 1s;
 }

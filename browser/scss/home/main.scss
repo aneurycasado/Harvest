@@ -49,3 +49,8 @@ span.buttonOverlay span {
     font-size: 1.5em;
     margin-bottom: 25px;
 }
+
+.addToCartBtn:hover {
+    transform: scale(1.1);
+    transition: all .5s ease-in-out;
+}

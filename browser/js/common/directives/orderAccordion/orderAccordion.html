@@ -1,39 +1,56 @@
 <div>
-  <script type="text/ng-template" id="group-template.html"/>
+    <script type="text/ng-template" id="group-template.html" />
     <div class="panel {{panelClass || 'panel-default'}}">
-      <div class="panel-heading">
-        <h4 class="panel-title" style="color:#fa39c3">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="color:#fa39c3">
           <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
             ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
         </h4>
-      </div>
-      <div class="panel-collapse collapse" collapse="!isOpen">
-        <div class="panel-body" style="text-align: right" ng-transclude></div>
-      </div>
+        </div>
+        <div class="panel-collapse collapse" collapse="!isOpen">
+            <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
     </div>
-</script>
-
-
-<h1>Order History</h1>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="oneAtATime">
-      Open only one at a time
-    </label>
-  </div>
-  <accordion close-others="oneAtATime">
-    <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders">
-      <div class='row' ng-repeat='item in order.items'>
-        <div class='col-sm-1'><img class='accordion-image' src={{item.photo}}></div>
-        <div class='col-sm-8'><h4>Product: </h4>{{item.title}}</div>
-        <div class='col-sm-2'><h4>{{item.price | currency}}</h4></div>
-      </div>
-      <div>
-        <div class='col-sm-2'><h4>Date Placed: {{order.dateOfOrder | date: longDate}}</h4></div>
-        <div class='col-sm-8'><h4>Shipped To: </h4>{{order.shippingAddress}}</div>
-        <div class='col-sm-2'><h4>Total Cost: </h4>{{order.orderTotal | currency}}</div>
-        <div class='col-sm-2'><h5>Status: {{order.status}}</h5></div>
-      </div>
-    </accordion-group>
-  </accordion>
+    </script>
+    <h1 class="page-header">Order History</h1>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders">
+            <div class='row' ng-repeat='item in order.items'>
+                <div class='col-sm-2'><img ng-click="goToProductDetail(item)" class='accordion-image' src={{item.photo}}></div>
+                <div class='col-sm-8'>
+                    <h5>Product: </h5>{{item.title}}</div>
+                <div class='col-sm-2'>
+                    <h5>{{item.price | currency}}</h5></div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h5>Date Placed: </h5>
+                </div>
+                <div class='col-sm-4'>
+                    <h5>Shipped To: </h5>
+                </div>
+                <div class='col-sm-3'>
+                    <h5>Status: </h5>
+                </div>
+                <div class='col-sm-2'>
+                    <h5>Total: </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    {{order.dateOfOrder | date: longDate}}
+                </div>
+                <div class='col-sm-4'>
+                    {{order.shippingAddress}}
+                </div>
+                <div class='col-sm-3'>
+                    {{order.status}}
+                </div>
+                <div class='col-sm-2'>
+                    {{order.orderTotal | currency}}
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
 </div>

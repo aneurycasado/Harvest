@@ -1,4 +1,4 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory) {
+app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory) {
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
     }else{
@@ -14,6 +14,10 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
     $scope.goHome = function () {
         $state.go('home');
     };
+    $scope.resetForm = function(){
+      $scope.checkOutView=false;
+      $scope.emailSubmitted=false;
+    }
     $scope.emptyCart = function () {
         $scope.uniqueProducts = [];
         $scope.total = 0;
@@ -35,7 +39,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
             user: $scope.cart.user,
             items: $scope.uniqueProducts,
             orderTotal: $scope.total,
-            shippingAddress: shippingAddress
+            shippingAddress: shippingAddress,
+            email: $scope.email
         };
         $scope.updateProducts();
         OrderFactory.createOrder(user,order).then(function(savedOrder){

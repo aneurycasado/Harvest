@@ -21,6 +21,22 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     .then(null, next);
 });
 
+router.post('/', function (req, res, next) {
+    Product.create(req.body)
+        .then(function (product) {
+            res.json(product);
+        })
+        .then(null, next);
+});
+
+router.delete('/', function (req, res, next) {
+    Product.remove({_id: req.body._id})
+        .then(function (deletedProduct) {
+            res.json(deletedProduct);
+        })
+        .then(null, next);
+});
+
 router.get('/:id', ensureAuthenticated, function (req, res, next) {
     Product.find(
       {_id: req.params.id}
@@ -67,3 +83,4 @@ router.get('/search/:searchStr', function (req, res, next) {
     })
     .then(null, next);
 });
+
