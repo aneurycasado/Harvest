@@ -13,7 +13,7 @@ app.factory('ReviewFactory', function ($http) {
     }
 
     function createReview(product, newReview) {
-        return $http.post('/api/reviews/' + product._id, newReview).then(response => response.data);
+        return $http.post('/api/reviews/', newReview).then(response => response.data);
     }
     return {
         getAll,

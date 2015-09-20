@@ -34,7 +34,7 @@ router.get('/:productID', function (req, res, next) {
     })
     .then(null, next);
 });
-router.post('/:productID', function (req, res, next) {
+router.post('/', function (req, res, next) {
     req.body.author = req.user;
     Review.create(req.body)
     .then(function (createdReview) {

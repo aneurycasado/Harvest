@@ -5,15 +5,7 @@ var Product = mongoose.model('Product');
 module.exports = router;
 var _ = require('lodash');
 
-var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        next();
-    }
-};
-
-router.get('/', ensureAuthenticated, function (req, res, next) {
+router.get('/', function (req, res, next) {
     Product.find()
     .then(function (products) {
       res.json(products);
@@ -37,29 +29,20 @@ router.delete('/', function (req, res, next) {
         .then(null, next);
 });
 
-router.get('/:id', ensureAuthenticated, function (req, res, next) {
-    Product.find(
-      {_id: req.params.id}
-    )
-    .then(function (product) {
-        res.json(product[0]);
-    })
-    .then(null, next);
+router.get('/:id', function (req, res, next) {
+    res.json(req.product);
 });
 
-router.put('/:id', ensureAuthenticated, function (req, res, next) {
-    Product.findOne({_id: req.params.id})
-    .then(function(product){
-      _.merge(product, req.body);
-      return product.save();
-    })
+router.put('/:id', function (req, res, next) {
+    _.merge(req.product, req.body);
+    req.product.save()
     .then(function (savedProduct) {
         res.json(savedProduct);
     })
     .then(null, next);
 });
 
-router.get('/category/:category', ensureAuthenticated, function (req, res, next) {
+router.get('/category/:category', function (req, res, next) {
     Product.find({
         category: req.params.category
     })
@@ -68,3 +51,10 @@ router.get('/category/:category', ensureAuthenticated, function (req, res, next)
     })
     .then(null, next);
 });
+
+router.param('id', function(req, res, next, id){
+  Product.findOne(id).then(function(product){
+    req.product = product;
+    next();
+  });
+})
