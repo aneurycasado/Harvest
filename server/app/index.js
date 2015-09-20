@@ -2,6 +2,8 @@
 var path = require('path');
 var express = require('express');
 var app = express();
+var stripe = require("stripe")("sk_test_qt497RhBfXKBkxlBacp3tJ6Y");
+
 module.exports = app;
 // Pass our express application pipeline into the configuration
 // function located at server/app/configure/index.js
@@ -22,6 +24,21 @@ app.use(function (req, res, next) {
         next(null);
     }
 });
+
+app.use("/pay", function(req,res,next){
+  var stripeToken = req.body.token;
+  var amount = Math.round(req.body.amount*100);
+  delete req.body.amount;
+  stripe.charges.create({
+    amount: amount,
+    currency: "usd",
+    source: stripeToken,
+    description: "Example charge"
+  }).then(function(charge){
+    res.json(charge);
+  });
+});
+
 app.get("/guestUser", function (req, res) {
     req.session.guestUser = true;
     res.redirect("/");

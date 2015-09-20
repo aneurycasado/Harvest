@@ -1,4 +1,4 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory) {
+app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory, $http) {
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
     }else{
@@ -34,23 +34,37 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
         $scope.checkOutView = !$scope.checkOutView;
     };
     $scope.checkOut = function (user) {
-        console.log("We checked out");
-        var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
-        var order = {
-            user: $scope.cart.user,
-            items: $scope.uniqueProducts,
-            orderTotal: $scope.total,
-            shippingAddress: shippingAddress,
-            email: $scope.email
-        };
-        console.log("The current order ", order);
-        $scope.updateProducts();
-        OrderFactory.createOrder(user,order).then(function(savedOrder){
-            console.log("Saved order ", savedOrder);
-            $scope.ordered = true;
-            $scope.orderID = savedOrder._id;
-            $scope.checkOutView = false;
-            $scope.emptyCart();
+        Stripe.card.createToken($scope.card, function(err,response){
+          if(err && err.type === 'StripeCardError'){
+            console.log(err);
+            console.log("Invalid card");
+          }else{
+            if(response.error){
+               alert(response.error.message);
+            }else{
+              $scope.card.token = response.id;
+              $scope.card.amount = $scope.total
+              $http.post('/pay',$scope.card)
+              .then(function(charge){
+                var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
+                var order = {
+                    user: $scope.cart.user,
+                    items: $scope.uniqueProducts,
+                    orderTotal: $scope.total,
+                    shippingAddress: shippingAddress,
+                    email: $scope.email
+                };
+                $scope.updateProducts();
+                return OrderFactory.createOrder(user,order)
+              })
+              .then(function(savedOrder){
+                $scope.ordered = true;
+                $scope.orderID = savedOrder._id;
+                $scope.checkOutView = false;
+                $scope.emptyCart();
+              })
+            }
+          }
         });
     };
     $scope.updateProducts = function(){
