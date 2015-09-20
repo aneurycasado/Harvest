@@ -14,13 +14,10 @@ router.get("/users/:userID", function (req, res, next) {
 });
 
 router.post("/createCart/me", function(req,res,next){
-  console.log("We are here");
   Cart.findOne({user:req.user.id})
   .then(function(cart){
-    console.log(cart);
     req.body.cartExists = false;
     if(cart){
-      console.log("The cart exist");
       req.body.cartExist = true;
       req.body.contents.forEach(function(product){
         cart.contents.push(product);
@@ -32,10 +29,8 @@ router.post("/createCart/me", function(req,res,next){
   })
   .then(function(savedCart){
     if(savedCart){
-      console.log("It works");
       res.json(savedCart);
     }else{
-      console.log("Wonder if it works");
       return Cart.create({user: req.user.id})
     }
   })
@@ -44,7 +39,6 @@ router.post("/createCart/me", function(req,res,next){
     return cart.save()
   })
   .then(function(savedCart){
-    console.log("Saved cart");
     res.json(savedCart);
   })
   .then(null,next);

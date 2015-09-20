@@ -11,9 +11,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
     $scope.userInfo = {};
     $scope.ordered = false;
     $scope.orderID = null;
-    $scope.goHome = function () {
-        $state.go('home');
-    };
     $scope.resetForm = function(){
       $scope.checkOutView=false;
       $scope.emailSubmitted=false;
