@@ -1,31 +1,25 @@
 <h3>Payment Information</h3></div>
 <div class="form-group">
-    <label class="control-label col-sm-2" for="card">Card Type: </label>
-    <div class="col-sm-10">
-        <input ng-model="userInfo.cardType" name="cardType" type="text" class="form-control" id="card" placeholder="Card Type...">
-    </div>
-</div>
-<div class="form-group">
-    <label class="control-label col-sm-2" for="nameOnCard">Name on Card: </label>
-    <div class="col-sm-10">
-        <input ng-model="userInfo.nameOnCard" name="nameOnCard" type="text" class="form-control" id="nameOnCard" placeholder="Name on card...">
-    </div>
-</div>
-<div class="form-group">
     <label class="control-label col-sm-2" for="cardNum">Card Number: </label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.cardNumber" name="cardNumber" type="text" class="form-control" id="cardNum" placeholder="Card Number...">
+        <input ng-model="card.number" name="cardNumber" type="text" class="form-control" id="cardNum" placeholder="Card Number...">
     </div>
 </div>
 <div class="form-group">
     <label class="control-label col-sm-2" for="secCode">Security Code:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.securityCode" name="securityCode" type="text" class="form-control" id="secCode" placeholder="Security Code">
+        <input ng-model="card.cvc" name="securityCode" type="text" class="form-control" id="secCode" placeholder="Security Code">
     </div>
 </div>
 <div class="form-group">
-    <label class="control-label col-sm-2" for="expM">Expiration</label>
+    <label class="control-label col-sm-2" for="secCode">Month:</label>
     <div class="col-sm-10">
-        <input ng-model="userInfo.expM" name="expM" type="month" class="form-control" id="expM" placeholder="mm...">
+        <input ng-model="card.exp_month" name="month" type="text" class="form-control" id="secCode" placeholder="Month">
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2" for="secCode">Year:</label>
+    <div class="col-sm-10">
+        <input ng-model="card.exp_year" name="year" type="text" class="form-control" id="secCode" placeholder="Year">
     </div>
 </div>
