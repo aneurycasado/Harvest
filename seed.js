@@ -55,7 +55,7 @@ var seedUsers = function () {
 
 var seedProducts = function () {
     var products = [];
-    for (var i = 0; i < productTitle.length; i++) {
+    for (var i = 0; i < numProducts; i++) {
         products.push({
             title: productTitle[i],
             description: productDescription[i],
@@ -67,28 +67,74 @@ var seedProducts = function () {
     return Product.createAsync(products);
 };
 
+function thumbsBool(){
+    var x = chance.integer({min:1, max: 10});
+    if(x>=5) return true;
+    else return false;
+}
+
 var seedReviews = function (data) {
     var reviews = [];
-    for (var i = 0; i < reviewContent.length; i++) {
+    for (var i = 0; i < numReviews; i++) {
         reviews.push({
             author: data.users[chance.integer({min: 0, max: numUsers-1})]._id,
             // author: data.users[0],
             product: data.products[chance.integer({min: 0, max: numProducts-1})]._id,
             title: reviewTitle[i],
             content: reviewContent[i],
-            thumbsUp: chance.bool()
+            thumbsUp: thumbsBool()
         });
     }
+    // Promise.map(reviews, function(review, index){
+    //     console.log(index);
+    //     return Review.createAsync(review);
+    // })
+    // .then(function(reviews){
+    //     return reviews;
+    // });
+    
+    // var promFacts = [];
+    // reviews.forEach(function(review){
+    //     promFacts.push(function(){
+    //         return Review.createAsync(review);
+    //     });
+    // });
+
+    // executeSequentially(promFacts)
+    // .catch(function(err){
+    //     console.log(err);
+    // });
+    
+    // return reviews;
+
+    // Promise.reduce(reviews, function(mem, review, index){
+    //     console.log('index is ', index)
+    //     return Review.createAsync(review)
+    // }, null)
+    // .then(function(rev){
+    //     return reviews;
+    // });
+
     return Review.createAsync(reviews);
+
+
 };
+
+
+function executeSequentially(facts){
+    var result = Promise.resolve();
+    facts.forEach(function(promiseFactory){
+        result = result.then(promiseFactory);
+    });
+    return result;
+}
 
 var seedOrders = function (data) {
     var orders = [];
-    console.log('seeding Orders...');
     for (var i = 0; i < numOrders; i++){
         var items = [];
-        var numItems = chance.integer({min: 0, max: 5});
-        var startItem = chance.integer({min: 1, max: 94});
+        var numItems = chance.integer({min: 0, max: 4});
+        var startItem = chance.integer({min: 0, max: numProducts-6});
         var total=0;
         for (var j = 0; j <= numItems; j++) {
             var currItem = data.products[startItem + j];
@@ -110,15 +156,14 @@ var seedOrders = function (data) {
             dateOfOrder: chance.date()
         });
     }
-    console.log('finished seeding Orders');
     return Order.createAsync(orders);
 };
 
 var seedCarts = function (data) {
     var carts = [];
     for (var i = 0; i < numUsers; i++) {
-        var numItems = chance.integer({min: 0, max: 5});
-        var startItem = chance.integer({min: 0, max: 94});
+        var numItems = chance.integer({min: 0, max: 4});
+        var startItem = chance.integer({min: 0, max: numProducts-6});
         var contents = [];
         for (var j = 0; j <= numItems; j++) {
             var currItem = data.products[startItem + j];
@@ -132,6 +177,25 @@ var seedCarts = function (data) {
     return Cart.createAsync(carts);
 };
 
+
+function popProductPercentageLikes(d){
+    d.products.forEach(function(prod){
+        d.reviews.forEach(function(rev){
+            if(prod._id===rev.product){
+                var liked = rev.thumbsUp ? 1 : 0;
+                prod.percentageLiked = 
+                (Math.round(prod.percentageLiked*prod.numReviews)+liked) / (prod.numReviews+1);
+                prod.numReviews = prod.numReviews+1;
+            }
+        });
+    });
+    var promProds = [];
+    d.products.forEach(function(prod){
+        promProds.push(prod.save());
+    }); 
+    return Promise.all(promProds);
+}
+
 connectToDb.then(function () {
     var data = {};
     User.findAsync({}).then(function (users) {
@@ -143,10 +207,13 @@ connectToDb.then(function () {
         data.products = products;
         return seedReviews(data);
     }).then(function (reviews) {
+        data.reviews = reviews;
         return seedOrders(data);
     }).then(function (orders) {
         return seedCarts(data);
-    }).then(function () {
+    }).then(function (carts){
+        return popProductPercentageLikes(data);
+    }).then(function (prods) {
         console.log(chalk.green('Seed successful!'));
         process.kill(0);
     }).catch(function (err) {

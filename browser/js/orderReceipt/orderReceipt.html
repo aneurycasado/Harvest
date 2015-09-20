@@ -1,5 +1,5 @@
 <div class='container'>
-    <div class="page-header">
+    <div>
         <h1 style="display:inline-block">Order Summary: </h1>
         <p>Order#: {{order._id}} </p>
         <p>Ordered On: {{ order.dateOfOrder | date : longDate }}</p>
@@ -39,10 +39,10 @@
                                 <span>{{product.price | currency}}</span>
                             </div>
                             <div class="col-lg-3">
-                                
+
                                 <span style="display:inline-block">{{product.cartQuantity}}</span>
-                             
-                                
+
+
                             </div>
                             <div class="col-lg-3">
                                 <span>{{product.cartQuantity * product.price | currency}}</span>

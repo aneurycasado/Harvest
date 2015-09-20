@@ -9,11 +9,12 @@ var schema = new mongoose.Schema({
 	inventoryQuantity: {type: Number, required: true },
 	category: {type: String, required: true},
 	available: {type: Boolean, default: true},
+	numReviews: {type: Number, default: 0},
+	percentageLiked: {type: Number, default: 1},
 	photo: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
-	altPic1: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
-	altPic2: {type: String, default: 'http://www.thecatholicfoundation.com/wp-content/uploads/2012/03/new-harvest.jpg'},
-	altPic3: {type: String, default: 'http://piq.codeus.net/static/media/userpics/piq_89071_400x400.png'},
-	altPic4: {type: String, default: 'http://www.kisfarm.com/wp-content/uploads/2012/12/farm-400x400.jpg'}
+	photo2: {type: String, default: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTWMJegFotVq1pJ0wZ4rMZk3mZleTVWzueTzSOTdeUmzXMk88kRrQ'},
+	photo3: {type: String, default: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSpLAxSjBjSIRPi2oMSO69fAB4w8NBPFt53wKvlTTNwXtgwxayuew'},
+	photo4: {type: String, default: 'http://piq.codeus.net/static/media/userpics/piq_89071_400x400.png'},
 });
 
 mongoose.model('Product', schema);

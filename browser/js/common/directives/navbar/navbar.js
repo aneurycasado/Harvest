@@ -7,7 +7,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         link: function (scope) {
             scope.cart = CartFactory;
             scope.items = [
-                { label: 'Home', state: 'home' },
                 { label: 'Account', state: 'account', auth: true }
             ];
 
@@ -34,8 +33,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                     }else{
                       if(localStorage.getItem("cart")){
                         var cart = JSON.parse(localStorage.getItem("cart"));
+                        localStorage.removeItem('cart');
                         CartFactory.createCartFromLocaStorage(cart).then(function(savedCart){
-                          localStorage.removeItem('cart');
                           CartFactory.getCart(user._id);
                         });
                       }
