@@ -12,7 +12,7 @@
     </select>
     <div class="container">
         <div class="row">
-          <product  ng-repeat='product in products | filter: productName | orderBy : sortBy'></product> 
+          <product  class="animate-repeat" ng-repeat='product in products | filter: productName | orderBy : sortBy' ></product> 
         </div>
     </div>
 </section>
