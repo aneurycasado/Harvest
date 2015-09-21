@@ -91,21 +91,25 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
         });
     };
     $scope.countCart = function () {
-        $scope.cart.contents.forEach(function (product) {
-            var found = false;
-            $scope.uniqueProducts.forEach(function (uniqueProduct) {
-                if (product._id === uniqueProduct._id) {
-                    $scope.total += uniqueProduct.price;
-                    uniqueProduct.cartQuantity++;
-                    found = true;
-                }
-            });
-            if (!found) {
-                product.cartQuantity = 1;
-                $scope.total += product.price;
-                $scope.uniqueProducts.push(product);
-            }
-        });
+      _.uniq($scope.cart.contents,'_id').forEach(product => {
+        product.cartQuantity = _.where($scope.cart.contents,{_id:product._id}).length;
+        $scope.uniqueProducts.push(product);
+      });
+      // $scope.uniqueProducts = [];
+      //   $scope.cart.contents.forEach(function (product) {
+      //       var found = false;
+      //       $scope.total += product.price;
+      //       $scope.uniqueProducts.forEach(function (uniqueProduct) {
+      //           if (product._id === uniqueProduct._id) {
+      //               uniqueProduct.cartQuantity++;
+      //               found = true;
+      //           }
+      //       });
+      //       if (!found) {
+      //           product.cartQuantity = 1;
+      //           $scope.uniqueProducts.push(product);
+      //       }
+      //   });
     };
     $scope.removeFromCart = function (product) {
         if(localStorage.getItem('cart')){
@@ -121,7 +125,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
           CartFactory.getLocalCart();
           $state.reload();
         }else{
-          console.log("We are in here")
           CartFactory.removeFromCart(product, $scope.cart._id)
           .then(
             function (updatedCart) {
