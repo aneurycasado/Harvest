@@ -8,6 +8,7 @@ app.controller('UserAccordionCtrl', function ($scope, $state, UserFactory) {
     };
 
     $scope.updateUser = function (user) {
+        console.log(user);
         for (var k in $scope.currentUser) {
             if (user[k] === '') {
                 user[k] = $scope.currentUser;

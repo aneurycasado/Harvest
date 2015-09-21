@@ -1,0 +1,50 @@
+<div>
+    <script type="text/ng-template" id="group-template.html" />
+    <div class="panel {{panelClass || 'panel-default'}}">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+        </div>
+        <div class="panel-collapse collapse" collapse="!isOpen">
+            <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
+    </div>
+    </script>
+    <h1>All Promos <button class="btn btn-success" ng-click="showNewPromoForm()"><i class="fa fa-plus">  Add a Promo</i></button></h1>
+    <input type="text" ng-model="promoCode" class="form-control" placeholder="Search">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
+        </label>
+    </div>
+    <!-- Directive for adding promo -->
+    <add-promo></add-promo>
+    <accordion close-others="oneAtATime">
+        <accordion-group heading=" Promo: {{review.product.title}} Review: {{review.title}}" ng-repeat="promo in promos | filter: promoCode">
+            <div class='row'>
+                <div class='col-sm-2'>
+                    <h3>Promo Code: </h3><span ng-model="promo.code" contenteditable>{{promo.code}}</span>
+                </div>
+                <div class='col-sm-2'>
+                    <h3>Promo Description: </h3><span ng-model="promo.description" contenteditable>{{promo.description}}</span>
+                </div>
+                <div class='col-sm-2'>
+                    <h3>Discount: </h3><span ng-model="promo.description" contenteditable>{{promo.discount * 100}}%</span>
+                </div>
+                <div class='col-sm-2'>
+                    <h3>Created On: </h3> <span ng-model="promo.createdOn" contenteditable>{{promo.createdOn | date}}</span>
+                </div>
+                <div class='col-sm-2'>
+                    <h3>Expires On: </h3> <span ng-model="promo.expiresOn" contenteditable>{{promo.expiresOn | date}}</span>
+                </div>
+                <div class='col-sm-2'>
+                    <h3>Valid Categories: </h3> <span ng-model="promo.validCategories" contenteditable>{{promo.validCategories}}</span>
+                </div>
+            </div>
+            <button class="btn btn-success btn-sm updateButton" ng-click="updatePromo(promo)"><i class="fa fa-refresh"></i> Update</button>
+            <button class="btn btn-danger btn-sm" ng-click="deleteProduct(product)"><i class="fa fa-remove"></i> Delete Promo</button>
+        </accordion-group>
+    </accordion>
+</div>

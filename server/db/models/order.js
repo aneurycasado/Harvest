@@ -1,5 +1,4 @@
 'use strict';
-var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
@@ -15,7 +14,7 @@ var schema = new mongoose.Schema({
 	orderTotal: {type: Number},
 	shippingAddress: {type: String},
 	dateOfOrder: {type: Date, default: new Date()},
-	discounts: [{type: String}],
+	promoCode: {type: String},
 	status: {type: String, default: "Created", enum: statuses}
 });
 

@@ -28,11 +28,18 @@ app.factory('UserFactory', function ($http) {
       return $http.put('/api/users/' + user, userEmail).then(response => response.data);
     }
 
+    function resetPassword(user, newPassword) {
+        var password = {password: newPassword};
+        return $http.put('/api/users/password/' + user._id, password)
+            .then(response => response.data);
+    }
+
     return {
     	getAll,
     	updateUser,
         deleteUser,
         createUser,
-        updateEmailForUser
+        updateEmailForUser,
+        resetPassword
     };
 });
