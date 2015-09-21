@@ -22,7 +22,7 @@
                 <button class="btn navbarButton" ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</button>
             </li>
             <li>
-              <button ng-show="user" ui-sref = "personalize" class = "btn navbarButton">Home</button>
+              <button ng-show="user" ui-sref = "personalize" class = "btn navbarButton">My Home</button>
             </li>
             <li>
                 <button ng-show="!user" ui-sref="login" class="btn navbarButton">Login</button>
@@ -31,7 +31,7 @@
                 <button ng-show="!user" ui-sref="signup" class="btn navbarButton">Sign Up</button>
             </li>
             <li>
-                <div id="shoppingCart" class="navbar-right">
+                <div id="shoppingCart" class="navbar-right" droppable>
                     <div ng-click="goToCart(user)">
                     <button class="btn navbarButton">
                         <i class="fa fa-shopping-cart fa-lg"> </i>

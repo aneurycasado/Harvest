@@ -14,11 +14,11 @@
     </script>
     <h1>All Users <button class="btn btn-success" ng-click="showAddUserForm()"><i class="fa fa-plus">  Add a user</i></button></h1>
     <input type="text" ng-model="userName" class="form-control" placeholder="Search by Name">
-        <select class="form-control" ng-model="filterAdmin">
-          <option value="">-- Select Admin --</option>
-          <option value="true">Admin</option>
-          <option value="false">Non-Admin</option>
-        </select>
+    <select class="form-control" ng-model="filterAdmin">
+        <option value="">-- Select Admin --</option>
+        <option value="true">Admin</option>
+        <option value="false">Non-Admin</option>
+    </select>
     <div class="checkbox">
         <label>
             <input type="checkbox" ng-model="oneAtATime"> Open only one at a time
@@ -27,17 +27,30 @@
     <add-user></add-user>
     <accordion close-others="oneAtATime">
         <accordion-group heading=" User: {{user.email}}" ng-repeat="user in users | filter : userName | filter : filterAdmin">
-            <div class='row'>
-                <div class="col-lg-3">
-                    <h4>User Email: </h4><span contenteditable ng-model="user.email"></span></div>
-                <div class="col-lg-3">
-                    <h4>User Name: </h4><span contenteditable ng-model="user.name"></span></div>
-                <div class="col-lg-3">
-                    <h4>Admin: </h4><span contenteditable></span>
-                    <input ng-model="user.isAdmin" type="checkbox">
+            <div class="container">
+                <div class='row'>
+                    <div class="col-lg-2 text-center">
+                        <h4>User Email: </h4><span contenteditable ng-model="user.email"></span></div>
+                    <div class="col-lg-2">
+                        <h4>User Name: </h4><span contenteditable ng-model="user.name"></span></div>
+                    <div class="col-lg-2">
+                        <h4>Admin: </h4>
+                        <input ng-model="user.isAdmin" type="checkbox">
+                    </div>
+                    <div class="col-lg-2">
+                        <h4>Password Reset: </h4>
+                        <input ng-model="user.resetPassword" type="checkbox">
+                        <div class="row">
+                            <div class="col-lg-offset-7">
+                                <span ng-if="user.resetPassword">WARNING THIS WILL DELETE THE USER'S PASSWORD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col=lg-2">
+                        <button class="btn btn-success btn-sm updateButton" ng-click="updateUser(user)"><i class="fa fa-refresh"></i> Update User</button>
+                        <button class="btn btn-danger btn-sm" ng-click="deleteUser(user)"><i class="fa fa-remove"></i> Delete User</button>
+                    </div>
                 </div>
-                <button class="btn btn-success btn-sm updateButton" ng-click="updateUser(user)"><i class="fa fa-refresh"></i> Update User</button>
-                <button class="btn btn-danger btn-sm" ng-click="deleteUser(user)"><i class="fa fa-remove"></i> Delete User</button>
             </div>
         </accordion-group>
     </accordion>

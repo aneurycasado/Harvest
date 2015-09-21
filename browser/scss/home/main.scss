@@ -24,9 +24,9 @@ span.buttonOverlay {
     left: 15px;
     position: absolute;
     bottom: 0;
-    width: 92.5%;
+    width: 90%;
     opacity: 0;
-    z-index: 5000;
+    // z-index: 5000;
     -webkit-transition: opacity 500ms;
     -moz-transition: opacity 500ms;
     -o-transition: opacity 500ms;
