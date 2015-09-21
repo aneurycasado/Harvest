@@ -1,4 +1,22 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory, $http) {
+app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory, PromoFactory, $http) {
+    $scope.showPromoCode = false;
+    $scope.promoApplied = false;
+
+    $scope.showPromoCodeForm = function () {
+      $scope.showPromoCode = !$scope.showPromoCode;
+    };
+
+    $scope.validatePromoCode = function (promoCode) {
+      PromoFactory.getOneByCode(promoCode)
+        .then(function (promo) {
+          if (promo.length) {
+            $scope.promo = promo[0];
+            console.log($scope.promo);
+            $scope.promoApplied = true;
+          }
+        });
+    };
+
     if(localStorage.getItem('cart')){
       $scope.cart = JSON.parse(localStorage.getItem('cart'));
     }else{
@@ -11,10 +29,12 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
     $scope.userInfo = {};
     $scope.ordered = false;
     $scope.orderID = null;
+
     $scope.resetForm = function(){
       $scope.checkOutView=false;
       $scope.emailSubmitted=false;
-    }
+    };
+
     $scope.emptyCart = function () {
         $scope.uniqueProducts = [];
         $scope.total = 0;
@@ -40,7 +60,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
                alert(response.error.message);
             }else{
               $scope.card.token = response.id;
-              $scope.card.amount = $scope.total
+              $scope.card.amount = $scope.total;
               $http.post('/pay',$scope.card)
               .then(function(charge){
                 var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
@@ -52,14 +72,14 @@ app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFac
                     email: $scope.email
                 };
                 $scope.updateProducts();
-                return OrderFactory.createOrder(user,order)
+                return OrderFactory.createOrder(user,order);
               })
               .then(function(savedOrder){
                 $scope.ordered = true;
                 $scope.orderID = savedOrder._id;
                 $scope.checkOutView = false;
                 $scope.emptyCart();
-              })
+              });
             }
           }
         });

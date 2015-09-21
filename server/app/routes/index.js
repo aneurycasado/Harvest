@@ -7,6 +7,7 @@ router.use('/products', require('./products'));
 router.use('/reviews', require('./reviews'));
 router.use('/orders', require('./orders'));
 router.use('/cart', require('./cart'));
+router.use('/promos', require('./promos'));
 router.use("/pay", function(req,res,next){
   console.log(req.body);
 });

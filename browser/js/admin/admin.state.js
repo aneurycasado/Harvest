@@ -11,6 +11,7 @@ app.config(function ($stateProvider) {
             products: ProductFactory => ProductFactory.getAll(),
             users: UserFactory => UserFactory.getAll(),
             orders: OrderFactory => OrderFactory.getAll(),
+            promos: PromoFactory => PromoFactory.getAll()
         }
     });
 

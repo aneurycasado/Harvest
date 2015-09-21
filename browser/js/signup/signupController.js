@@ -9,4 +9,11 @@ app.controller('SignupController', function ($scope, $state, UserFactory, AuthSe
 				$state.go('home');
 			});
 	};
+
+	$scope.updatePassword = function (credentials) {
+		AuthService.getLoggedInUser()
+			.then(function (user) {
+				UserFactory.resetPassword(user, credentials.newPassword);
+			});
+	};
 });
