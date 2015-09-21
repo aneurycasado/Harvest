@@ -8,6 +8,7 @@ app.controller('PersonalizeController', function($scope,$state, products,userOrd
   $scope.recommendedProducts = [];
   $scope.othersBought = [];
   $scope.maxCat = ""
+  var totalProducts = 4;
   userOrders.forEach(function(order){
     order.items.forEach(function(item){
       if(item.category === "Fruit"){
@@ -49,7 +50,7 @@ app.controller('PersonalizeController', function($scope,$state, products,userOrd
     maxProducts.push(obj);
   }
   var sorted = _.sortBy(maxProducts,"count").reverse();
-  var mostCommonProducts = sorted.slice(0,10);
+  var mostCommonProducts = sorted.slice(0, totalProducts);
   var othersBought = [];
   mostCommonProducts.forEach(function(commonProduct){
     products.forEach(function(product){

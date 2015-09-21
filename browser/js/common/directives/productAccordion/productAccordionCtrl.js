@@ -3,8 +3,10 @@ app.controller('ProductAccordionCtrl', function ($scope, $state, ProductFactory)
     $scope.showAddProduct = false;
 
     $scope.updateProduct = function (product) {
-        ProductFactory.updateProduct(product);
-        $state.reload();
+        ProductFactory.updateProduct(product)
+            .then(function (product) {
+                $scope.products.unshift(product);
+            });
     };
 
     $scope.showAddProductForm = function () {

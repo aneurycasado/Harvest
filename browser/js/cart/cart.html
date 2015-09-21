@@ -78,14 +78,14 @@
         </div>
     </div>
     <div class="page-header">
-        <h3 ng-if="total" style="display:inline-block">Total: {{total | currency}}</h3>
+        <h3 ng-if="total" style="display:inline-block">Total: {{total - totalDiscount | currency}}</h3>
         <button ng-show="cart.contents.length && !checkOutView" class="btn btn-success btn-md" ng-click="checkOutView = true"><i class="fa fa-money fa-xl"> Check Out</i></button>
         <div class="btn-group" role="group" ng-show="editing">
             <button class="btn btn-warning btn-md" ng-click='updateCart()'>
                 <i class="fa fa-home fa-xl"> Update</i>
             </button>
         </div>
-        <div class="btn-group" role="group">
+        <div ng-if="total" class="btn-group" role="group">
             <button class="btn btn-warning btn-md" ng-click='showPromoCodeForm()'>
                 <i class="fa fa-tags"> Promo Codes?</i>
             </button>
