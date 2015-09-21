@@ -1,16 +1,16 @@
 app.controller('DragAndDropCtrl', function ($scope, CartFactory) {
-	var dragImage = document.createElement('img');
+	
+    var dragImage = document.createElement('img');
 	dragImage.src = 'http://www.clipartbest.com/cliparts/9Tz/MBp/9TzMBpAjc.png';
+    
     $scope.handleDragStart = function (e) {
         this.style.opacity = '0.4';
         angular.element(e.dataTransfer.setData('text/html', this.attributes['data-index'].value));
         e.dataTransfer.setDragImage(dragImage, 0, 0);
-        console.log('moving...', this);
     };
 
     $scope.handleDragEnd = function (e) {
         this.style.opacity = '1.0';
-        console.log('dragEnded');
     };
 
     $scope.handleDrop = function (e) {
@@ -19,7 +19,6 @@ app.controller('DragAndDropCtrl', function ($scope, CartFactory) {
         var product = e.dataTransfer.getData('text/html').split(">")[1];
         $scope.$apply(function () {
             CartFactory.addToCart($scope.products[product]);
-            console.log('dropped', $scope.products[product]);
         });
         this.style.transform = 'scale(1.0)';
     };

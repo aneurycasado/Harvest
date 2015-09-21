@@ -5,6 +5,13 @@ var Product = mongoose.model('Product');
 module.exports = router;
 var _ = require('lodash');
 
+router.param('id', function(req, res, next, id){
+  Product.findById(id).then(function(product){
+    req.product = product;
+    next();
+  });
+});
+
 router.get('/', function (req, res, next) {
     Product.find()
     .then(function (products) {
@@ -52,9 +59,3 @@ router.get('/category/:category', function (req, res, next) {
     .then(null, next);
 });
 
-router.param('id', function(req, res, next, id){
-  Product.findOne(id).then(function(product){
-    req.product = product;
-    next();
-  });
-})
