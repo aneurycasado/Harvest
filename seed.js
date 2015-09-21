@@ -92,7 +92,7 @@ var seedReviews = function (data) {
     // .then(function(reviews){
     //     return reviews;
     // });
-    
+
     // var promFacts = [];
     // reviews.forEach(function(review){
     //     promFacts.push(function(){
@@ -104,7 +104,7 @@ var seedReviews = function (data) {
     // .catch(function(err){
     //     console.log(err);
     // });
-    
+
     // return reviews;
 
     // Promise.reduce(reviews, function(mem, review, index){
@@ -139,6 +139,7 @@ var seedOrders = function (data) {
         for (var j = 0; j <= numItems; j++) {
             var currItem = data.products[startItem + j];
             items.push({
+                id: currItem._id,
                 title: currItem.title,
                 description: currItem.description,
                 category: currItem.category,
@@ -183,7 +184,7 @@ function popProductPercentageLikes(d){
         d.reviews.forEach(function(rev){
             if(prod._id===rev.product){
                 var liked = rev.thumbsUp ? 1 : 0;
-                prod.percentageLiked = 
+                prod.percentageLiked =
                 (Math.round(prod.percentageLiked*prod.numReviews)+liked) / (prod.numReviews+1);
                 prod.numReviews = prod.numReviews+1;
             }
@@ -192,7 +193,7 @@ function popProductPercentageLikes(d){
     var promProds = [];
     d.products.forEach(function(prod){
         promProds.push(prod.save());
-    }); 
+    });
     return Promise.all(promProds);
 }
 

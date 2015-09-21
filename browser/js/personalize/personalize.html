@@ -1,0 +1,22 @@
+<div class='container'>
+  <div class='row'>
+    <div class = "row">
+      <div class = "col-sm-12">
+        <h1 ng-if='recommendedProducts.length > 0'>Recomended products based on yours orders</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <product ng-repeat='product in recommendedProducts'></product>
+    </div>
+  </div>
+  <div class='row'>
+    <div class = "row">
+      <div class = "col-sm-12">
+        <h1>Most Popular Products Based on Others Orders</h1>
+      </div>
+    </div>
+    <div class = "row">
+      <product ng-repeat = "product in othersBought"></product>
+    </div>
+  </div>
+</div>
