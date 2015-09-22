@@ -11,7 +11,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
         min: $scope.minPrice,
         max: $scope.maxPrice
     };
-    console.log($scope.priceSlider.floor);
+    // console.log($scope.priceSlider.floor);
 
     $scope.reviewSlider = {
         floor: 0,

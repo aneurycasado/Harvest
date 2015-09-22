@@ -21,7 +21,7 @@
     <accordion close-others="oneAtATime">
         <accordion-group heading=" Product: {{review.product.title}} Review: {{review.title}}" ng-repeat="review in reviews | filter: reviewName">
             <div class='row'>
-                <div class='col-sm-2'><img class='accordion-image' src={{review.product.photo}}></div>
+                <div class='col-sm-2'><img class='accordion-image' ng-src={{review.product.photo}}></div>
                 <div class='col-sm-5'>
                     <h3>Review Content: </h3><span ng-model="review.content" contenteditable>{{review.content}}</span></div>
                     <h3>Rating: </h3>
