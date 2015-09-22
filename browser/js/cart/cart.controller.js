@@ -1,12 +1,14 @@
-app.controller('CartCtrl', function ($scope, $state, cart, CartFactory, OrderFactory, ProductFactory, UserFactory, PromoFactory, $http) {
+app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, OrderFactory, ProductFactory, UserFactory, PromoFactory, $http) {
     $scope.showPromoCode = false;
     $scope.promoApplied = false;
+    $scope.promos = promos;
 
     $scope.showPromoCodeForm = function () {
         $scope.showPromoCode = !$scope.showPromoCode;
     };
 
     $scope.validatePromoCode = function (promoCode) {
+        console.log(promoCode);
         PromoFactory.getOneByCode(promoCode)
             .then(function (promo) {
                 if (promo.length) {

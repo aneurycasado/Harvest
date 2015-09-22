@@ -3,7 +3,8 @@ app.config(function ($stateProvider) {
         url: '/:id/cart',
         templateUrl: 'js/cart/cart.html',
         resolve: {
-            cart: (CartFactory, $stateParams) => CartFactory.getCart($stateParams.id)
+            cart: (CartFactory, $stateParams) => CartFactory.getCart($stateParams.id),
+          	promos: (PromoFactory) => PromoFactory.getAll()
           },
         controller: 'CartCtrl'
     });
