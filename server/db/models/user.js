@@ -35,6 +35,9 @@ var schema = new mongoose.Schema({
     },
     resetPassword: {
       type: Boolean, default: false
+    },
+    farmId: {
+      type: {type: mongoose.Schema.Types.ObjectId, ref: 'Farm'}
     }
 });
 

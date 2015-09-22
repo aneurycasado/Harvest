@@ -1,34 +1,53 @@
 <section id="home">
-    <div class="container">
-        <div class = "col-lg-12">
-          <h2>The Harvest Farm</h2>
-        </div>
-        <div class="row">
-            <div class='form-inline'>
-                <div class="form-group col-lg-3">
-                    Refine:
-                    <input type="text" ng-model="productName" class="form-control searchForm" placeholder="Search">
-                </div>
-                <div class="col-lg-3">
-                    Sort by:
-                    <select class="form-control filterForm" ng-model="sortBy">
-                        <option value="">-- Filter --</option>
-                        <option value="price">Price: Low-High</option>
-                        <option value="-price">Price: High-Low</option>
-                        <option value="title">Title: A-Z</option>
-                        <option value="-title">Title: Z-A</option>
-                        <option value="-percentageLiked">Highest Rated</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="spacer"></div>
-        <hr>
-        <div class="spacer"></div>
-        <div class="container allProductContainer">
-            <div class="row">
-                <product class="animate-repeat" ng-repeat='product in products | filter: productName | orderBy : sortBy'></product>
-            </div>
+    <div class="form-group">
+        <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
+    </div>
+    <div class="container-fluid nav-sidebar">
+        <div>
+            <h3 class="side-head">Filters</h3>
+            <p class="side-clear" ng-click="clearAll()">Clear all</p>
+        </div><hr>
+        <div>
+            <h4 class="side-head">Price</h4>
+            <p class="side-clear" ng-click="resetPrice()">Reset</p>
+            <rzslider rz-slider-model="priceSlider.min" rz-slider-floor="priceSlider.floor" rz-slider-ceil="priceSlider.ceil" rz-slider-high="priceSlider.max" rz-slider-translate='translate'></rzslider>
+        </div><br>
+        <div>
+            <h4 class="side-head">Reviews</h4>
+            <p class="side-clear" ng-click="resetReview()">Reset</p>
+            <rzslider rz-slider-model="reviewSlider.min" rz-slider-floor="reviewSlider.floor" rz-slider-ceil="reviewSlider.ceil" rz-slider-high="reviewSlider.max" rz-slider-translate="translate2"></rzslider>
+        </div><br>
+        <div>
+            <h4 class="side-head">Categories</h4><br>
+            <button class = "btn cat-button" ng-click="setCat(cats[0])">all</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[1])">Dairy</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[2])">Vegetables</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[3])">Fruits</button>
+        </div><hr>
+        <div>
+            <h3 class="side-head">Sort</h3>
+            <select class="form-control" ng-model="sortBy">
+                <option value ="">-- Filter --</option>
+                <option value="price">Price: Low-High</option>
+                <option value="-price">Price: High-Low</option>
+                <option value="title">Title: A-Z</option>
+                <option value="-title">Title: Z-A</option>
+                <option value="-percentageLiked">Highest Rated</option>
+            </select>
+            <br><br>
         </div>
     </div>
+    <div class="container">
+        <div class = "col-lg-12">
+            <h2>The Harvest Farm</h2>
+        </div>
+    </div>
+    <div class="row">
+        <product class="animate-repeat" ng-repeat='product in filteredProducts = (products | filter: searchInput | pricefilt:priceSlider.min:priceSlider.max | reviewfilt:reviewSlider.min:reviewSlider.max | catfilt:activeCat | orderBy : sortBy)'>
+        </product><hr>
+        <div ng-hide="filteredProducts.length">
+            <h3>Sorry, there are no results that fit your criterion. You're too picky!</h3>
+            <img src="http://ecx.images-amazon.com/images/I/41yL4%2Bed2gL._SY300_.jpg">
+        </div>
+    </div>           
 </section>

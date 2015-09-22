@@ -1,32 +1,50 @@
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
+    position: absolute; 
+    top: 33%;
+    left: 33%;
+    color: #FFF; 
+    text-align: center;
+    z-index: 2147483647;
+    // padding-top: 50px;  
+    // padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background-image: no-repeat center center;
-    background: url('http://issacharinitiative.org/wp-content/uploads/2014/01/harvest.jpg') no-repeat center center;
-    background-size: cover;
-    // background-repeat: no-repeat;
 }
-
 .intro-message {
-    position: relative;
-    padding-top: 20%;
-    padding-bottom: 20%;
+    position: absolute;
+    // padding-top: 20%;
+    // padding-bottom: 20%;
 }
 
 .intro-message > h1 {
     margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
     font-size: 5em;
 }
 
 .intro-divider {
     width: 400px;
     border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+video #bgvid {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    // top: 50%;
+    // left: 50%;
+    // min-width: 100%;
+    // min-height: 100%;
+    // width: auto;
+    // height: auto;
+    z-index: -1;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    // background: url(landingImage.png) no-repeat; 
+    // background-size: cover;
 }
