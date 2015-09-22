@@ -58,4 +58,3 @@ router.get('/category/:category', function (req, res, next) {
     })
     .then(null, next);
 });
-

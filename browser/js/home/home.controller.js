@@ -3,7 +3,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
     $scope.minPrice = ProductFactory.minPrice(products);
     $scope.maxPrice = ProductFactory.maxPrice(products);
     $scope.activeCat = null;
-    $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruit'];
+    $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruits'];
 
     $scope.priceSlider = {
         floor: ProductFactory.minPrice(products),
@@ -20,8 +20,8 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
     };
 
 
-    $scope.setCat = function(){
-        $scope.activeCat = $scope.cats;
+    $scope.setCat = function(cat){
+        $scope.activeCat = cat;
     };
 
     $scope.resetPrice = function(){
