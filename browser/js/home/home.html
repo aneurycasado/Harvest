@@ -1,53 +1,62 @@
 <section id="home">
-    <div class="form-group">
-        <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
-    </div>
     <div class="container-fluid nav-sidebar">
         <div>
             <h3 class="side-head">Filters</h3>
             <p class="side-clear" ng-click="clearAll()">Clear all</p>
-        </div><hr>
+        </div>
+        <hr>
+        <div class="form-group">
+            <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
+        </div>
+        <hr>
         <div>
             <h4 class="side-head">Price</h4>
             <p class="side-clear" ng-click="resetPrice()">Reset</p>
             <rzslider rz-slider-model="priceSlider.min" rz-slider-floor="priceSlider.floor" rz-slider-ceil="priceSlider.ceil" rz-slider-high="priceSlider.max" rz-slider-translate='translate'></rzslider>
-        </div><br>
+        </div>
+        <br>
         <div>
             <h4 class="side-head">Reviews</h4>
             <p class="side-clear" ng-click="resetReview()">Reset</p>
             <rzslider rz-slider-model="reviewSlider.min" rz-slider-floor="reviewSlider.floor" rz-slider-ceil="reviewSlider.ceil" rz-slider-high="reviewSlider.max" rz-slider-translate="translate2"></rzslider>
-        </div><br>
+        </div>
+        <br>
         <div>
-            <h4 class="side-head">Categories</h4><br>
-            <button class = "btn cat-button" ng-click="setCat(cats[0])">all</button>
-            <button class = "btn cat-button" ng-click="setCat(cats[1])">Dairy</button>
-            <button class = "btn cat-button" ng-click="setCat(cats[2])">Vegetables</button>
-            <button class = "btn cat-button" ng-click="setCat(cats[3])">Fruits</button>
-        </div><hr>
+            <h4 class="side-head">Categories</h4>
+            <br>
+            <button class="btn cat-button" ng-click="setCat(cats[0])">All</button>
+            <button class="btn cat-button" ng-click="setCat(cats[1])">Dairy</button>
+            <button class="btn cat-button" ng-click="setCat(cats[2])">Veggies</button>
+            <button class="btn cat-button" ng-click="setCat(cats[3])">Fruits</button>
+        </div>
+        <hr>
         <div>
             <h3 class="side-head">Sort</h3>
             <select class="form-control" ng-model="sortBy">
-                <option value ="">-- Filter --</option>
+                <option value="">-- Filter --</option>
                 <option value="price">Price: Low-High</option>
                 <option value="-price">Price: High-Low</option>
                 <option value="title">Title: A-Z</option>
                 <option value="-title">Title: Z-A</option>
                 <option value="-percentageLiked">Highest Rated</option>
             </select>
-            <br><br>
+            <br>
+            <br>
         </div>
     </div>
     <div class="container">
-        <div class = "col-lg-12">
+        <div class="col-lg-12">
             <h2>The Harvest Farm</h2>
         </div>
     </div>
+        <hr>
     <div class="row">
         <product class="animate-repeat" ng-repeat='product in filteredProducts = (products | filter: searchInput | pricefilt:priceSlider.min:priceSlider.max | reviewfilt:reviewSlider.min:reviewSlider.max | catfilt:activeCat | orderBy : sortBy)'>
-        </product><hr>
+        </product>
+        <hr>
         <div ng-hide="filteredProducts.length">
             <h3>Sorry, there are no results that fit your criterion. You're too picky!</h3>
             <img src="http://ecx.images-amazon.com/images/I/41yL4%2Bed2gL._SY300_.jpg">
         </div>
-    </div>           
+    </div>
 </section>
