@@ -54,6 +54,10 @@
         </div>
     </div>
     <div class="page-header">
-        <h3 style="display:inline-block">Total: {{order.orderTotal | currency}}</h3>
+        <h4 style="display:inline-block">Total: {{order.orderTotal | currency}}</h4>
+        <br>
+        <h4 style="display:inline-block">Discount: {{order.discountApplied | currency}}</h4>
+        <br>
+        <h4 style="display:inline-block">You Paid: {{order.orderTotal - order.discountApplied | currency}}</h4>
     </div>
 </div>
