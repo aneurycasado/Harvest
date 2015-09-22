@@ -1,16 +1,17 @@
 app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, ProductFactory) {
     $scope.products = products;
-    $scope.minPrice = ProductFactory.minPrice(products);
-    $scope.maxPrice = ProductFactory.maxPrice(products);
+    $scope.minPrice = Math.floor(ProductFactory.minPrice(products));
+    $scope.maxPrice = Math.ceil(ProductFactory.maxPrice(products));
     $scope.activeCat = null;
     $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruits'];
 
     $scope.priceSlider = {
-        floor: ProductFactory.minPrice(products),
-        ceil: ProductFactory.maxPrice(products),
+        floor: Math.floor(ProductFactory.minPrice(products)),
+        ceil: Math.ceil(ProductFactory.maxPrice(products)),
         min: $scope.minPrice,
         max: $scope.maxPrice
     };
+    console.log($scope.priceSlider.floor);
 
     $scope.reviewSlider = {
         floor: 0,
