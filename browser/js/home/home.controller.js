@@ -9,6 +9,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
         min: $scope.minPrice,
         max: $scope.maxPrice
     };
+
     $scope.reviewSlider = {
         floor: 0,
         ceil: 100,
@@ -26,6 +27,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
     $scope.clearAll = function(){
         $scope.resetReview();
         $scope.resetPrice();
+        $scope.searchInput = '';
     };
 
     $scope.translate = function(val){
@@ -37,13 +39,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
 
     $scope.goToProduct = function (product) {
         var productID = product._id;
-        $state.go('product', {
-            id: productID
-        });
-    };
-    $scope.goToReview = function (product) {
-        var productID = product._id;
-        $state.go('review', {
+        $state.go('productDetail', {
             id: productID
         });
     };

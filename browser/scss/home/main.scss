@@ -46,9 +46,9 @@ span.buttonOverlay {
     left: 15px;
     position: absolute;
     bottom: 0;
-    width: 92.5%;
+    width: 90%;
     opacity: 0;
-    z-index: 5000;
+    // z-index: 5000;
     -webkit-transition: opacity 500ms;
     -moz-transition: opacity 500ms;
     -o-transition: opacity 500ms;
@@ -75,4 +75,10 @@ span.buttonOverlay span {
 .addToCartBtn:hover {
     transform: scale(1.1);
     transition: all .5s ease-in-out;
+}
+
+.allProductContainer {
+    padding: 15px;
+    -webkit-box-shadow:  0px 3px 5px 5px rgba(211,211,211,1);
+    box-shadow:  -5px 0px 10px -5px rgba(211,211,211,1);
 }

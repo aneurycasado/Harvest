@@ -56,27 +56,27 @@ router.put('/', function (req, res, next) {
         .then(null, next);
 });
 
-function formatDates (date) {
-			var monthNames = [
-				  "January", "February", "March",
-				  "April", "May", "June", "July",
-				  "August", "September", "October",
-				  "November", "December"
-			];
-      var dateOfOrder = {};
-			dateOfOrder = new Date(date);
-			var day = dateOfOrder.getDate();
-			var monthIndex = dateOfOrder.getMonth();
-			var month = monthNames[monthIndex];
-			var year = dateOfOrder.getFullYear();
-			dateOfOrder.day = day;
-			dateOfOrder.month = month;
-			dateOfOrder.year = year;
-      return dateOfOrder;
-	}
+function formatDates(date) {
+    var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+    var dateOfOrder = {};
+    dateOfOrder = new Date(date);
+    var day = dateOfOrder.getDate();
+    var monthIndex = dateOfOrder.getMonth();
+    var month = monthNames[monthIndex];
+    var year = dateOfOrder.getFullYear();
+    dateOfOrder.day = day;
+    dateOfOrder.month = month;
+    dateOfOrder.year = year;
+    return dateOfOrder;
+}
 
-var sendEmail = function (email,html) {
-	console.log('sending email....',email);
+var sendEmail = function (email, html) {
+    console.log('sending email....', email);
     transporter.sendMail({
         from: 'harvestFSA@gmail.com',
         to: email.toString(),
@@ -85,9 +85,9 @@ var sendEmail = function (email,html) {
     });
 };
 
-var createHTML = function(order){
-  order.dateOfOrder = formatDates(order.dateOfOrder);
-  return "<div class ='container'><h1>Order Receipt</h1><div class = 'panel panel-success'><div class = 'panel-heading'><h2>Ordered On: " + order.dateOfOrder.month + " " + order.dateOfOrder.day + ', ' + order.dateOfOrder.year + "</h2></div><div class = 'panel-body'><h2>Total: $" + order.orderTotal + "</h2></div></div></div>";
+var createHTML = function (order) {
+    order.dateOfOrder = formatDates(order.dateOfOrder);
+    return "<div class ='container'><h1>Order Receipt</h1><div class = 'panel panel-success'><div class = 'panel-heading'><h2>Ordered On: " + order.dateOfOrder.month + " " + order.dateOfOrder.day + ', ' + order.dateOfOrder.year + "</h2></div><div class = 'panel-body'><h2>Total: $" + order.orderTotal + "</h2></div></div></div>";
 }
 
 router.post("/:userID", function (req, res, next) {
@@ -109,7 +109,7 @@ router.post("/:userID", function (req, res, next) {
             })
             .then(function (newOrder) {
                 var html = createHTML(newOrder);
-                sendEmail(email,html);
+                sendEmail(email, html);
                 res.json(newOrder);
             })
             .then(null, next);
@@ -119,9 +119,9 @@ router.post("/:userID", function (req, res, next) {
         }
         Order.create(req.body)
             .then(function (createdOrder) {
-              var html = createHTML(createdOrder);
-              sendEmail(email,html);
-              res.json(createdOrder);
+                var html = createHTML(createdOrder);
+                sendEmail(email, html);
+                res.json(createdOrder);
             });
     }
 });

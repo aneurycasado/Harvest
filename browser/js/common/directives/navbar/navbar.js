@@ -25,9 +25,17 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 });
             };
 
+            var resetPassword = function (user) {
+              return user.resetPassword;
+            };
+
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.user = user;
+                    if (user && resetPassword(user)) {
+                      $state.go("resetPassword");
+                      return;
+                    }
                     if(!user){
                       CartFactory.getLocalCart();
                     }else{
@@ -72,7 +80,4 @@ app.controller('NavbarCtrl', function ($scope, $state, ProductFactory) {
       });
     }
   };
-  $scope.search = function(){
-    $state.go("refinedHome", {searchInput: $scope.searchInput});
-  }
 });
