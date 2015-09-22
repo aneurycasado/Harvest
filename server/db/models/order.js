@@ -45,6 +45,7 @@ var schema = new mongoose.Schema({
     promoCode: {
         type: String
     },
+    discountApplied: {type: Number},
     status: {
         type: String,
         default: "Created",
