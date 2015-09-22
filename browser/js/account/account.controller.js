@@ -1,7 +1,8 @@
-app.controller('accountCtrl',function ($scope, SecretStash, allOrders, currentUser) {
+app.controller('accountCtrl',function ($scope,$state, SecretStash, allOrders, currentUser, farm) {
+	$scope.farm = farm;
 	$scope.orders = allOrders;
 	$scope.currentUser = currentUser;
-    SecretStash.getStash().then(function (stash) {
-        $scope.stash = stash;
-    });
+  $scope.goToFarmAdmin = function(){
+		$state.go("farmAdmin", {id:$scope.farm._id})
+	}
 });
