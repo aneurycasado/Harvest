@@ -1,4 +1,4 @@
-<section id="farm">
+<section id="home">
     <h2> {{farm.user.name}} Farm
     <div class="form-group">
         <input type="text" ng-model="productName" class="form-control" placeholder="Search">
@@ -11,6 +11,7 @@
         <option value="-title">Title: Z-A</option>
         <option value="-percentageLiked">Highest Rated</option>
     </select>
+    
     <div class="container">
         <div class="row">
           <product  class="animate-repeat" ng-repeat='product in farm.products | filter: productName | orderBy : sortBy' ></product>
