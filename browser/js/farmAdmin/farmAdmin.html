@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+    <li ng-click="showProducts()"><a href="#">Product</a></li>
+    <li ng-click="showReviews()"><a href="#">Reviews</a></li>
+    <li ng-click="showUsers()"><a href="#">Users</a></li>
+    <li ng-click="showOrders()"><a href="#">Orders</a></li>
+    <li ng-click="showPromos()"><a href="#">Promos</a></li>
+</ul>
+
+
+<product-accordion-directive ng-show="active === 'products'"></product-accordion-directive>
+<review-accordion-directive ng-show="active === 'reviews'"></review-accordion-directive>
+<user-accordion-directive ng-show="active === 'users'"></user-accordion-directive>
+<order-accordion-admin-directive ng-show="active === 'orders'"></order-accordion-admin-directive>
+<promo-accordion ng-show="active === 'promos'"></promo-accordion>

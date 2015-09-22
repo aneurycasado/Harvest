@@ -1,0 +1,23 @@
+<h3>Create Farm<h3>
+  <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && createOrUpdateFarm()">
+          <div class='row'>
+              <div class='col-sm-4'>
+                  <label>Farm Name: </label>
+                  <input ng-model="farmName.email">
+              </div>
+              <div class='col-sm-4'>
+                  <label>Description: </label>
+                  <input ng-model="farmDescription" placeholder="Describe you farm...">
+              </div>
+          </div>
+          <hr>
+          <div class="row">
+              <div class="col-sm-6">
+                  <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
+              </div>
+          </div>
+  </form>
+
+<hr>
+
+<add-product></add-product>

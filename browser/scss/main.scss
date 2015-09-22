@@ -23,25 +23,25 @@ list-style:none;
 box-sizing:border-box;
 }
 .animate-repeat.ng-enter {
-  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  transition: all 0.35s cubic-bezier(.36,-0.64,.34,1.76);
   transform: rotateX(+90deg);
-  -webkit-transition:0.5s linear all;
+  -webkit-transition:0.35s linear all;
   transition:0.5s linear all;
   opacity:0;
   line-height:0;
 }
-.animate-repeat.ng-enter-stagger {
-  /* 200ms will be applied between each sucessive enter operation */
-  -webkit-transition-delay:0.2s;
-  transition-delay:0.2s;
-
-  /* this is here to avoid accidental CSS inheritance */
-  -webkit-transition-duration:0;
-  transition-duration:0;
-}
+// .animate-repeat.ng-enter-stagger {
+//   /* 200ms will be applied between each sucessive enter operation */
+//   -webkit-transition-delay:0.2s;
+//   transition-delay:0.2s;
+//
+//   /* this is here to avoid accidental CSS inheritance */
+//   -webkit-transition-duration:0;
+//   transition-duration:0;
+// }
 
 .animate-repeat.ng-enter.ng-enter-active {
-  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  transition: all 0.35s cubic-bezier(.36,-0.64,.34,1.76);
   transform: rotateX(-90deg);
   opacity:1;
   line-height:20px;
@@ -50,7 +50,7 @@ box-sizing:border-box;
 .animate-repeat.ng-leave.ng-leave-active,
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter {
-  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  transition: all 0.35s cubic-bezier(.36,-0.64,.34,1.76);
   transform: rotateX(+90deg);
   opacity:0;
   max-height:0;
@@ -59,7 +59,7 @@ box-sizing:border-box;
 .animate-repeat.ng-leave,
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {
-  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  transition: all 0.35s cubic-bezier(.36,-0.64,.34,1.76);
   transform: rotateX(-90deg);
   opacity:1;
   max-height:40px;
