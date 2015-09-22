@@ -8,8 +8,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
     };
 
     $scope.validatePromoCode = function (promoCode) {
-        console.log(promoCode);
-        PromoFactory.getOneByCode(promoCode)
+
+        PromoFactory.getOneByCode(promoCode.toString())
             .then(function (promo) {
                 if (promo.length) {
                     $scope.promo = promo[0];
