@@ -2,7 +2,7 @@
     <div class="form-group">
         <input type="text" ng-model="searchInput" class="form-control" placeholder="Search">
     </div>
-    <div class="container-fluid nav-sidebar" sticky>
+    <div class="container-fluid nav-sidebar">
         <div>
             <h3 class="side-head">Filters</h3>
             <p class="side-clear" ng-click="clearAll()">Clear all</p>
@@ -19,10 +19,10 @@
         </div><br>
         <div>
             <h4 class="side-head">Categories</h4><br>
-            <button class = "btn cat-button">all</button>
-            <button class = "btn cat-button">Vegetables</button>
-            <button class = "btn cat-button">Dairy</button>
-            <button class = "btn cat-button">Fruits</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[0])">all</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[1])">Dairy</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[2])">Vegetables</button>
+            <button class = "btn cat-button" ng-click="setCat(cats[3])">Fruits</button>
         </div><hr>
         <div>
             <h3 class="side-head">Sort</h3>
@@ -36,52 +36,14 @@
             </select>
             <br><br>
         </div>
-        </div>
+    </div>
     <div class="container">
         <div class = "col-lg-12">
-          <h2>The Harvest Farm</h2>
-        </div>
-       <!--  <div class="row">
-            <div class='form-inline'>
-                <div class="form-group col-lg-3">
-                    Refine:
-                    <input type="text" ng-model="productName" class="form-control searchForm" placeholder="Search">
-                </div>
-                <div class="col-lg-3">
-                    Sort by:
-                    <select class="form-control filterForm" ng-model="sortBy">
-                        <option value="">-- Filter --</option>
-                        <option value="price">Price: Low-High</option>
-                        <option value="-price">Price: High-Low</option>
-                        <option value="title">Title: A-Z</option>
-                        <option value="-title">Title: Z-A</option>
-                        <option value="-percentageLiked">Highest Rated</option>
-                    </select>
-                </div>
-            </div> -->
+            <h2>The Harvest Farm</h2>
         </div>
     </div>
     <div class="row">
-        <div class="product col-lg-4 productContainer muted" ng-repeat='product in products | filter: searchInput | pricefilt:priceSlider.min:priceSlider.max | reviewfilt:reviewSlider.min:reviewSlider.max | orderBy : sortBy'>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <img src="{{product.photo}}" class="productImg img-circle animate-repeat" ng-click="goToProduct(product)" />
-                    <span class="buttonOverlay">
-                        <span>
-                            <div class="col-lg-12 text-center">
-                                <div class="btn-group addToCartBtn" role="group">
-                                    <button class="btn" ng-click='addToCart(product)'>
-                                    <i class="fa fa-cart-plus"> Add to Cart</i>
-                                    </button>
-                                </div>
-                            </div>
-                        </span>
-                    </span>
-                </div>
-                <div class="col-lg-12 text-center priceBox" ng-click="goToProduct(product)">
-                    <h4><a ng-click="goToProduct(product)">{{product.category}} - {{product.title}} - {{product.price | currency}}</a></h4>
-                </div>
-            </div>
-        </div>
-    </div>
+        <product class="animate-repeat" ng-repeat='product in products | filter: searchInput | pricefilt:priceSlider.min:priceSlider.max | reviewfilt:reviewSlider.min:reviewSlider.max | catfilt:activeCat | orderBy : sortBy'>
+        </product>
+    </div>           
 </section>

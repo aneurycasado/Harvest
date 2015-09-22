@@ -2,6 +2,8 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
     $scope.products = products;
     $scope.minPrice = ProductFactory.minPrice(products);
     $scope.maxPrice = ProductFactory.maxPrice(products);
+    $scope.activeCat = null;
+    $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruit'];
 
     $scope.priceSlider = {
         floor: ProductFactory.minPrice(products),
@@ -16,6 +18,12 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
         min: 0,
         max: 100
     };
+
+
+    $scope.setCat = function(){
+        $scope.activeCat = $scope.cats;
+    };
+
     $scope.resetPrice = function(){
         $scope.priceSlider.min = $scope.minPrice;
         $scope.priceSlider.max = $scope.maxPrice;
@@ -29,7 +37,6 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
         $scope.resetPrice();
         $scope.searchInput = '';
     };
-
     $scope.translate = function(val){
         return '$' + val;
     };
@@ -66,6 +73,18 @@ app.filter('reviewfilt', function(){
         var out = [];
         input.forEach(function(e){
             if(e.percentageLiked*100>=minPerc && e.percentageLiked*100<=maxPerc){
+                out.push(e);
+            }
+        });
+        return out;
+    };
+});
+app.filter('catfilt', function(){
+    return function(input, cat){
+        if(!cat) return input;
+        var out = [];
+        input.forEach(function(e){
+            if(e.category==cat){
                 out.push(e);
             }
         });
