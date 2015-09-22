@@ -15,6 +15,33 @@
     width: 100%;
 }
 
+.nav-sidebar {
+    background-color: #659C57;
+    color: white;
+    border-radius: 25px;
+    position: fixed;
+    left: 60px;
+    top: 150px;
+    width: 325px;
+
+    .side-head {
+        display: inline-block;
+    }
+    .side-clear {
+        display: inline-block;
+        float: right;
+    }
+    .cat-button {
+        display: inline-block;
+        border: 1px solid black;
+        background: none;
+    }
+    p {
+        margin-top:15px;
+    }
+}
+
+
 span.buttonOverlay {
     background: rgba(0, 0, 0, 0.3);
     color: white;

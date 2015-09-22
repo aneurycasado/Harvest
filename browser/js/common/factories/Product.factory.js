@@ -21,7 +21,7 @@ app.factory('ProductFactory', function ($http) {
 
     function addProduct(product) {
         return $http.post('/api/products', product).then(response => response.data);
-    };
+    }
 
     function deleteProduct(product) {
         return $http({
@@ -30,9 +30,23 @@ app.factory('ProductFactory', function ($http) {
             data: product,
             headers: {"Content-Type": "application/json;charset=utf-8"}
         }).then(response => response.data);
-    };
+    }
+
+    function minPrice(products) {
+        return products.reduce(function(lowProd,currProd){
+            return Math.min(lowProd, currProd.price);
+        },products[0].price);
+    }
+
+    function maxPrice(products) {
+        return products.reduce(function(highProd,currProd){
+            return Math.max(highProd, currProd.price);
+        }, products[0].price);
+    }
 
     return {
+        maxPrice,
+        minPrice,
         getAll,
         getOne,
         getProductsByCategory,
