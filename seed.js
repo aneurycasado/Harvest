@@ -27,11 +27,13 @@ var Product = Promise.promisifyAll(mongoose.model('Product'));
 var Review = Promise.promisifyAll(mongoose.model('Review'));
 var Order = Promise.promisifyAll(mongoose.model('Order'));
 var Cart = Promise.promisifyAll(mongoose.model('Cart'));
+var Farm = Promise.promisifyAll(mongoose.model('Farm'));
 
 var numUsers = 100;
 var numReviews = 100;
 var numProducts = 100;
 var numOrders = 100;
+var numFarms = 40;
 
 var emails = chance.unique(chance.email, numUsers);
 var reviewContent = chance.unique(chance.sentence, numReviews);
@@ -66,6 +68,9 @@ var seedProducts = function () {
     }
     return Product.createAsync(products);
 };
+
+
+
 
 function thumbsBool(){
     var x = chance.integer({min:1, max: 10});
@@ -160,6 +165,26 @@ var seedOrders = function (data) {
     return Order.createAsync(orders);
 };
 
+var seedFarms = function(data){
+  var farms = [];
+  for(var i = 0; i < numFarms; i++){
+    var products = [];
+    var numPro = chance.integer({min: 3, max: 30});
+    var startItem = chance.integer({min: 0, max: numProducts-numPro});
+    for(var j = 0; j < numPro; j++){
+      var currItem = data.products[startItem + j];
+      products.push(currItem);
+    }
+    var userIndex = chance.integer({min: 0, max: numUsers});
+    var user = data.users[userIndex];
+    farms.push({
+      products: products,
+      user: user
+    })
+  }
+  return Farm.createAsync(farms);
+}
+
 var seedCarts = function (data) {
     var carts = [];
     for (var i = 0; i < numUsers; i++) {
@@ -214,6 +239,8 @@ connectToDb.then(function () {
         return seedCarts(data);
     }).then(function (carts){
         return popProductPercentageLikes(data);
+    }).then(function(){
+        return seedFarms(data);
     }).then(function (prods) {
         console.log(chalk.green('Seed successful!'));
         process.kill(0);
