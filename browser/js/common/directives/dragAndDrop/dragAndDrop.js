@@ -1,7 +1,7 @@
 app.controller('DragAndDropCtrl', function ($scope, CartFactory) {
 	
     var dragImage = document.createElement('img');
-	dragImage.src = 'http://www.clipartbest.com/cliparts/9Tz/MBp/9TzMBpAjc.png';
+	dragImage.src = 'http://simpleicon.com/wp-content/uploads/Shopping-Cart-12-128x128.png';
     
     $scope.handleDragStart = function (e) {
         this.style.opacity = '0.4';
