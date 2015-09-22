@@ -1,7 +1,6 @@
 <div class='container'>
     <div>
         <h1 style="display:inline-block">Shopping Cart</h1>
-        <button class="btn btn-danger" ng-click="emptyCart()" ng-show="cart.contents.length"><i class="fa fa-trash-o fa-2x"></i></button>
     </div>
     <div ng-repeat="product in uniqueProducts" class="cart-product">
         <div class="panel panel-body">
@@ -79,6 +78,7 @@
     </div>
     <div class="page-header">
         <h3 ng-if="total" style="display:inline-block">Total: {{total - totalDiscount | currency}}</h3>
+        <button class="btn btn-danger" ng-click="emptyCart()" ng-show="cart.contents.length"><i class="fa fa-trash-o fa-lg"></i></button>
         <button ng-show="cart.contents.length && !checkOutView" class="btn btn-success btn-md" ng-click="checkOutView = true"><i class="fa fa-money fa-xl"> Check Out</i></button>
         <div class="btn-group" role="group" ng-show="editing">
             <button class="btn btn-warning btn-md" ng-click='updateCart()'>
