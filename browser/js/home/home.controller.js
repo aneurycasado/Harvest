@@ -37,6 +37,7 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
         $scope.resetReview();
         $scope.resetPrice();
         $scope.searchInput = '';
+        $scope.activeCat = null;
     };
     $scope.translate = function(val){
         return '$' + val;
