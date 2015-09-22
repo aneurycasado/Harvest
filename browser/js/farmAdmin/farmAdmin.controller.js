@@ -13,6 +13,15 @@ app.controller('farmAdminCtrl', function ($scope,$state, FarmFactory, farm) {
         $state.reload();
       });
     }
+    $scope.goToProduct = function (product) {
+        var productID = product._id;
+        $state.go('productDetail', {
+            id: productID
+        });
+    };
+    $scope.addToCart = function (product) {
+      CartFactory.addToCart(product);
+    };
     $scope.addFarmProduct = function(product){
       console.log("Product passed in ", product);
       console.log("We called")

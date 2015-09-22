@@ -49,14 +49,11 @@
             <h2>The Harvest Farm</h2>
         </div>
     </div>
-        <hr>
+    <hr>
+    <div class="container">
     <div class="row">
         <product class="animate-repeat" ng-repeat='product in filteredProducts = (products | filter: searchInput | pricefilt:priceSlider.min:priceSlider.max | reviewfilt:reviewSlider.min:reviewSlider.max | catfilt:activeCat | orderBy : sortBy)'>
         </product>
-        <hr>
-        <div ng-hide="filteredProducts.length">
-            <h3>Sorry, there are no results that fit your criterion. You're too picky!</h3>
-            <img src="http://ecx.images-amazon.com/images/I/41yL4%2Bed2gL._SY300_.jpg">
-        </div>
+    </div>
     </div>
 </section>

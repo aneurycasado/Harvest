@@ -1,7 +1,8 @@
 <div ng-show="showPromoCode">
     <div class="form-group">
         <form name="applyPromo" role="form" ng-submit="validatePromoCode(applyPromo)">
-            <select ng-model="applyPromo" ng-options="promo.code for promo in promos">
+            <select ng-model="applyPromo">
+            	<option ng-model="applyPromo.code" ng-repeat="promo in promos" value="{{promo.code}}">{{promo.code}}: {{promo.discount * 100 | number:0}}% off {{promo.validCategories}}</option>
             </select>
             <button class="btn btn-success" type="submit">Apply</button>
     </div>

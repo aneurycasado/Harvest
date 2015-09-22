@@ -37,7 +37,7 @@
     <accordion close-others="oneAtATime">
         <accordion-group heading=" Product: {{product.title}}" ng-repeat="product in products | filter : productName | orderBy : sortBy | filter : categoryFilter">
             <div class='row'>
-                <div class='col-sm-1'><img class='accordion-image' src={{product.photo}}></div>
+                <div class='col-sm-1'><img class='accordion-image' ng-src={{product.photo}}></div>
                 <div class='col-sm-1'>Product: <span ng-model="product.title" contenteditable>{{product.title}}</span></div>
                 <div class='col-sm-3'>
                     <h4>Description: </h4><span ng-model="product.description" contenteditable>{{product.description}}</span></div>

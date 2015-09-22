@@ -16,7 +16,7 @@
     <accordion close-others="oneAtATime">
         <accordion-group heading=" Paid {{order.orderTotal | currency}} on {{order.dateOfOrder | date : longDate}}" ng-repeat="order in orders">
             <div class='row' ng-repeat='item in order.items'>
-                <div class='col-sm-2'><img ng-click="goToProductDetail(item)" class='accordion-image' src={{item.photo}}></div>
+                <div class='col-sm-2'><img ng-click="goToProductDetail(item)" class='accordion-image' ng-src={{item.photo}}></div>
                 <div class='col-sm-8'>
                     <h5>Product: </h5>{{item.title}}</div>
                 <div class='col-sm-2'>

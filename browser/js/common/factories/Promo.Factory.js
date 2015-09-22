@@ -4,7 +4,7 @@ app.factory('PromoFactory', function ($http) {
 	}
 
 	function getOneByCode(promo) {
-		return $http.get('/api/promos/' + promo.code).then(response => response.data);
+		return $http.get('/api/promos/' + promo).then(response => response.data);
 	}
 
 	function updatePromo(promo) {

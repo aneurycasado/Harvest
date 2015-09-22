@@ -8,8 +8,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
     };
 
     $scope.validatePromoCode = function (promoCode) {
-        console.log(promoCode);
-        PromoFactory.getOneByCode(promoCode)
+
+        PromoFactory.getOneByCode(promoCode.toString())
             .then(function (promo) {
                 if (promo.length) {
                     $scope.promo = promo[0];
@@ -54,6 +54,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
         $scope.checkOutView = !$scope.checkOutView;
     };
     $scope.checkOut = function (user) {
+        console.log('on click', $scope.totalDiscount);
         Stripe.card.createToken($scope.card, function (err, response) {
             if (err && err.type === 'StripeCardError') {
                 console.log(err);
@@ -66,6 +67,7 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
                     $scope.card.amount = $scope.total;
                     $http.post('/pay', $scope.card)
                         .then(function (charge) {
+                            console.log('after pay', $scope.totalDiscount);
                             var shippingAddress = $scope.userInfo.address + " " + $scope.userInfo.address2 + " " + $scope.userInfo.city + " " + $scope.userInfo.state + " " + $scope.userInfo.zip;
                             var order = {
                                 user: $scope.cart.user,
@@ -73,7 +75,8 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
                                 orderTotal: $scope.total,
                                 shippingAddress: shippingAddress,
                                 email: $scope.email,
-                                promoCode: $scope.promoCode
+                                promoCode: $scope.promoCode,
+                                discountApplied: $scope.totalDiscount
                             };
                             $scope.updateProducts();
                             return OrderFactory.createOrder(user, order);
@@ -110,21 +113,6 @@ app.controller('CartCtrl', function ($scope, $state, cart, promos, CartFactory, 
                 }
             }
         });
-        // $scope.uniqueProducts = [];
-        //   $scope.cart.contents.forEach(function (product) {
-        //       var found = false;
-        //       $scope.total += product.price;
-        //       $scope.uniqueProducts.forEach(function (uniqueProduct) {
-        //           if (product._id === uniqueProduct._id) {
-        //               uniqueProduct.cartQuantity++;
-        //               found = true;
-        //           }
-        //       });
-        //       if (!found) {
-        //           product.cartQuantity = 1;
-        //           $scope.uniqueProducts.push(product);
-        //       }
-        //   });
     };
     $scope.removeFromCart = function (product) {
         if (localStorage.getItem('cart')) {

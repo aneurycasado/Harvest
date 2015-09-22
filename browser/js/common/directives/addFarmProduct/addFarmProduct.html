@@ -1,7 +1,9 @@
     <form name='addProduct' role="form" ng-submit="addProduct.$valid && addFarmProduct(newProduct)">
+          <div>
             <div class='row'>
                 <div class='col-sm-4'>
-                    <label>Product: </label><input ng-model="newProduct.title" type='text' placeholder="Enter name here..."</span>
+                    <label>Product: </label>
+                    <input ng-model="newProduct.title" type='text' placeholder="Enter name here..."</span>
                 </div>
                 <div class='col-sm-4'>
                     <label>Description: </label>
@@ -12,7 +14,8 @@
                     <label>Inventory On Hand: </label>
                     <input type="number" min="0" ng-model="newProduct.inventoryQuantity"></input>
                 </div>
-              </div>
+            </div>
+            <hr>
             <div class = "row">
                 <div class='col-sm-4'>
                     <label>Category: </label><div></div>
@@ -30,10 +33,11 @@
                     <label>Available: </label>
                     <input ng-model="newProduct.available" type="checkbox">
                 </div>
-              </div>
-              <div class = "row">
-                <button type="submit" class="btn btn-success btn-sm">Create</button>
-                <button type="button" class="btn btn-warning btn-sm" ng-click="showAddProductForm()">Cancel</button>
-              </div>
             </div>
+            <hr>
+            <div class = "row">
+                <button type="submit" class="btn btn-success btn-sm">Create</button>
+                <button type="button" class="btn btn-warning btn-sm" ng-click="addProductView = false">Cancel</button>
+              </div>
+          </div>
     </form>
