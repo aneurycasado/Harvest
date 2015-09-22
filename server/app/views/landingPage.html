@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <base href="/" />
     <title>Harvest</title>
@@ -15,34 +16,44 @@
     <script src="/socket.io-client/socket.io.js"></script>
     <script src="/main.js"></script>
 </head>
+
 <body ng-app="FullstackGeneratedApp">
-  <div class="intro-header">
-         <div class="container">
-             <div class="row">
-                 <div class="col-lg-12">
-                     <div class="intro-message">
-                         <h1>Harvest</h1>
-                         <h3>Food from Local Farmers</h3>
-                         <hr class="intro-divider">
-                         <ul class="list-inline intro-social-buttons">
-                             <li>
-                                 <a href="/auth/twitter" class="btn btn-default btn-lg" target = "_self"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                             </li>
-                             <li>
-                                 <a href="/auth/google" class="btn btn-default btn-lg" target = "_self"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google +</span></a>
-                             </li>
-                             <li>
-                                 <a href="/auth/facebook" class="btn btn-default btn-lg" target = "_self"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                             </li>
-                             <li>
-                                 <a href="/guestUser" class="btn btn-default btn-lg" target = "_self"><i class="fa fa-user fa-fw"></i><span class="network-name">Guest User</span></a>
-                             </li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
+    <div id="bgvid">
+        <video autoplay loop poster="/landingImage.png" id="bgvid">
+            <!-- <source src="polina.webm" type="video/webm"> -->
+            <source src="/harvestVid.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="intro-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Harvest</h1>
+                        <h3>Food from Local Farmers</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="/auth/twitter" class="btn btn-default btn-lg" target="_self"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="/auth/google" class="btn btn-default btn-lg" target="_self"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google +</span></a>
+                            </li>
+                            <li>
+                                <a href="/auth/facebook" class="btn btn-default btn-lg" target="_self"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="/guestUser" class="btn btn-default btn-lg" target="_self"><i class="fa fa-user fa-fw"></i><span class="network-name">Guest User</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-<script type="text/javascript">localStorage.clear();</script>
+<script type="text/javascript">
+localStorage.clear();
+</script>
+
 </html>
