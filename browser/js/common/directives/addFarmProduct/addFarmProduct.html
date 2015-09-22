@@ -1,0 +1,39 @@
+    <form name='addProduct' role="form" ng-submit="addProduct.$valid && addFarmProduct(newProduct)">
+            <div class='row'>
+                <div class='col-sm-4'>
+                    <label>Product: </label><input ng-model="newProduct.title" type='text' placeholder="Enter name here..."</span>
+                </div>
+                <div class='col-sm-4'>
+                    <label>Description: </label>
+                    <input type="text" ng-model="newProduct.description" placeholder="Enter description here...">
+                    </span>
+                </div>
+                <div class='col-sm-4'>
+                    <label>Inventory On Hand: </label>
+                    <input type="number" min="0" ng-model="newProduct.inventoryQuantity"></input>
+                </div>
+              </div>
+            <div class = "row">
+                <div class='col-sm-4'>
+                    <label>Category: </label><div></div>
+                    <select ng-model="newProduct.category">
+                        <option>Dairy</option>
+                        <option>Fruit</option>
+                        <option>Vegetables</option>
+                    </select>
+                </div>
+                <div class='col-sm-4'>
+                    <label>Price: </label>
+                    <input type="number" min="0" ng-model="newProduct.price"></input>
+                </div>
+                <div class="col-sm-4">
+                    <label>Available: </label>
+                    <input ng-model="newProduct.available" type="checkbox">
+                </div>
+              </div>
+              <div class = "row">
+                <button type="submit" class="btn btn-success btn-sm">Create</button>
+                <button type="button" class="btn btn-warning btn-sm" ng-click="showAddProductForm()">Cancel</button>
+              </div>
+            </div>
+    </form>

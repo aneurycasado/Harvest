@@ -1,13 +1,14 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-			<user-account-info></user-account-info>
-        </div>
-        <div class="col-lg-6">
-			<order-accordion-directive></order-accordion-directive>
-        </div>
+<div class="row">
+      <div class="col-lg-6">
+        <user-account-info></user-account-info>
+      </div>
+      <div class="col-lg-6">
+        <order-accordion-directive></order-accordion-directive>
+      </div>
+  </div>
+  <div class = "row">
+    <div class = "col-sm-12">
+        <button class='btn btn-md' ui-sref='createFarm' ng-hide = "farm">Become a Seller</button>
+        <button class='btn btn-md' ng-click = "goToFarmAdmin()" ng-show = "farm">Manage Farm</button>
     </div>
-    <div style='margin-top:20px'>
-    <button class='btn btn-md' ui-sref='createFarm'>Become a Seller</button>
-    <div>
 </div>

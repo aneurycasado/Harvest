@@ -1,13 +1,13 @@
-<h3>Create Farm<h3>
-  <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && createOrUpdateFarm()">
+<h2>Create Farm <h2>
+  <form name='userAccountInfo' role="form" ng-submit="createOrUpdateFarm()">
           <div class='row'>
-              <div class='col-sm-4'>
+              <div class='col-sm-6'>
                   <label>Farm Name: </label>
-                  <input ng-model="farmInfo.farmName">
+                  <input ng-model="farmInfo.name" placeholder="Name your farm...">
               </div>
-              <div class='col-sm-4'>
+              <div class='col-sm-6'>
                   <label>Description: </label>
-                  <input ng-model="farmInfo.farmDescription" placeholder="Describe you farm...">
+                  <input ng-model="farmInfo.description" placeholder="Describe you farm...">
               </div>
           </div>
           <hr>
@@ -17,7 +17,6 @@
               </div>
           </div>
   </form>
-
 <hr>
 
-<add-product></add-product>
+<!-- <add-product></add-product> -->

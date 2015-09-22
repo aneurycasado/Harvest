@@ -1,8 +1,7 @@
-<div class='container'>
   <div class='row'>
     <div class = "row">
       <div class = "col-sm-12">
-        <h1 class="page-header" ng-if='recommendedProducts.length > 0'>Recomended products based on yours orders</h1>
+        <h2 class="page-header" ng-if='recommendedProducts.length > 0'>Recomended products based on yours orders</h2>
       </div>
     </div>
     <div class = "row allProductContainer" ng-if='recommendedProducts.length > 0'>
@@ -12,11 +11,10 @@
   <div class='row'>
     <div class = "row">
       <div class = "col-sm-12">
-        <h1 class="page-header">Most Popular Products Based on Others Orders</h1>
+        <h2 class="page-header">Most Popular Products Based on Others Orders</h2>
       </div>
     </div>
     <div class = "row allProductContainer">
       <product ng-repeat = "product in othersBought"></product>
     </div>
   </div>
-</div>

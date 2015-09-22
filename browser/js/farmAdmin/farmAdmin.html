@@ -1,14 +1,63 @@
-<ul class="nav nav-tabs">
+<div class = "container">
+  <h3>Your Farm<h3>
+    <div id = "info" ng-hide = "updateInfo">
+      <div class='row'>
+          <div class='col-sm-4'>
+            <h4> Farm Name : {{farm.name}}
+          </div>
+          <div class='col-sm-4'>
+            <h4> Farm Description : {{farm.description}}
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6">
+              <button ng-click = "update()" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Update</button>
+          </div>
+      </div>
+    </div>
+    <hr>
+    <div class = "row">
+      <product ng-repeat = "product in farm.products"></product>
+    </div>
+    <div class = "row">
+      <form ng-show = "updateInfo" name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateFarm()">
+              <div class='row'>
+                  <div class='col-sm-4'>
+                      <label>Farm Name: </label>
+                      <input ng-model="updatedFarmInfo.name" placeholder = "{{farm.name}}">
+                  </div>
+                  <div class='col-sm-4'>
+                      <label>Description: </label>
+                      <input ng-model="updatedFarmInfo.description" placeholder="{{farm.description}}">
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col-sm-6">
+                      <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
+                  </div>
+                  <div class="col-sm-6">
+                      <button type="button" ng-click ="updateInfo = false" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Cancel</button>
+                  </div>
+              </div>
+      </form>
+    </div>
+    <hr ng-show = "updateInfo">
+    <div class = "row">
+        <button type ="button" ng-hide = "addProductView" ng-click = "addProductView = true" class = "btn btn-success btn-md"><i class="fa fa-plus"></i> Add Product</button>
+        <add-farm-product ng-show = "addProductView"></add-product>
+    </div>
+</div>
+
+<!-- <product-accordion-directive ng-show="active === 'products'"></product-accordion-directive>
+<review-accordion-directive ng-show="active === 'reviews'"></review-accordion-directive>
+<user-accordion-directive ng-show="active === 'users'"></user-accordion-directive>
+<order-accordion-admin-directive ng-show="active === 'orders'"></order-accordion-admin-directive>
+<promo-accordion ng-show="active === 'promos'"></promo-accordion> -->
+<!-- <ul class="nav nav-tabs">
     <li ng-click="showProducts()"><a href="#">Product</a></li>
     <li ng-click="showReviews()"><a href="#">Reviews</a></li>
     <li ng-click="showUsers()"><a href="#">Users</a></li>
     <li ng-click="showOrders()"><a href="#">Orders</a></li>
     <li ng-click="showPromos()"><a href="#">Promos</a></li>
-</ul>
-
-
-<product-accordion-directive ng-show="active === 'products'"></product-accordion-directive>
-<review-accordion-directive ng-show="active === 'reviews'"></review-accordion-directive>
-<user-accordion-directive ng-show="active === 'users'"></user-accordion-directive>
-<order-accordion-admin-directive ng-show="active === 'orders'"></order-accordion-admin-directive>
-<promo-accordion ng-show="active === 'promos'"></promo-accordion>
+</ul> -->

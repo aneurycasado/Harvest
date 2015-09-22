@@ -1,5 +1,4 @@
 app.config(function ($stateProvider) {
-
     $stateProvider.state('account', {
         url: '/account',
         templateUrl: '/js/account/account.html',
@@ -15,13 +14,15 @@ app.config(function ($stateProvider) {
             },
             currentUser: function (AuthService) {
                 return AuthService.getLoggedInUser();
-            }
+            },
+            farm: function(FarmFactory){
+                return FarmFactory.getMyFarm();
+            },
         },
         data: {
             authenticate: true
         }
     });
-
 });
 
 app.factory('SecretStash', function ($http) {
