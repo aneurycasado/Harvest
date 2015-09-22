@@ -8,9 +8,8 @@ router.use('/reviews', require('./reviews'));
 router.use('/orders', require('./orders'));
 router.use('/cart', require('./cart'));
 router.use('/promos', require('./promos'));
-router.use("/pay", function(req,res,next){
-  console.log(req.body);
-});
+router.use('/farms', require('./farms'));
+
 
 // Make sure this is after all of
 // the registered routes!

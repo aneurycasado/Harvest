@@ -1,0 +1,18 @@
+<section id="farm">
+    <div class="form-group">
+        <input type="text" ng-model="productName" class="form-control" placeholder="Search">
+    </div>
+    <select class="form-control" ng-model="sortBy">
+        <option value ="">-- Filter --</option>
+        <option value="price">Price: Low-High</option>
+        <option value="-price">Price: High-Low</option>
+        <option value="title">Title: A-Z</option>
+        <option value="-title">Title: Z-A</option>
+        <option value="-percentageLiked">Highest Rated</option>
+    </select>
+    <div class="container">
+        <div class="row">
+          <product  class="animate-repeat" ng-repeat='product in farm.products | filter: productName | orderBy : sortBy' ></product> 
+        </div>
+    </div>
+</section>

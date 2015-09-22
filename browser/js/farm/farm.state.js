@@ -1,10 +1,10 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('farm', {
-        url: ':id/farm',
+        url: ':name/farm/:id',
         templateUrl: 'js/farm/farm.html',
-        // resolve: {
-        //     cart: (CartFactory, $stateParams) => CartFactory.getCart($stateParams.id)
-        //   },
+        resolve: {
+          farm: (FarmFactory, $stateParams) => FarmFactory.getOne($stateParams.id)
+        },
         controller: 'FarmCtrl'
     });
 });
