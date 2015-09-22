@@ -21,6 +21,7 @@ app.controller('PersonalizeController', function($scope,$state, products,userOrd
     })
   });
   $scope.mostCommonProducts = {};
+  var recommendedProducts = [];
   if($scope.fruitOrderedByYou > $scope.vegetablesOrderByYou && $scope.fruitOrderedByYou > $scope.dairyOrderedByYou){
     $scope.maxCat = "Fruit";
   }else if($scope.dairyOrderedByYou > $scope.vegetablesOrderByYou && $scope.dairyOrderedByYou > $scope.fruitOrderedByYou){
@@ -30,9 +31,10 @@ app.controller('PersonalizeController', function($scope,$state, products,userOrd
   }
   products.forEach(function(product){
     if(product.category === $scope.maxCat){
-      $scope.recommendedProducts.push(product);
+      recommendedProducts.push(product);
     }
   });
+  $scope.recommendedProducts = recommendedProducts.slice(0,4)
   allOrders.forEach(function(order){
     order.items.forEach(function(item){
       if($scope.mostCommonProducts[item.title]){
