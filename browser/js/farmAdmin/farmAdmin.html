@@ -1,9 +1,9 @@
-<div class = "container">
-  <h3>Your Farm<h3>
-    <div id = "info" ng-hide = "updateInfo">
-      <div class='row'>
-          <div class='col-sm-4'>
-            <h4> Farm Name : {{farm.name}}
+<div class="container">
+    <h3>Your Farm</h3>
+    <div id="info">
+        <div class='row' ng-hide="updateInfo">
+            <div class='col-sm-4'>
+                <h4> Farm Name : {{farm.name}}
           </div>
           <div class='col-sm-4'>
             <h4> Farm Description : {{farm.description}}
@@ -16,27 +16,34 @@
       </div>
       <hr>
       <div class = "row">
-        <form ng-show = "updateInfo" name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateFarm()">
-                <div class='row'>
-                    <div class='col-sm-4'>
-                        <label>Farm Name: </label>
-                        <input ng-model="updatedFarmInfo.name" placeholder = "{{farm.name}}">
-                    </div>
-                    <div class='col-sm-4'>
-                        <label>Description: </label>
-                        <input ng-model="updatedFarmInfo.description" placeholder="{{farm.description}}">
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
-                    </div>
-                    <div class="col-sm-6">
-                        <button type="button" ng-click ="updateInfo = false" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Cancel</button>
-                    </div>
-                </div>
-        </form>
+        <div ng-if="updateInfo">
+          <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateFarm()">
+                  <div class='row'>
+                      <div class='col-sm-4'>
+                          <label>Farm Name: </label>
+                          <input ng-model="updatedFarmInfo.name" placeholder = "{{farm.name}}">
+                      </div>
+                      <div class='col-sm-4'>
+                          <label>Description: </label>
+                          <input ng-model="updatedFarmInfo.description" placeholder="{{farm.description}}">
+                      </div>
+                      <div class='col-sm-4'>
+                          <label>Photo: </label>
+                          <input ng-model="updatedFarmInfo.photo" placeholder="{{farm.photo}}">
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
+                      </div>
+                      <div class="col-sm-6">
+                          <button type="button" ng-click ="update()" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Cancel</button>
+                      </div>
+                  </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <div class = "container">

@@ -22,7 +22,7 @@
         <option value="inventoryQuantity">Inventory Qty: Low-High</option>
         <option value="-inventoryQuantity">Inventory Qty: High-Low</option>
     </select>
-        <select class="form-control" ng-model="categoryFilter">
+    <select class="form-control" ng-model="categoryFilter">
         <option value="" disabled selected>-- Select Catg. --</option>
         <option value="Fruits">Fruits</option>
         <option value="Dairy">Dairy</option>
@@ -51,9 +51,20 @@
                     <h4>Available: </h4>
                     <input ng-model="product.available" type="checkbox">
                 </div>
-                <button class="btn btn-success btn-sm updateButton" ng-click="updateProduct(product)"><i class="fa fa-refresh"></i> Update Item</button>
-                <button class="btn btn-danger btn-sm" ng-click="deleteProduct(product)"><i class="fa fa-remove"></i> Delete Item</button>
             </div>
-        </accordion-group>
-    </accordion>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h4>Photo: </h4><span ng-model="product.photo" contenteditable>{{product.photo}}</span></div>
+                <div class='col-sm-3'>
+                    <h4>Photo2: </h4><span ng-model="product.photo2" contenteditable>{{product.photo2}}</span></div>
+                <div class='col-sm-3'>
+                    <h4>Photo3: </h4><span ng-model="product.photo3" contenteditable>{{product.photo3}}</span></div>
+                <div class='col-sm-3'>
+                    <h4>Photo4: </h4><span ng-model="product.photo4" contenteditable>{{product.photo4}}</span></div>
+            </div>
+            <button class="btn btn-success btn-sm updateButton" ng-click="updateProduct(product)"><i class="fa fa-refresh"></i> Update Item</button>
+            <button class="btn btn-danger btn-sm" ng-click="deleteProduct(product)"><i class="fa fa-remove"></i> Delete Item</button>
+</div>
+</accordion-group>
+</accordion>
 </div>
