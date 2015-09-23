@@ -18,12 +18,36 @@ var farmSchema = new mongoose.Schema({
 		navBar: {
 			type: String,
 			default: ''
-
+		},
+		pageText:{
+			type: String,
+			default: ''
 		},
 		filter: {
 			type: String,
 			default: ''
-		}
+		},
+		backgroundColor: {
+			type: String,
+			default: ''
+		},
+		footer: {
+			type: String,
+			default: ''
+		},
+		productSize: {
+			type: String,
+			default: ''
+		},
+		logoSize: {
+			type: String,
+			default: ''
+		},
+		buttonShape: {
+			type: String,
+			default: ''
+		},
+
 	}
 });
 

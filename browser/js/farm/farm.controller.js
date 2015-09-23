@@ -1,5 +1,4 @@
 app.controller('FarmCtrl', function ($scope, $state, farm, CartFactory, ProductFactory) {
-    console.log(farm);
     $scope.farm = farm;
     $scope.products = farm.products;
     $scope.minPrice = Math.floor(ProductFactory.minPrice($scope.products));
@@ -7,22 +6,27 @@ app.controller('FarmCtrl', function ($scope, $state, farm, CartFactory, ProductF
     $scope.activeCat = null;
     $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruits'];
     $scope.styles = farm.styles;
-    console.dir("AAA ", $scope.styles)
     for(var key in $scope.styles){
-      console.log("Key ", key)
       var style = $scope.styles[key];
-      console.log("style ", style)
       if(key === "filter"){
         var filter = document.getElementsByClassName('nav-sidebar')[0];
         filter.style.backgroundColor = style;
       }else if (key === "navBar"){
         var navBar = document.getElementsByClassName('navbar')[0];
         navBar.style.backgroundColor = style;
+      }else if(key === "pageText"){
+        var wrap = document.getElementById('wrap');
+        wrap.style.fontFamily = style;
+      }else if(key === "backgroundColor"){
+        var wrap = document.getElementById('wrap');
+        wrap.style.backgroundColor = style;
+      }else if(key === "footer"){
+        var footer = document.getElementById('footer');
+        footer.style.backgroundColor = style;
       }
     }
     if($scope.styles === "red"){
       var filters = document.getElementsByClassName('nav-sidebar');
-      console.log(filters);
       filters[0].style.backgroundColor = 'blue';
     }
     $scope.priceSlider = {
