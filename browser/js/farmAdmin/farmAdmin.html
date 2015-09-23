@@ -1,48 +1,49 @@
 <div class="container">
-    <h3>Your Farm</h3>
-    <div id="info">
-        <div class='row' ng-hide="updateInfo">
-            <div class='col-sm-4'>
-                <h4> Farm Name : {{farm.name}}
-          </div>
+    <div>
+      <div class='row' ng-hide="updateInfo">
+          <h3>Your Farm</h3>
           <div class='col-sm-4'>
-            <h4> Farm Description : {{farm.description}}
+              <h4> Farm Name : {{farm.name}}</h4>
+            </div>
+          <div class='col-sm-4'>
+            <h4> Farm Description : {{farm.description}}</h4>
           </div>
       </div>
       <div class="row">
           <div class="col-sm-6">
-              <button ng-click = "update()" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Update</button>
-          </div>
+              <button ng-click = "update()" ng-hide = "updateInfo" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Update</button>
+            </div>
       </div>
-      <hr>
-      <div class = "row">
-        <div ng-if="updateInfo">
-          <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateFarm()">
-                  <div class='row'>
-                      <div class='col-sm-4'>
-                          <label>Farm Name: </label>
-                          <input ng-model="updatedFarmInfo.name" placeholder = "{{farm.name}}">
-                      </div>
-                      <div class='col-sm-4'>
-                          <label>Description: </label>
-                          <input ng-model="updatedFarmInfo.description" placeholder="{{farm.description}}">
-                      </div>
-                      <div class='col-sm-4'>
-                          <label>Photo: </label>
-                          <input ng-model="updatedFarmInfo.photo" placeholder="{{farm.photo}}">
-                      </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                      <div class="col-sm-6">
-                          <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
-                      </div>
-                      <div class="col-sm-6">
-                          <button type="button" ng-click ="update()" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Cancel</button>
-                      </div>
-                  </div>
-            </form>
-          </div>
+    </div>
+    <hr>
+    <div class = "row">
+      <div ng-if="updateInfo">
+        <form name='userAccountInfo' role="form" ng-submit="userAccountInfo.$valid && updateFarm()">
+                <div class='row'>
+                  <h3> Update Info </h3>
+                    <div class='col-sm-4'>
+                        <label>Farm Name: </label>
+                        <input ng-model="updatedFarmInfo.name" placeholder = "{{farm.name}}">
+                    </div>
+                    <div class='col-sm-4'>
+                        <label>Description: </label>
+                        <input ng-model="updatedFarmInfo.description" placeholder="{{farm.description}}">
+                    </div>
+                    <div class='col-sm-4'>
+                        <label>Photo: </label>
+                        <input ng-model="updatedFarmInfo.photo" placeholder="{{farm.photo}}">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Submit</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" ng-click ="update()" class="btn btn-success btn-md"><i class="fa fa-refresh"></i> Cancel</button>
+                    </div>
+                </div>
+          </form>
         </div>
       </div>
     </div>
@@ -56,18 +57,12 @@
           <add-farm-product ng-show = "addProductView"></add-product>
       </div>
     </div>
-    <hr ng-show = "updateInfo">
+    <hr>
+    <div class = "container">
+      <div class = "row">
+        <h3>Custom Styles</h3>
+        <button type="button" ng-hide = "addCustomStyleView" class="btn btn-warning btn-sm" ng-click="addCustomStyleView = true">Add Custom CSS</button>
+        <add-custom-styles ng-show = "addCustomStyleView"></add-custom-styles>
+      </div>
+    </div>
 </div>
-
-<!-- <product-accordion-directive ng-show="active === 'products'"></product-accordion-directive>
-<review-accordion-directive ng-show="active === 'reviews'"></review-accordion-directive>
-<user-accordion-directive ng-show="active === 'users'"></user-accordion-directive>
-<order-accordion-admin-directive ng-show="active === 'orders'"></order-accordion-admin-directive>
-<promo-accordion ng-show="active === 'promos'"></promo-accordion> -->
-<!-- <ul class="nav nav-tabs">
-    <li ng-click="showProducts()"><a href="#">Product</a></li>
-    <li ng-click="showReviews()"><a href="#">Reviews</a></li>
-    <li ng-click="showUsers()"><a href="#">Users</a></li>
-    <li ng-click="showOrders()"><a href="#">Orders</a></li>
-    <li ng-click="showPromos()"><a href="#">Promos</a></li>
-</ul> -->

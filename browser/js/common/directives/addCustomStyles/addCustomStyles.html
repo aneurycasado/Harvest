@@ -1,0 +1,31 @@
+<form name='addCustomStyles' role="form" ng-submit="addCustomStyles.$valid && applyStyles(styles)">
+    <div>
+        <div class="row">
+            <div class='col-sm-2'>
+                <label>Navbar Color: </label>
+                <input type="text" ng-model="styles.navBar" placeholder="Any valid css color"></input>
+            </div>
+            <div class='col-sm-2'>
+                <label>Page Text: </label>
+                <input type="text" ng-model="styles.pageText" placeholder="Any valid css font-family"></input>
+            </div>
+            <div class='col-sm-2'>
+                <label>Filter Color: </label>
+                <input type="text" ng-model="styles.filter" placeholder="Any valid css color"></input>
+            </div>
+            <div class='col-sm-2'>
+                <label>Background Color: </label>
+                <input type="text" ng-model="styles.backgroundColor" placeholder="Any valid css color"></input>
+            </div>
+            <div class='col-sm-2'>
+                <label>Footer Color: </label>
+                <input type="text" ng-model="styles.footer" placeholder="Any valid css color"></input>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <button type="submit" class="btn btn-success btn-sm">Create</button>
+            <button type="button" class="btn btn-warning btn-sm" ng-click="addCustomStyleView = false">Cancel</button>
+        </div>
+    </div>
+</form>

@@ -5,8 +5,9 @@ app.controller('farmAdminCtrl', function ($scope,$state, FarmFactory, farm) {
     $scope.updatedFarmInfo = {};
     $scope.newProduct = {};
     $scope.addProductView = false;
+    $scope.addCustomStyleView = false;
+    $scope.styles = {};
     $scope.update = function(){
-        console.log('changing...');
       $scope.updateInfo = !$scope.updateInfo;
     };
     $scope.updateFarm = function(){
@@ -28,4 +29,12 @@ app.controller('farmAdminCtrl', function ($scope,$state, FarmFactory, farm) {
         $state.reload();
       });
     };
+    $scope.applyStyles = function(styles){
+      console.log("Argument ", styles);
+      var newStyles = {styles}
+      console.log("Scope ", newStyles);
+      FarmFactory.updateFarm($scope.farm._id,newStyles).then(function(){
+        $state.reload();
+      });
+    }
 });
