@@ -25,6 +25,10 @@ app.use(function (req, res, next) {
     }
 });
 
+app.get('/github', function (req, res, next) {
+  res.redirect('https://github.com/aneurycasado/StackStore');
+});
+
 app.use("/pay", function(req,res,next){
   var stripeToken = req.body.token;
   var amount = Math.round(req.body.amount*100);
@@ -53,6 +57,7 @@ app.get('/*', function (req, res) {
         res.sendFile(app.get('landingPageHTMLPath'));
     }
 });
+
 // Error catching endware.
 app.use(function (err, req, res, next) {
 
