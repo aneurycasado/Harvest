@@ -26,10 +26,13 @@ router.put("/:id", function(req,res,next){
   .then(function(farm){
     for(var key in req.body){
       if(req.body[key]){
+        console.log("Key ", key);
+        console.log("Content ", req.body[key]);
         farm[key] = req.body[key];
       }
     }
     farm.save().then(function(updatedFarm){
+      console.log("updatedFarm ", updatedFarm);
       res.json(updatedFarm);
     })
   })

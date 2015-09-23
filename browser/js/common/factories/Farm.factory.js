@@ -21,6 +21,7 @@ app.factory('FarmFactory', function ($http) {
   }
 
   factory.updateFarm = function(id,info){
+    console.log("Info ", info);
     return $http.put("/api/farms/"+id,info).then(response=>response.data);
   }
 

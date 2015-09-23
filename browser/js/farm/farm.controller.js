@@ -6,7 +6,25 @@ app.controller('FarmCtrl', function ($scope, $state, farm, CartFactory, ProductF
     $scope.maxPrice = Math.ceil(ProductFactory.maxPrice($scope.products));
     $scope.activeCat = null;
     $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruits'];
-
+    $scope.styles = farm.styles;
+    console.dir("AAA ", $scope.styles)
+    for(var key in $scope.styles){
+      console.log("Key ", key)
+      var style = $scope.styles[key];
+      console.log("style ", style)
+      if(key === "filter"){
+        var filter = document.getElementsByClassName('nav-sidebar')[0];
+        filter.style.backgroundColor = style;
+      }else if (key === "navBar"){
+        var navBar = document.getElementsByClassName('navbar')[0];
+        navBar.style.backgroundColor = style;
+      }
+    }
+    if($scope.styles === "red"){
+      var filters = document.getElementsByClassName('nav-sidebar');
+      console.log(filters);
+      filters[0].style.backgroundColor = 'blue';
+    }
     $scope.priceSlider = {
         floor: Math.floor(ProductFactory.minPrice($scope.products)),
         ceil: Math.ceil(ProductFactory.maxPrice($scope.products)),
