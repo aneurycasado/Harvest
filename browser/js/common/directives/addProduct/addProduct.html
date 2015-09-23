@@ -3,7 +3,9 @@
         <accordion-group heading=" Add a new Product">
             <div class='row'>
                 <div class='col-sm-2'>
-                    <label>Product: </label><input ng-model="addProduct.title" type='text' placeholder="Enter name here..."</span></div>
+                    <label>Product: </label>
+                    <input ng-model="addProduct.title" type='text' placeholder="Enter name here..." </span>
+                </div>
                 <div class='col-sm-2'>
                     <label>Description: </label>
                     <input type="text" ng-model="addProduct.description" placeholder="Enter description here...">
@@ -14,7 +16,8 @@
                     <input type="number" min="0" ng-model="addProduct.inventoryQuantity"></input>
                 </div>
                 <div class='col-sm-2'>
-                    <label>Category: </label><div></div>
+                    <label>Category: </label>
+                    <div></div>
                     <select ng-model="addProduct.category">
                         <option>Dairy</option>
                         <option>Fruit</option>
@@ -29,8 +32,24 @@
                     <label>Available: </label>
                     <input ng-model="addProduct.available" type="checkbox">
                 </div>
-                <button type="submit" class="btn btn-success btn-sm">Create</button>
-                <button type="button" class="btn btn-warning btn-sm" ng-click="showAddProductForm()">Cancel</button>
+            </div>
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h3>Photo: </h3><span><input type="text" ng-model="product.photo" placeholder="Enter main photo url here..."></span></div>
+                <div class='col-sm-3'>
+                    <h3>Photo2: </h3><span><input type="text" ng-model="product.photo2" placeholder="Enter 2nd photo url here..."></span></div>
+                <div class='col-sm-3'>
+                    <h3>Photo3: </h3><span><input type="text" ng-model="product.photo3" placeholder="Enter 3rd photo url here..."></span></div>
+                <div class='col-sm-3'>
+                    <h3>Photo4: </h3><span><input type="text" ng-model="product.photo4" placeholder="Enter 4th photo url here..."></span></div>
+            </div>
+            <div class="spacer"></div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-success btn-sm">Create</button>
+                    <button type="button" class="btn btn-warning btn-sm" ng-click="showAddProductForm()">Cancel</button>
+                </div>
+            </div>
             </div>
         </accordion-group>
     </form>
