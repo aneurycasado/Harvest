@@ -4,7 +4,14 @@ app.controller('HomeCtrl', function ($scope, products, $state, CartFactory, Prod
     $scope.maxPrice = Math.ceil(ProductFactory.maxPrice(products));
     $scope.activeCat = null;
     $scope.cats = [null, 'Dairy', 'Vegetables', 'Fruits'];
-
+    var filter = document.getElementsByClassName('nav-sidebar')[0];
+    filter.style.backgroundColor = '#659C57';
+    var navBar = document.getElementsByClassName('navbar')[0];
+    navBar.style.backgroundColor = '#659C57';
+    var wrap = document.getElementById('wrap');
+    wrap.style.fontFamily = "";
+    wrap.style.backgroundColor = 'white';
+    footer.style.backgroundColor = '#659C57';
     $scope.priceSlider = {
         floor: Math.floor(ProductFactory.minPrice(products)),
         ceil: Math.ceil(ProductFactory.maxPrice(products)),
