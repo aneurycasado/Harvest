@@ -17,6 +17,6 @@ Harvest is an online marketplace that allows farmers to sell their goods to a wi
 2. ```npm install``` in your new directory
 3. ```gulp``` in your new directory
 4. To run the server - ```npm start```. In a separate terminal window ```gulp```
-5. Point your browser to (http://localhost:1337/).
+5. Point your browser to http://localhost:1337/
 
 # Let us know what you think!
